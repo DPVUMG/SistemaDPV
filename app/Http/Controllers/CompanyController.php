@@ -12,14 +12,14 @@ class CompanyController extends Controller
     ///Vista de la pantalla de todos los registros
     public function index_pagina()
     {
-        $web = Company::with('phones','addresses')->where('current',true)->first();
+        $web = Company::with('phones', 'addresses')->where('current', true)->first();
         return view('system.company.index_pagina', compact('web'));
     }
 
     ///Vista de la pantalla de todos los registros
     public function index_sistema()
     {
-        $web = Company::with('phones','addresses')->where('system',true)->first();
+        $web = Company::with('phones', 'addresses')->where('system', true)->first();
         return view('system.company.index_sistema', compact('web'));
     }
 
@@ -29,8 +29,7 @@ class CompanyController extends Controller
         $this->validate($request, $this->rules(), $this->messages());
 
         $data = $request->all();
-        if(!empty($request->logotipo))
-        {
+        if (!empty($request->logotipo)) {
             $img_data = file_get_contents($request->file('logotipo'));
             $base64 = base64_encode($img_data);
             $data['logotipo'] = $base64;
@@ -46,7 +45,7 @@ class CompanyController extends Controller
     //Update de datos
     public function update(Request $request, Company $company)
     {
-        if(is_null($request->logotipo))
+        if (is_null($request->logotipo))
             $this->validate($request, $this->rules(1), $this->messages());
         else
             $this->validate($request, $this->rules(), $this->messages());
@@ -63,18 +62,15 @@ class CompanyController extends Controller
         $company->instagram = $request->instagram;
         $company->page = $request->page;
 
-        if(!empty($request->logotipo))
-        {
-            if($request->logotipo != $company->logotipo)
-            {
+        if (!empty($request->logotipo)) {
+            if ($request->logotipo != $company->logotipo) {
                 $img_data = file_get_contents($request->file('logotipo'));
                 $base64 = base64_encode($img_data);
                 $company->logotipo = $base64;
             }
         }
 
-        if(!$company->isDirty())
-        {
+        if (!$company->isDirty()) {
             toastr()->info('El sistema no detecto cambios nuevos para guardar.');
             return redirect()->route("company.{$request->redireccionar}");
         }
@@ -88,8 +84,8 @@ class CompanyController extends Controller
     public function phone_store(Request $request, Company $company)
     {
         $rules = [
-            'redireccionar'=>'required|starts_with:index_pagina,index_sistema',
-            'phone'=>'required|integer|digits:8'
+            'redireccionar' => 'required|starts_with:index_pagina,index_sistema',
+            'phone' => 'required|integer|digits:8'
         ];
 
         $messages = [
@@ -119,8 +115,8 @@ class CompanyController extends Controller
     public function direction_store(Request $request, Company $company)
     {
         $rules = [
-            'redireccionar'=>'required|starts_with:index_pagina,index_sistema',
-            'direction'=>'required|max:200'
+            'redireccionar' => 'required|starts_with:index_pagina,index_sistema',
+            'direction' => 'required|max:200'
         ];
 
         $messages = [
@@ -164,39 +160,36 @@ class CompanyController extends Controller
     //Reglas de validaciones
     public function rules($id = null)
     {
-        if(is_null($id))
-        {
+        if (is_null($id)) {
             return [
-                'redireccionar'=>'required|starts_with:index_pagina,index_sistema',
-                'nit'=>'required|max:10|unique:business,nit',
-                'name'=>'required|max:50',
-                'slogan'=>'required|max:5',
-                'vision'=>'required|max:1000',
-                'mision'=>'required|max:1000',
-                'logotipo'=>'required|file',
-                'ubication_x'=>'required|numeric',
-                'ubication_y'=>'required|numeric',
-                'facebook'=>'required|url|max:100',
-                'twitter'=>'required|url|max:100',
-                'instagram'=>'required|url|max:100',
-                'page'=>'required|url|max:100',
+                'redireccionar' => 'required|starts_with:index_pagina,index_sistema',
+                'nit' => 'required|max:10|unique:business,nit',
+                'name' => 'required|max:50',
+                'slogan' => 'required|max:5',
+                'vision' => 'required|max:1000',
+                'mision' => 'required|max:1000',
+                'logotipo' => 'required|file',
+                'ubication_x' => 'required|numeric',
+                'ubication_y' => 'required|numeric',
+                'facebook' => 'required|url|max:100',
+                'twitter' => 'required|url|max:100',
+                'instagram' => 'required|url|max:100',
+                'page' => 'required|url|max:100',
             ];
-        }
-        else
-        {
+        } else {
             return [
-                'redireccionar'=>'required|starts_with:index_pagina,index_sistema',
-                'nit'=>'required|max:10|unique:business,nit,'.$id,
-                'name'=>'required|max:50',
-                'slogan'=>'required|max:5',
-                'vision'=>'required|max:1000',
-                'mision'=>'required|max:1000',
-                'ubication_x'=>'required|numeric',
-                'ubication_y'=>'required|numeric',
-                'facebook'=>'required|url|max:100',
-                'twitter'=>'required|url|max:100',
-                'instagram'=>'required|url|max:100',
-                'page'=>'required|url|max:100',
+                'redireccionar' => 'required|starts_with:index_pagina,index_sistema',
+                'nit' => 'required|max:10|unique:business,nit,' . $id,
+                'name' => 'required|max:50',
+                'slogan' => 'required|max:5',
+                'vision' => 'required|max:1000',
+                'mision' => 'required|max:1000',
+                'ubication_x' => 'required|numeric',
+                'ubication_y' => 'required|numeric',
+                'facebook' => 'required|url|max:100',
+                'twitter' => 'required|url|max:100',
+                'instagram' => 'required|url|max:100',
+                'page' => 'required|url|max:100',
             ];
         }
     }

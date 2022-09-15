@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {return view('welcome');})->name('welcome')->middleware('guest');
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome')->middleware('guest');
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login')->middleware('guest');
 Route::post('login', 'Auth\LoginController@login')->middleware('guest');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
@@ -25,7 +27,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('passw
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 
 
-Route::group(['middleware' => ['auth','system']], function () {
+Route::group(['middleware' => ['auth', 'system']], function () {
     Route::name('sistema.')->group(function () {
         Route::get('/dashboard', 'HomeController@index')->name('home');
     });
@@ -103,7 +105,7 @@ Route::group(['middleware' => ['auth','system']], function () {
 });
 
 
-Route::group(['middleware' => ['auth','admin']], function () {
+Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::name('order.')->group(function () {
         Route::delete('order/delete/{order}', 'OrderController@delete')->name('delete');
     });
@@ -130,5 +132,26 @@ Route::group(['middleware' => ['auth']], function () {
     Route::name('company.')->group(function () {
         Route::get('company/system', 'CompanyController@index_sistema')->name('index_sistema');
         Route::post('company/store', 'CompanyController@store')->name('store');
+    });
+});
+
+
+/* ================================== RUTAS PARA LOS CONTROLADORES =============================== */
+
+Route::group(['middleware' => ['auth', 'system']], function () {
+    Route::name('configuracion.')->group(function () {
+        Route::get('configuracion/page', 'ConfiguracionController@index_pagina')->name('index_pagina');
+        Route::put('configuracion/update/{configuracion}', 'ConfiguracionController@update')->name('update');
+        Route::put('configuracion/telefono/{configuracion}', 'ConfiguracionController@telefono_store')->name('telefono_store');
+        Route::put('configuracion/direccion/{configuracion}', 'ConfiguracionController@direccion_store')->name('direccion_store');
+        Route::delete('configuracion/telefono_delete/{telefono}', 'ConfiguracionController@telefono_delete')->name('telefono_delete');
+        Route::delete('configuracion/direccion_delete/{direccion}', 'ConfiguracionController@direccion_delete')->name('direccion_delete');
+    });
+});
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::name('configuracion.')->group(function () {
+        Route::get('configuracion/system', 'ConfiguracionController@index_sistema')->name('index_sistema');
+        Route::post('configuracion/store', 'ConfiguracionController@store')->name('store');
     });
 });

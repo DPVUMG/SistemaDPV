@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Página WEB')
+@section('title', 'Configuración Página WEB')
 
 @section('content')
 <div class="content">
@@ -9,20 +9,22 @@
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('sistema.home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Página WEB</li>
+                        <li class="breadcrumb-item active" aria-current="page">Configuración Página WEB</li>
                     </ol>
                 </nav>
             </div>
         </div>
+        @if (!is_null($web))
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-nav-tabs text-center">
-                    <div class="card-header card-header-info">{{ __('Información de la Página WEB') }}</div>
+                    <div class="card-header card-header-info">{{ __('Información de la Configuración Página WEB') }}
+                    </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <form method="post" action="{{ route('company.update', $web) }}" autocomplete="off"
-                                    class="form-horizontal" enctype="multipart/form-data">
+                                <form method="post" action="{{ route('configuracion.update', $web) }}"
+                                    autocomplete="off" class="form-horizontal" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <input type="hidden" name="redireccionar" value="index_pagina" />
@@ -71,21 +73,24 @@
                                                 </div>
                                                 <div class="col-sm-12 col-md-9">
                                                     <div
-                                                        class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                                        class="form-group{{ $errors->has('nombre') ? ' has-danger' : '' }}">
+                                                        <label for="nit">nombre de la empresa</label>
                                                         <input
-                                                            class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                                            name="name" id="input-name" type="text"
+                                                            class="form-control{{ $errors->has('nombre') ? ' is-invalid' : '' }}"
+                                                            name="nombre" id="input-name" type="text"
                                                             placeholder="{{ __('nombre de la empresa') }}"
-                                                            value="{{ old('name',$web->name) }}" aria-required="true" />
-                                                        @if ($errors->has('name'))
-                                                        <span id="name-error" class="error text-danger"
-                                                            for="input-name">{{ $errors->first('name') }}</span>
+                                                            value="{{ old('nombre',$web->nombre) }}"
+                                                            aria-required="true" />
+                                                        @if ($errors->has('nombre'))
+                                                        <span id="nombre-error" class="error text-danger"
+                                                            for="input-nombre">{{ $errors->first('nombre') }}</span>
                                                         @endif
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12 col-md-3">
                                                     <div
                                                         class="form-group{{ $errors->has('slogan') ? ' has-danger' : '' }}">
+                                                        <label for="slogan">slogan o iniciales de la empresa</label>
                                                         <input
                                                             class="form-control{{ $errors->has('slogan') ? ' is-invalid' : '' }}"
                                                             name="slogan" id="input-slogan" type="text"
@@ -100,32 +105,34 @@
                                                 </div>
                                                 <div class="col-sm-12 col-md-6">
                                                     <div
-                                                        class="form-group{{ $errors->has('ubication_x') ? ' has-danger' : '' }}">
+                                                        class="form-group{{ $errors->has('ubicacion_x') ? ' has-danger' : '' }}">
+                                                        <label for="ubicacion_x">longitud</label>
                                                         <input
-                                                            class="form-control{{ $errors->has('ubication_x') ? ' is-invalid' : '' }}"
-                                                            name="ubication_x" id="input-ubication_x" type="text"
+                                                            class="form-control{{ $errors->has('ubicacion_x') ? ' is-invalid' : '' }}"
+                                                            name="ubicacion_x" id="input-ubicacion_x" type="text"
                                                             placeholder="{{ __('longitud') }}"
-                                                            value="{{ old('ubication_x',$web->ubication_x) }}"
+                                                            value="{{ old('ubicacion_x',$web->ubicacion_x) }}"
                                                             aria-required="true" />
-                                                        @if ($errors->has('ubication_x'))
-                                                        <span id="ubication_x-error" class="error text-danger"
-                                                            for="input-ubication_x">{{ $errors->first('ubication_x')
+                                                        @if ($errors->has('ubicacion_x'))
+                                                        <span id="ubicacion_x-error" class="error text-danger"
+                                                            for="input-ubicacion_x">{{ $errors->first('ubicacion_x')
                                                             }}</span>
                                                         @endif
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12 col-md-6">
                                                     <div
-                                                        class="form-group{{ $errors->has('ubication_y') ? ' has-danger' : '' }}">
+                                                        class="form-group{{ $errors->has('ubicacion_y') ? ' has-danger' : '' }}">
+                                                        <label for="ubicacion_x">latitud</label>
                                                         <input
-                                                            class="form-control{{ $errors->has('ubication_y') ? ' is-invalid' : '' }}"
-                                                            name="ubication_y" id="input-ubication_y" type="text"
+                                                            class="form-control{{ $errors->has('ubicacion_y') ? ' is-invalid' : '' }}"
+                                                            name="ubicacion_y" id="input-ubicacion_y" type="text"
                                                             placeholder="{{ __('latitud') }}"
-                                                            value="{{ old('ubication_y',$web->ubication_y) }}"
+                                                            value="{{ old('ubicacion_y',$web->ubicacion_y) }}"
                                                             aria-required="true" />
-                                                        @if ($errors->has('ubication_y'))
-                                                        <span id="ubication_y-error" class="error text-danger"
-                                                            for="input-ubication_y">{{ $errors->first('ubication_y')
+                                                        @if ($errors->has('ubicacion_y'))
+                                                        <span id="ubicacion_y-error" class="error text-danger"
+                                                            for="input-ubicacion_y">{{ $errors->first('ubicacion_y')
                                                             }}</span>
                                                         @endif
                                                     </div>
@@ -133,6 +140,7 @@
                                                 <div class="col-sm-12 col-md-6">
                                                     <div
                                                         class="form-group{{ $errors->has('facebook') ? ' has-danger' : '' }}">
+                                                        <label for="facebook">URL de facebook</label>
                                                         <input
                                                             class="form-control{{ $errors->has('facebook') ? ' is-invalid' : '' }}"
                                                             name="facebook" id="input-facebook" type="text"
@@ -148,6 +156,7 @@
                                                 <div class="col-sm-12 col-md-6">
                                                     <div
                                                         class="form-group{{ $errors->has('twitter') ? ' has-danger' : '' }}">
+                                                        <label for="twitter">URL de twitter</label>
                                                         <input
                                                             class="form-control{{ $errors->has('twitter') ? ' is-invalid' : '' }}"
                                                             name="twitter" id="input-twitter" type="text"
@@ -163,6 +172,7 @@
                                                 <div class="col-sm-12 col-md-6">
                                                     <div
                                                         class="form-group{{ $errors->has('instagram') ? ' has-danger' : '' }}">
+                                                        <label for="instagram">URL de instagram</label>
                                                         <input
                                                             class="form-control{{ $errors->has('instagram') ? ' is-invalid' : '' }}"
                                                             name="instagram" id="input-instagram" type="text"
@@ -178,15 +188,16 @@
                                                 </div>
                                                 <div class="col-sm-12 col-md-6">
                                                     <div
-                                                        class="form-group{{ $errors->has('page') ? ' has-danger' : '' }}">
+                                                        class="form-group{{ $errors->has('url') ? ' has-danger' : '' }}">
+                                                        <label for="url">URL de página</label>
                                                         <input
-                                                            class="form-control{{ $errors->has('page') ? ' is-invalid' : '' }}"
-                                                            name="page" id="input-page" type="text"
+                                                            class="form-control{{ $errors->has('url') ? ' is-invalid' : '' }}"
+                                                            name="url" id="input-url" type="text"
                                                             placeholder="{{ __('URL de page') }}"
-                                                            value="{{ old('page',$web->page) }}" aria-required="true" />
-                                                        @if ($errors->has('page'))
-                                                        <span id="page-error" class="error text-danger"
-                                                            for="input-page">{{ $errors->first('page') }}</span>
+                                                            value="{{ old('url',$web->url) }}" aria-required="true" />
+                                                        @if ($errors->has('url'))
+                                                        <span id="url-error" class="error text-danger"
+                                                            for="input-url">{{ $errors->first('url') }}</span>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -194,6 +205,8 @@
                                         </div>
                                         <div class="col-sm-12 col-md-6">
                                             <div class="form-group{{ $errors->has('vision') ? ' has-danger' : '' }}">
+                                                <label for="vision">escribir en esta sección la visión de la
+                                                    empresa</label>
                                                 <textarea
                                                     class="form-control{{ $errors->has('vision') ? ' is-invalid' : '' }}"
                                                     name="vision" rows="10" cols="10" id="input-vision" type="text"
@@ -207,6 +220,8 @@
                                         </div>
                                         <div class="col-sm-12 col-md-6">
                                             <div class="form-group{{ $errors->has('mision') ? ' has-danger' : '' }}">
+                                                <label for="mision">escribir en esta sección la misión de la
+                                                    empresa</label>
                                                 <textarea
                                                     class="form-control{{ $errors->has('mision') ? ' is-invalid' : '' }}"
                                                     name="mision" rows="10" cols="10" id="input-mision" type="text"
@@ -220,8 +235,8 @@
                                         </div>
                                         <div class="col-md-12">
                                             <a rel="tooltip" class="btn btn-flat btn-md btn-danger"
-                                                href="{{ route('company.index_pagina') }}" data-toggle="tooltip"
-                                                data-placement="top" title="Cancelar">
+                                                href="{{ route('configuracion.index_pagina') }}" data-toggle="tooltip"
+                                                data-placement="top" title="Cancelar edición">
                                                 <i class="material-icons">block</i> Cancelar
                                                 <div class="ripple-container"></div>
                                             </a>
@@ -237,7 +252,7 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form method="post" action="{{ route('company.phone_store', $web) }}"
+                                        <form method="post" action="{{ route('configuracion.telefono_store', $web) }}"
                                             autocomplete="off" class="form-horizontal">
                                             @csrf
                                             @method('PUT')
@@ -245,7 +260,7 @@
                                                 <div class="card-header card-header-danger">
                                                     <h4 class="card-title">{{ __('Nuevo número de teléfono') }}</h4>
                                                     <p class="card-category">{{ __("Registrar un teléfono a la empresa
-                                                        {$web->name}") }}</p>
+                                                        {$web->nombre}") }}</p>
                                                 </div>
                                                 <div class="card-body ">
                                                     <div class="row">
@@ -253,15 +268,16 @@
                                                             value="index_pagina" />
                                                         <div class="col-sm-12 col-md-12">
                                                             <div
-                                                                class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
+                                                                class="form-group{{ $errors->has('telefono') ? ' has-danger' : '' }}">
                                                                 <input
-                                                                    class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
-                                                                    name="phone" id="input-phone" type="text"
+                                                                    class="form-control{{ $errors->has('telefono') ? ' is-invalid' : '' }}"
+                                                                    name="telefono" id="input-telefono" type="text"
                                                                     placeholder="{{ __('número de teléfono') }}"
-                                                                    value="{{ old('phone') }}" aria-required="true" />
-                                                                @if ($errors->has('phone'))
-                                                                <span id="phone-error" class="error text-danger"
-                                                                    for="input-phone">{{ $errors->first('phone')
+                                                                    value="{{ old('telefono') }}"
+                                                                    aria-required="true" />
+                                                                @if ($errors->has('telefono'))
+                                                                <span id="telefono-error" class="error text-danger"
+                                                                    for="input-telefono">{{ $errors->first('telefono')
                                                                     }}</span>
                                                                 @endif
                                                             </div>
@@ -270,8 +286,8 @@
                                                 </div>
                                                 <div class="card-footer ml-auto mr-auto">
                                                     <a rel="tooltip" class="btn btn-flat btn-md btn-danger"
-                                                        href="{{ route('company.index_pagina') }}" data-toggle="tooltip"
-                                                        data-placement="top" title="Cancelar">
+                                                        href="{{ route('configuracion.index_pagina') }}"
+                                                        data-toggle="tooltip" data-placement="top" title="Cancelar">
                                                         <i class="material-icons">block</i> Cancelar
                                                         <div class="ripple-container"></div>
                                                     </a>
@@ -296,20 +312,20 @@
                                                     </th>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($web->phones as $item)
+                                                    @foreach($web->telefonos as $item)
                                                     <tr>
                                                         <td class="text-left">
-                                                            {{ $item->phone }}
+                                                            {{ $item->telefono }}
                                                         </td>
                                                         <td class="text-center">
                                                             <form method="post"
-                                                                action="{{ route('company.phone_delete', $item) }}">
+                                                                action="{{ route('configuracion.telefono_delete', $item) }}">
                                                                 @csrf
                                                                 @method('delete')
                                                                 <button type="button"
                                                                     class="btn btn-danger btn-sm btn-round"
                                                                     onclick="confirm('{{ __(" ¿Está seguro que desea
-                                                                    eliminar el registro {$item->phone} ?") }}') ?
+                                                                    eliminar el registro {$item->telefono} ?") }}') ?
                                                                     this.parentElement.submit() : ''">
                                                                     <i class="material-icons">close</i>
                                                                     <div class="ripple-container"></div>
@@ -327,7 +343,7 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form method="post" action="{{ route('company.direction_store', $web) }}"
+                                        <form method="post" action="{{ route('configuracion.direccion_store', $web) }}"
                                             autocomplete="off" class="form-horizontal">
                                             @csrf
                                             @method('PUT')
@@ -335,7 +351,7 @@
                                                 <div class="card-header card-header-warning">
                                                     <h4 class="card-title">{{ __('Nueva dirección') }}</h4>
                                                     <p class="card-category">{{ __("Registrar una dirección a la empresa
-                                                        {$web->name}") }}</p>
+                                                        {$web->nombre}") }}</p>
                                                 </div>
                                                 <div class="card-body ">
                                                     <div class="row">
@@ -343,16 +359,16 @@
                                                             value="index_pagina" />
                                                         <div class="col-sm-12 col-md-12">
                                                             <div
-                                                                class="form-group{{ $errors->has('direction') ? ' has-danger' : '' }}">
+                                                                class="form-group{{ $errors->has('direccion') ? ' has-danger' : '' }}">
                                                                 <input
-                                                                    class="form-control{{ $errors->has('direction') ? ' is-invalid' : '' }}"
-                                                                    name="direction" id="input-direction" type="text"
+                                                                    class="form-control{{ $errors->has('direccion') ? ' is-invalid' : '' }}"
+                                                                    name="direccion" id="input-direccion" type="text"
                                                                     placeholder="{{ __('dirección') }}"
-                                                                    value="{{ old('direction') }}"
+                                                                    value="{{ old('direccion') }}"
                                                                     aria-required="true" />
-                                                                @if ($errors->has('direction'))
-                                                                <span id="direction-error" class="error text-danger"
-                                                                    for="input-direction">{{ $errors->first('direction')
+                                                                @if ($errors->has('direccion'))
+                                                                <span id="direccion-error" class="error text-danger"
+                                                                    for="input-direccion">{{ $errors->first('direccion')
                                                                     }}</span>
                                                                 @endif
                                                             </div>
@@ -361,8 +377,8 @@
                                                 </div>
                                                 <div class="card-footer ml-auto mr-auto">
                                                     <a rel="tooltip" class="btn btn-flat btn-md btn-danger"
-                                                        href="{{ route('company.index_pagina') }}" data-toggle="tooltip"
-                                                        data-placement="top" title="Cancelar">
+                                                        href="{{ route('configuracion.index_pagina') }}"
+                                                        data-toggle="tooltip" data-placement="top" title="Cancelar">
                                                         <i class="material-icons">block</i> Cancelar
                                                         <div class="ripple-container"></div>
                                                     </a>
@@ -387,20 +403,20 @@
                                                     </th>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($web->addresses as $item)
+                                                    @foreach($web->direcciones as $item)
                                                     <tr>
                                                         <td class="text-left">
-                                                            {{ $item->direction }}
+                                                            {{ $item->direccion }}
                                                         </td>
                                                         <td class="text-center">
                                                             <form method="post"
-                                                                action="{{ route('company.direction_delete', $item) }}">
+                                                                action="{{ route('configuracion.direccion_delete', $item) }}">
                                                                 @csrf
                                                                 @method('delete')
                                                                 <button type="button"
                                                                     class="btn btn-danger btn-sm btn-round"
                                                                     onclick="confirm('{{ __(" ¿Está seguro que desea
-                                                                    eliminar el registro {$item->phone} ?") }}') ?
+                                                                    eliminar el registro {$item->direccion} ?") }}') ?
                                                                     this.parentElement.submit() : ''">
                                                                     <i class="material-icons">close</i>
                                                                     <div class="ripple-container"></div>
@@ -424,6 +440,7 @@
             </div>
 
         </div>
+        @endif
     </div>
 </div>
 
