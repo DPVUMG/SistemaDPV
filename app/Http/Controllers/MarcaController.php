@@ -15,12 +15,17 @@ class MarcaController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->has('search'))
-            $items = Marca::search($request->search)->orderBy('nombre', 'asc')->paginate(10);
-        else
-            $items = Marca::orderBy('nombre', 'asc')->paginate(10);
+        try {
+            if ($request->has('search'))
+                $items = Marca::search($request->search)->orderBy('nombre', 'asc')->paginate(10);
+            else
+                $items = Marca::orderBy('nombre', 'asc')->paginate(10);
 
-        return view('sistema.catalogo.marca.index', compact('items'));
+            return view('sistema.catalogo.marca.index', compact('items'));
+        } catch (\Throwable $th) {
+            toastr()->error('Error al cargar la pantalla.');
+            return redirect()->route($this->redireccionarCatch());
+        }
     }
 
     /**
@@ -48,7 +53,7 @@ class MarcaController extends Controller
             toastr()->success('Registro guardado.');
             return redirect()->route('marca.index');
         } catch (\Throwable $th) {
-            toastr()->success('Error al guardar.');
+            toastr()->error('Error al guardar.');
             return redirect()->route('marca.index');
         }
     }
@@ -75,7 +80,7 @@ class MarcaController extends Controller
         try {
             return view('sistema.catalogo.marca.edit', compact('marca'));
         } catch (\Throwable $th) {
-            toastr()->success('Error al seleccionar el registro.');
+            toastr()->error('Error al seleccionar el registro.');
             return redirect()->route('marca.index');
         }
     }
@@ -103,8 +108,8 @@ class MarcaController extends Controller
             toastr()->success('Registro actualizado.');
             return redirect()->route('marca.index');
         } catch (\Throwable $th) {
-            toastr()->success('Error al guardar la información.');
-            return view('sistema.catalogo.marca.edit', compact('marca'));
+            toastr()->error('Error al guardar la información.');
+            return redirect()->route('marca.edit', ['marca' => $marca]);
         }
     }
 

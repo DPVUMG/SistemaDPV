@@ -5,9 +5,30 @@ namespace App\Models;
 use App\Models\SubCategoria;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Categoria extends Model
 {
+    use SearchableTrait;
+
+    /**
+     * Searchable rules.
+     *
+     * @var array
+     */
+    protected $searchable = [
+        /**
+         * Columns and their priority in search results.
+         * Columns with higher values are more important.
+         * Columns with equal values have equal importance.
+         *
+         * @var array
+         */
+        'columns' => [
+            'nombre' => 10
+        ]
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -16,11 +37,11 @@ class Categoria extends Model
     protected $table = 'categoria';
 
     /**
-     * The attributes that aren't mass assignable.
+     * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $guarded = ['nombre', 'icono'];
+    protected $fillable = ['nombre', 'icono'];
 
     /**
      * The accessors to append to the model's array form.

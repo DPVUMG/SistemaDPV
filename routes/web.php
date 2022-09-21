@@ -150,6 +150,8 @@ Route::group(['middleware' => ['auth', 'system']], function () {
 
     Route::resource('marca', 'MarcaController')->except(['create', 'show']);
     Route::resource('variante', 'VarianteController')->except(['create', 'show']);
+    Route::resource('categoria', 'CategoriaController')->except(['create']);
+    Route::resource('sub_categoria', 'SubCategoriaController')->except(['index', 'create', 'show']);
 });
 
 Route::group(['middleware' => ['auth']], function () {

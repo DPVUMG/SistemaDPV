@@ -40,6 +40,12 @@
                 <span class="sidebar-normal"> <i class="material-icons">bookmark</i> {{ __('Variantes DPV') }} </span>
               </a>
             </li>
+            <li class="nav-item {{URL::current() == URL::route('categoria.index') ? 'active' : ''}}">
+              <a class="nav-link" href="{{ route('categoria.index') }}">
+                <span class="sidebar-normal"> <i class="material-icons">drag_indicator</i> {{ __('Categoría DPV') }}
+                </span>
+              </a>
+            </li>
             <li class="nav-item {{URL::current() == URL::route('brand.index') ? 'active' : ''}}">
               <a class="nav-link" href="{{ route('brand.index') }}">
                 <span class="sidebar-normal"> <i class="material-icons">bookmark</i> {{ __('Marcas') }} </span>

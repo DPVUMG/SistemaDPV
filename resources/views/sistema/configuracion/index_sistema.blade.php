@@ -670,31 +670,4 @@
         @endif
     </div>
 </div>
-
-<script>
-    function fileValidation(){
-        var fileInput = document.getElementById('input-logotipo');
-        var filePath = fileInput.value;
-        var allowedExtensions = /(.jpg|.jpeg|.png)$/i;
-        if(!allowedExtensions.exec(filePath))
-        {
-            Swal.fire({
-              type: 'error',
-              title: 'Oops...',
-              text: 'Solo se permiten imagenes en formato .jpeg/.jpg/.png',
-            })
-            fileInput.value = '';
-            return false;
-        }else{
-            //Image preview
-            if (fileInput.files && fileInput.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('imagePreview').innerHTML = '<img width="100%" height="100%" src="'+e.target.result+'"/>';
-                };
-                reader.readAsDataURL(fileInput.files[0]);
-            }
-        }
-    }
-</script>
 @endsection
