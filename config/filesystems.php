@@ -72,6 +72,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'categoria' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/categoria'),
+            'url' => env('ASSET_URL') . '/storage/categoria',
+            'visibility' => 'public',
+        ],
+
         'avatar' => [
             'driver' => 'local',
             'root' => storage_path('app/public/avatar'),

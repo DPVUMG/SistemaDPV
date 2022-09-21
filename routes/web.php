@@ -147,6 +147,9 @@ Route::group(['middleware' => ['auth', 'system']], function () {
         Route::delete('configuracion/telefono_delete/{telefono}', 'ConfiguracionController@telefono_delete')->name('telefono_delete');
         Route::delete('configuracion/direccion_delete/{direccion}', 'ConfiguracionController@direccion_delete')->name('direccion_delete');
     });
+
+    Route::resource('marca', 'MarcaController')->except(['create', 'show']);
+    Route::resource('variante', 'VarianteController')->except(['create', 'show']);
 });
 
 Route::group(['middleware' => ['auth']], function () {

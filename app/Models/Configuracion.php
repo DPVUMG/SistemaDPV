@@ -43,7 +43,7 @@ class Configuracion extends Model
      *
      * @var array
      */
-    protected $appends = ['logotioPicture'];
+    protected $appends = ['logotipoPicture'];
 
     /**
      * The attributes that should be cast.
