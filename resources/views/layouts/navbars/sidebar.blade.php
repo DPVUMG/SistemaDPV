@@ -40,6 +40,19 @@
                 <span class="sidebar-normal"> <i class="material-icons">bookmark</i> {{ __('Variantes DPV') }} </span>
               </a>
             </li>
+            <li class="nav-item {{URL::current() == URL::route('presentacion.index') ? 'active' : ''}}">
+              <a class="nav-link" href="{{ route('presentacion.index') }}">
+                <span class="sidebar-normal"> <i class="material-icons">bookmark</i> {{ __('Presentaciones DPV') }}
+                </span>
+              </a>
+            </li>
+            <li class="nav-item {{URL::current() == URL::route('variante_presentacion.index') ? 'active' : ''}}">
+              <a class="nav-link" href="{{ route('variante_presentacion.index') }}">
+                <span class="sidebar-normal"> <i class="material-icons">bookmark</i> {{ __('Variantes y Presentaciones
+                  DPV') }}
+                </span>
+              </a>
+            </li>
             <li class="nav-item {{URL::current() == URL::route('categoria.index') ? 'active' : ''}}">
               <a class="nav-link" href="{{ route('categoria.index') }}">
                 <span class="sidebar-normal"> <i class="material-icons">drag_indicator</i> {{ __('Categoría DPV') }}
@@ -78,6 +91,12 @@
             </li>
           </ul>
         </div>
+      </li>
+      <li class="nav-item {{URL::current() == URL::route('producto.index') ? 'active' : ''}}">
+        <a class="nav-link" href="{{ route('producto.index') }}">
+          <i class="material-icons">store</i>
+          <p>{{ __('Producto DPV') }}</p>
+        </a>
       </li>
       <li class="nav-item {{URL::current() == URL::route('product.index') ? 'active' : ''}}">
         <a class="nav-link" href="{{ route('product.index') }}">

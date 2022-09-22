@@ -13,6 +13,14 @@ class Controller extends BaseController
 
     public function redireccionarCatch()
     {
-        return 'home';
+        return 'sistema.home';
+    }
+
+    protected function generadorCodigo(string $palabra, int $correlativo)
+    {
+        $correlativo = $correlativo === 0 ? 1 : $correlativo + 1;
+        $codigo = str_pad(strval($correlativo), 5, "0", STR_PAD_LEFT);
+        $anio = date('Y');
+        return "{$palabra}{$codigo}{$anio}";
     }
 }

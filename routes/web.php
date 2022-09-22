@@ -152,6 +152,13 @@ Route::group(['middleware' => ['auth', 'system']], function () {
     Route::resource('variante', 'VarianteController')->except(['create', 'show']);
     Route::resource('categoria', 'CategoriaController')->except(['create']);
     Route::resource('sub_categoria', 'SubCategoriaController')->except(['index', 'create', 'show']);
+    Route::resource('presentacion', 'PresentacionController')->except(['create', 'show']);
+    Route::resource('variante_presentacion', 'VariantePresentacionController')->except(['create', 'show', 'edit', 'update']);
+
+    Route::resource('producto', 'ProductoController')->except(['create', 'destroy']);
+
+    Route::resource('producto_variante', 'ProductoVarianteController')->except(['index', 'create', 'store', 'edit']);
+    Route::resource('producto_foto', 'ProductoFotoController')->except(['index', 'create', 'store']);
 });
 
 Route::group(['middleware' => ['auth']], function () {

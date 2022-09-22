@@ -152,6 +152,7 @@ class CategoriaController extends Controller
     {
         try {
             $categorium->delete();
+            Storage::disk('categoria')->exists($categorium->icono) ? Storage::disk('categoria')->delete($categorium->icono) : null;
             toastr()->success('Registro eliminado.');
             return redirect()->route('categoria.index');
         } catch (\Exception $e) {

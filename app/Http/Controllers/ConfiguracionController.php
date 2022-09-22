@@ -267,7 +267,7 @@ class ConfiguracionController extends Controller
 
             'nit.required' => 'El nit es obligatorio.',
             'nit.max'  => 'El nit debe tener menos de :max caracteres.',
-            'nit.unique'  => 'El nit ingresado ya existe en registrado en el sistema.',
+            'nit.unique'  => 'El nit ingresado ya existe en el sistema.',
 
             'nombre.required' => 'El nombre de la empresa es obligatorio.',
             'nombre.max'  => 'El nombre de la empresa debe tener menos de :max caracteres.',
