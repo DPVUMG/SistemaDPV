@@ -17,6 +17,7 @@ class CreateSubCategoriaTable extends Migration
             $table->id();
             $table->string('nombre', 100);
             $table->foreignId('categoria_id')->constrained('categoria');
+            $table->foreignId('usuario_id')->constrained('usuario');
             $table->timestamps();
         });
     }

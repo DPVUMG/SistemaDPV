@@ -51,7 +51,7 @@ class Producto extends Model
      */
     protected $fillable = [
         'codigo', 'nombre', 'descripcion', 'foto',
-        'nuevo', 'activo', 'marca_id'
+        'nuevo', 'activo', 'marca_id', 'usuario_id'
     ];
 
     /**

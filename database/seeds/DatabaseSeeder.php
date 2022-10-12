@@ -18,6 +18,8 @@ use App\ProductComment;
 use Illuminate\Database\Seeder;
 use App\Imports\MunicipioImport;
 use App\Imports\DepartamentoImport;
+use App\Models\Persona;
+use App\Models\Usuario;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DatabaseSeeder extends Seeder
@@ -60,8 +62,14 @@ class DatabaseSeeder extends Seeder
         factory(ProductComment::class, 50)->create();
         echo "Comentarios para los productos ingresados" . PHP_EOL;
 
+
         //Migrando Departamento y Municipios asociados
         Excel::import(new DepartamentoImport, 'database/seeds/Catalogos/Departamentos.xlsx');
         Excel::import(new MunicipioImport, 'database/seeds/Catalogos/Municipios.xlsx');
+
+        factory(Persona::class, 25)->create();
+        echo "Personas." . PHP_EOL;
+        factory(Usuario::class, 25)->create();
+        echo "Usuarios." . PHP_EOL;
     }
 }

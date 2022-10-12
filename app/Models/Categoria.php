@@ -41,7 +41,7 @@ class Categoria extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre', 'icono'];
+    protected $fillable = ['nombre', 'icono', 'usuario_id'];
 
     /**
      * The accessors to append to the model's array form.

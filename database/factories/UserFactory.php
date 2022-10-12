@@ -12,6 +12,9 @@ use App\Credit;
 use App\Detail;
 use App\DiscountRate;
 use App\Image;
+use App\Models\Municipio;
+use App\Models\Persona;
+use App\Models\Usuario;
 use App\Order;
 use App\Product;
 use App\ProductComment;
@@ -32,6 +35,35 @@ use Illuminate\Support\Str;
 | model instances for testing / seeding your application's database.
 |
 */
+
+$factory->define(Persona::class, function (Faker $faker) {
+    $municipio = Municipio::all()->random()->first();
+    return [
+        'cui' => $faker->unique()->numerify('#############'),
+        'nombre' => $faker->randomElement([$faker->name('male'), $faker->name('female')]),
+        'apellido' => $faker->randomElement([$faker->firstName('male'), $faker->firstName('female')]),
+        'telefono' => $faker->numerify('#######'),
+        'correo_electronico' => $faker->unique()->freeEmail,
+        'direccion' => "{$faker->streetAddress}, {$faker->streetName}, {$faker->city}",
+        'departamento_id' => $municipio->departamento_id,
+        'municipio_id' => $municipio->id
+    ];
+});
+
+$factory->define(Usuario::class, function (Faker $faker) {
+
+
+    do {
+        $persona = Persona::all()->random()->id;
+    } while (Usuario::where('persona_id', $persona)->first() != null);
+
+    return [
+        'password' => 'admin',
+        'usuario' => $faker->unique()->userName,
+        'persona_id' => $persona,
+        'remember_token' => Str::random(10)
+    ];
+});
 
 $factory->define(DiscountRate::class, function (Faker $faker) {
     return [
@@ -57,9 +89,9 @@ $factory->define(User::class, function (Faker $faker) {
 $factory->define(Credit::class, function (Faker $faker) {
     $user = User::all()->random()->id;
     $credit = Credit::where('user_id', $user)->update(['current' => 0]);
-    $employee = User::where('system',true)->take(1)->first()->id;
+    $employee = User::where('system', true)->take(1)->first()->id;
 
-    if(is_null($employee))
+    if (is_null($employee))
         $employee = 0;
 
     return [
@@ -115,19 +147,18 @@ $factory->define(Product::class, function (Faker $faker) {
 $factory->define(Order::class, function (Faker $faker) {
     $user = User::all()->random()->id;
     $status = $faker->randomElement([Order::PEDIDO, Order::PROCESO, Order::FACTURADO, Order::ENTREGADO, Order::ANULADO]);
-    $credit = Credit::where('user_id',$user)->where('current',true)->first();
+    $credit = Credit::where('user_id', $user)->where('current', true)->first();
     $employee = 0;
 
-    if(is_null($credit))
+    if (is_null($credit))
         $type_payment = Order::CONTADO;
     else
         $type_payment = Order::CREDITO;
 
-    if($status == Order::FACTURADO)
-    {
-        $employee = User::where('system',true)->take(1)->first()->id;
+    if ($status == Order::FACTURADO) {
+        $employee = User::where('system', true)->take(1)->first()->id;
 
-        if(is_null($employee))
+        if (is_null($employee))
             $employee = 1;
     }
 
@@ -151,43 +182,38 @@ $factory->define(Detail::class, function (Faker $faker) {
 
     $order = Order::all()->random();
 
-    do{
-        $cantidad = $faker->numberBetween(1,10);
+    do {
+        $cantidad = $faker->numberBetween(1, 10);
         $product = Product::all()->random();
         $resta = $product->stock - $cantidad;
-    }while($resta < 0);
+    } while ($resta < 0);
 
     $price = $product->price;
     $discount = $product->discount;
 
-    if($product->offer)
-    {
-        $multiplicar_dividir_porcentaje = round(($price*$discount)/100,2);
+    if ($product->offer) {
+        $multiplicar_dividir_porcentaje = round(($price * $discount) / 100, 2);
         $restar_descuento = $price - $multiplicar_dividir_porcentaje;
-    }
-    else
-    {
+    } else {
         $restar_descuento = $price;
     }
 
     $nuevo_precio = round($restar_descuento, 2);
-    $subtotal = $cantidad*$nuevo_precio;
+    $subtotal = $cantidad * $nuevo_precio;
     $product->stock -= $resta;
     $product->save();
 
-    $nuevo_precio = number_format($restar_descuento,2);
+    $nuevo_precio = number_format($restar_descuento, 2);
     $order->total += $subtotal;
     $order->save();
 
     $pagado = false;
-    if($order->type_payment == Order::CREDITO)
-    {
-        $credit = Credit::where('user_id',$order->user_id)->where('current',true)->first();
+    if ($order->type_payment == Order::CREDITO) {
+        $credit = Credit::where('user_id', $order->user_id)->where('current', true)->first();
 
-        $request_credit = RequestCredit::where('order_id',$order->id)->first();
+        $request_credit = RequestCredit::where('order_id', $order->id)->first();
 
-        if(is_null($request_credit))
-        {
+        if (is_null($request_credit)) {
             $discount_rate = DiscountRate::find($credit->discount_rate_id);
 
             switch ($discount_rate->day_month) {
@@ -202,7 +228,7 @@ $factory->define(Detail::class, function (Faker $faker) {
 
             $request_credit = new RequestCredit();
             $request_credit->date_start = date('Y-m-d', strtotime($order->created_at));
-            $request_credit->date_end = date("Y-m-d",strtotime("{$request_credit->date_start} + {$discount_rate->quantity} {$sumar}"));
+            $request_credit->date_end = date("Y-m-d", strtotime("{$request_credit->date_start} + {$discount_rate->quantity} {$sumar}"));
             $request_credit->order_id = $order->id;
             $request_credit->credit_id = $credit->id;
             $request_credit->user_id = $order->user_id;
@@ -217,88 +243,87 @@ $factory->define(Detail::class, function (Faker $faker) {
     $order->sold = $order->type_payment == Order::CONTADO ? true : $pagado;
     $order->save();
 
-    $employee = User::where('system',true)->take(1)->first()->id;
+    $employee = User::where('system', true)->take(1)->first()->id;
 
-    if(is_null($employee))
+    if (is_null($employee))
         $employee = 1;
 
-    $search_traicing = Traicing::where('order_id',$order->id)->first();
+    $search_traicing = Traicing::where('order_id', $order->id)->first();
 
-    if(is_null($search_traicing))
-    {
+    if (is_null($search_traicing)) {
         switch ($order->status) {
             case Order::PROCESO:
-                    $new = new Traicing();
-                    $new->status = Order::PEDIDO;
-                    $new->order_id = $order->id;
-                    $new->user_id = $employee;
-                    $new->save();
+                $new = new Traicing();
+                $new->status = Order::PEDIDO;
+                $new->order_id = $order->id;
+                $new->user_id = $employee;
+                $new->save();
 
-                    $new = new Traicing();
-                    $new->status = Order::PROCESO;
-                    $new->order_id = $order->id;
-                    $new->user_id = $employee;
-                    $new->save();
+                $new = new Traicing();
+                $new->status = Order::PROCESO;
+                $new->order_id = $order->id;
+                $new->user_id = $employee;
+                $new->save();
                 break;
 
             case Order::FACTURADO:
-                    $new = new Traicing();
-                    $new->status = Order::PEDIDO;
-                    $new->order_id = $order->id;
-                    $new->user_id = $employee;
-                    $new->save();
+                $new = new Traicing();
+                $new->status = Order::PEDIDO;
+                $new->order_id = $order->id;
+                $new->user_id = $employee;
+                $new->save();
 
-                    $new = new Traicing();
-                    $new->status = Order::PROCESO;
-                    $new->order_id = $order->id;
-                    $new->user_id = $employee;
-                    $new->save();
+                $new = new Traicing();
+                $new->status = Order::PROCESO;
+                $new->order_id = $order->id;
+                $new->user_id = $employee;
+                $new->save();
 
-                    $new = new Traicing();
-                    $new->status = Order::FACTURADO;
-                    $new->order_id = $order->id;
-                    $new->user_id = $employee;
-                    $new->save();
+                $new = new Traicing();
+                $new->status = Order::FACTURADO;
+                $new->order_id = $order->id;
+                $new->user_id = $employee;
+                $new->save();
                 break;
 
             case Order::ENTREGADO:
-                    $new = new Traicing();
-                    $new->status = Order::PEDIDO;
-                    $new->order_id = $order->id;
-                    $new->user_id = $employee;
-                    $new->save();
+                $new = new Traicing();
+                $new->status = Order::PEDIDO;
+                $new->order_id = $order->id;
+                $new->user_id = $employee;
+                $new->save();
 
-                    $new = new Traicing();
-                    $new->status = Order::PROCESO;
-                    $new->order_id = $order->id;
-                    $new->user_id = $employee;
-                    $new->save();
+                $new = new Traicing();
+                $new->status = Order::PROCESO;
+                $new->order_id = $order->id;
+                $new->user_id = $employee;
+                $new->save();
 
-                    $new = new Traicing();
-                    $new->status = Order::FACTURADO;
-                    $new->order_id = $order->id;
-                    $new->user_id = $employee;
-                    $new->save();
+                $new = new Traicing();
+                $new->status = Order::FACTURADO;
+                $new->order_id = $order->id;
+                $new->user_id = $employee;
+                $new->save();
 
-                    $new = new Traicing();
-                    $new->status = Order::ENTREGADO;
-                    $new->order_id = $order->id;
-                    $new->user_id = $employee;
-                    $new->save();
+                $new = new Traicing();
+                $new->status = Order::ENTREGADO;
+                $new->order_id = $order->id;
+                $new->user_id = $employee;
+                $new->save();
                 break;
 
             case Order::ANULADO:
-                    $new = new Traicing();
-                    $new->status = Order::PEDIDO;
-                    $new->order_id = $order->id;
-                    $new->user_id = $employee;
-                    $new->save();
+                $new = new Traicing();
+                $new->status = Order::PEDIDO;
+                $new->order_id = $order->id;
+                $new->user_id = $employee;
+                $new->save();
 
-                    $new = new Traicing();
-                    $new->status = Order::ANULADO;
-                    $new->order_id = $order->id;
-                    $new->user_id = $employee;
-                    $new->save();
+                $new = new Traicing();
+                $new->status = Order::ANULADO;
+                $new->order_id = $order->id;
+                $new->user_id = $employee;
+                $new->save();
                 break;
         }
     }

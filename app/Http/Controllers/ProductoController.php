@@ -12,6 +12,7 @@ use App\Models\ProductoVariante;
 use Illuminate\Support\Facades\DB;
 use App\Models\ProductoSubCategoria;
 use App\Models\VariantePresentacion;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
@@ -70,6 +71,7 @@ class ProductoController extends Controller
             $nombre = Str::random(10);
 
             $data = $request->all();
+            $data['usuario_id'] = Auth::user()->id;
             $data['codigo'] = $this->generadorCodigo('P', Producto::count());
             $data['foto'] = "{$nombre}.jpg";
             $data['nuevo'] = true;

@@ -46,7 +46,7 @@ class VariantePresentacion extends Model
      *
      * @var array
      */
-    protected $fillable = ['variante_id', 'presentacion_id'];
+    protected $fillable = ['variante_id', 'presentacion_id', 'usuario_id'];
 
     public function variante()
     {

@@ -18,6 +18,7 @@ class CreateProductoSubcategoriaTable extends Migration
             $table->foreignId('producto_id')->constrained('producto');
             $table->foreignId('categoria_id')->constrained('categoria');
             $table->foreignId('sub_categoria_id')->constrained('sub_categoria');
+            $table->foreignId('usuario_id')->constrained('usuario');
             $table->timestamps();
         });
     }

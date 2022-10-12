@@ -21,6 +21,7 @@ class CreateProductoVarianteTable extends Migration
             $table->foreignId('variante_id')->constrained('variante');
             $table->foreignId('presentacion_id')->constrained('presentacion');
             $table->boolean('activo')->default(true);
+            $table->foreignId('usuario_id')->constrained('usuario');
             $table->timestamps();
         });
     }

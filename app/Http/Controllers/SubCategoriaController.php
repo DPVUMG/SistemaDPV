@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\SubCategoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
 
 class SubCategoriaController extends Controller
@@ -46,7 +47,9 @@ class SubCategoriaController extends Controller
                 return redirect()->route('categoria.show', $category);
             }
 
-            SubCategoria::create($request->all());
+            $data = $request->all();
+            $data['usuario_id'] = Auth::user()->id;
+            SubCategoria::create($data);
             toastr()->success('Registro guardado.');
 
             return redirect()->route('categoria.show', $category);

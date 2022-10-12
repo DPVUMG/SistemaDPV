@@ -8,6 +8,7 @@ use App\Models\SubCategoria;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class CategoriaController extends Controller
@@ -59,6 +60,7 @@ class CategoriaController extends Controller
             $nombre = Str::random(10);
             $data = $request->all();
             $data['icono'] = "{$nombre}.jpg";
+            $data['usuario_id'] = Auth::user()->id;
             Categoria::create($data);
             Storage::disk('categoria')->put($data['icono'], $image);
             toastr()->success('Registro guardado.');

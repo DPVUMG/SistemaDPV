@@ -17,6 +17,7 @@ class CreateProductoFotoTable extends Migration
             $table->id();
             $table->string('foto', 50);
             $table->foreignId('producto_id')->constrained('producto');
+            $table->foreignId('usuario_id')->constrained('usuario');
         });
     }
 

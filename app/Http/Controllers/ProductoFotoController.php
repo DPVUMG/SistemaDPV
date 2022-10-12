@@ -6,6 +6,7 @@ use App\Models\Producto;
 use Illuminate\Support\Str;
 use App\Models\ProductoFoto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Storage;
@@ -98,6 +99,7 @@ class ProductoFotoController extends Controller
             $image = Image::make($img_data);
             $image->encode('jpg', 70);
             $nombre = Str::random(10);
+            $data['usuario_id'] = Auth::user()->id;
             $data['foto'] = "{$nombre}.jpg";
             $data['producto_id'] = $producto_foto->id;
 

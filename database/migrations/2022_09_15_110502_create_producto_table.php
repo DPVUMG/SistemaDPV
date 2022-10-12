@@ -22,6 +22,7 @@ class CreateProductoTable extends Migration
             $table->boolean('nuevo')->default(true);
             $table->boolean('activo')->default(true);
             $table->foreignId('marca_id')->constrained('marca');
+            $table->foreignId('usuario_id')->constrained('usuario');
             $table->timestamps();
         });
     }

@@ -14,15 +14,6 @@
           <div class="card-header card-header-primary text-center">
             <h4 class="card-title"><strong>{{ __('Inicio de sesión') }}</strong></h4>
             <div class="social-line">
-              <a href="{{ $facebook }}" class="btn btn-just-icon btn-link btn-white">
-                <i class="fa fa-facebook-square"></i>
-              </a>
-              <a href="{{ $twitter }}" class="btn btn-just-icon btn-link btn-white">
-                <i class="fa fa-twitter"></i>
-              </a>
-              <a href="{{ $instagram }}" class="btn btn-just-icon btn-link btn-white">
-                <i class="fa fa-instagram"></i>
-              </a>
               <a href="{{ $page }}" class="btn btn-just-icon btn-link btn-white">
                 <i class="fa fa-laptop"></i>
               </a>
@@ -36,12 +27,13 @@
                     <i class="material-icons">email</i>
                   </span>
                 </div>
-                <input type="email" name="email" class="form-control" placeholder="{{ __('correo electrónico') }}" value="{{ old('email') }}" required>
+                <input type="email" name="email" class="form-control" placeholder="{{ __('correo electrónico') }}"
+                  value="{{ old('email') }}" required>
               </div>
               @if ($errors->has('email'))
-                <div id="email-error" class="error text-danger pl-3" for="email" style="display: block;">
-                  <strong>{{ $errors->first('email') }}</strong>
-                </div>
+              <div id="email-error" class="error text-danger pl-3" for="email" style="display: block;">
+                <strong>{{ $errors->first('email') }}</strong>
+              </div>
               @endif
             </div>
             <div class="bmd-form-group{{ $errors->has('password') ? ' has-danger' : '' }} mt-3">
@@ -51,12 +43,14 @@
                     <i class="material-icons">lock_outline</i>
                   </span>
                 </div>
-                <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Password...') }}" value="{{ !$errors->has('password') ? "secret" : "" }}" required>
+                <input type="password" name="password" id="password" class="form-control"
+                  placeholder="{{ __('Password...') }}" value="{{ !$errors->has('password') ? " secret" : "" }}"
+                  required>
               </div>
               @if ($errors->has('password'))
-                <div id="password-error" class="error text-danger pl-3" for="password" style="display: block;">
-                  <strong>{{ $errors->first('password') }}</strong>
-                </div>
+              <div id="password-error" class="error text-danger pl-3" for="password" style="display: block;">
+                <strong>{{ $errors->first('password') }}</strong>
+              </div>
               @endif
             </div>
           </div>
@@ -68,11 +62,11 @@
       <div class="row">
         <div class="col-6 text-right"></div>
         <div class="col-6 text-right">
-            @if (Route::has('password.request'))
-                <a href="{{ route('password.request') }}" class="text-light">
-                    <small>{{ __('¿Restaurar contraseña?') }}</small>
-                </a>
-            @endif
+          @if (Route::has('password.request'))
+          <a href="{{ route('password.request') }}" class="text-light">
+            <small>{{ __('¿Restaurar contraseña?') }}</small>
+          </a>
+          @endif
         </div>
       </div>
     </div>

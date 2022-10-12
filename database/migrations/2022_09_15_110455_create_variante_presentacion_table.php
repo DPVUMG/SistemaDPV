@@ -17,6 +17,7 @@ class CreateVariantePresentacionTable extends Migration
             $table->id();
             $table->foreignId('variante_id')->constrained('variante');
             $table->foreignId('presentacion_id')->constrained('presentacion');
+            $table->foreignId('usuario_id')->constrained('usuario');
             $table->timestamps();
         });
     }

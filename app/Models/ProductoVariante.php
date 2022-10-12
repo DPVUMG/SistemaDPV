@@ -22,7 +22,7 @@ class ProductoVariante extends Model
      */
     protected $fillable = [
         'precio', 'producto_id', 'variante_presentacion_id', 'variante_id',
-        'presentacion_id', 'activo'
+        'presentacion_id', 'activo', 'usuario_id'
     ];
 
     /**

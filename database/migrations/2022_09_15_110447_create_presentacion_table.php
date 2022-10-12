@@ -16,6 +16,7 @@ class CreatePresentacionTable extends Migration
         Schema::create('presentacion', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 50)->unique();
+            $table->foreignId('usuario_id')->constrained('usuario');
             $table->timestamps();
         });
     }

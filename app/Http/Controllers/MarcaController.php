@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Marca;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
 
 class MarcaController extends Controller
@@ -49,7 +50,9 @@ class MarcaController extends Controller
         $this->validate($request, $this->rules(), $this->messages());
 
         try {
-            Marca::create($request->all());
+            $data = $request->all();
+            $data['usuario_id'] = Auth::user()->id;
+            Marca::create($data);
             toastr()->success('Registro guardado.');
             return redirect()->route('marca.index');
         } catch (\Throwable $th) {

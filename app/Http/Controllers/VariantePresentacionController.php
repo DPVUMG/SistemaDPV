@@ -6,6 +6,7 @@ use App\Models\Variante;
 use App\Models\Presentacion;
 use Illuminate\Http\Request;
 use App\Models\VariantePresentacion;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
 
 class VariantePresentacionController extends Controller
@@ -62,7 +63,9 @@ class VariantePresentacionController extends Controller
                 return redirect()->route('variante_presentacion.index');
             }
 
-            VariantePresentacion::create($request->all());
+            $data = $request->all();
+            $data['usuario_id'] = Auth::user()->id;
+            VariantePresentacion::create($data);
             toastr()->success('Registro guardado.');
 
             return redirect()->route('variante_presentacion.index');

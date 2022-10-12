@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ProductoVariante;
 use Illuminate\Support\Facades\DB;
 use App\Models\VariantePresentacion;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
 
 class ProductoVarianteController extends Controller
@@ -101,6 +102,7 @@ class ProductoVarianteController extends Controller
 
             $variante_presentacion = VariantePresentacion::find($request->variante_presentacion_id);
 
+            $data['usuario_id'] = Auth::user()->id;
             $data['producto_id'] = $producto_variante->id;
             $data['variante_presentacion_id'] = $variante_presentacion->id;
             $data['variante_id'] = $variante_presentacion->variante_id;

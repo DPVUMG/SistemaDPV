@@ -17,10 +17,6 @@ class CreateUsuarioTable extends Migration
             $table->id();
             $table->string('password');
             $table->string('usuario')->unique();
-            $table->string('avatar');
-            $table->boolean('admin')->default(false);
-            $table->boolean('pagina')->default(false);
-            $table->boolean('sistema')->default(false);
             $table->boolean('activo')->default(true);
             $table->foreignId('persona_id')->constrained('persona');
             $table->rememberToken();

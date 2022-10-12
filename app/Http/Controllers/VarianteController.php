@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Variante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
 
 class VarianteController extends Controller
@@ -49,7 +50,9 @@ class VarianteController extends Controller
         $this->validate($request, $this->rules(), $this->messages());
 
         try {
-            Variante::create($request->all());
+            $data = $request->all();
+            $data['usuario_id'] = Auth::user()->id;
+            Variante::create($data);
             toastr()->success('Registro guardado.');
             return redirect()->route('variante.index');
         } catch (\Throwable $th) {

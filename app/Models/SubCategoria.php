@@ -40,7 +40,7 @@ class SubCategoria extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre', 'categoria_id'];
+    protected $fillable = ['nombre', 'categoria_id', 'usuario_id'];
 
     public function categoria()
     {

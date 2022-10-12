@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Presentacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
 
 class PresentacionController extends Controller
@@ -49,7 +50,9 @@ class PresentacionController extends Controller
         $this->validate($request, $this->rules(), $this->messages());
 
         try {
-            Presentacion::create($request->all());
+            $data = $request->all();
+            $data['usuario_id'] = Auth::user()->id;
+            Presentacion::create($data);
             toastr()->success('Registro guardado.');
             return redirect()->route('presentacion.index');
         } catch (\Throwable $th) {

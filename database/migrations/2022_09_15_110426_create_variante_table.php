@@ -16,6 +16,7 @@ class CreateVarianteTable extends Migration
         Schema::create('variante', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 25)->unique();
+            $table->foreignId('usuario_id')->constrained('usuario');
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@ class ProductoSubCategoria extends Model
      * @var array
      */
     protected $fillable = [
-        'producto_id', 'categoria_id', 'sub_categoria_id'
+        'producto_id', 'categoria_id', 'sub_categoria_id', 'usuario_id'
     ];
 
     public function producto()

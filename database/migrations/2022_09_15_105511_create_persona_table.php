@@ -21,6 +21,7 @@ class CreatePersonaTable extends Migration
             $table->string('telefono', 15)->nullable(true);
             $table->string('correo_electronico')->nullable(true);
             $table->string('direccion', 150)->nullable(true);
+            $table->string('avatar')->nullable();
             $table->foreignId('departamento_id')->constrained('departamento');
             $table->foreignId('municipio_id')->constrained('municipio');
             $table->timestamps();
