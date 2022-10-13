@@ -5,7 +5,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/css/jasny-bootstrap.min.css">
 <!-- CSS Files -->
-<link href="{{ asset('material') }}/css/material-dashboard.css?v=2.0.2" rel="stylesheet" />
+<link href="{{ asset('material') }}/css/material-dashboard.min.css" rel="stylesheet" />
 <!-- CSS Just for demo purpose, don't include it in your project -->
 <link rel="stylesheet" href="{{ asset('material') }}/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="{{ asset('material') }}/css/jquery-ui/jquery-ui.min.css">
+<link rel="stylesheet" href="{{ asset('material') }}/css/jquery-ui/jquery-ui.structure.css">
+<link rel="stylesheet" href="{{ asset('material') }}/css/jquery-ui/jquery-ui.theme.css">
+<link rel="stylesheet" href="{{ asset('material') }}/css/jquery.dataTables.min.css">
 @toastr_css

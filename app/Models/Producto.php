@@ -51,7 +51,8 @@ class Producto extends Model
      */
     protected $fillable = [
         'codigo', 'nombre', 'descripcion', 'foto',
-        'nuevo', 'activo', 'marca_id', 'usuario_id'
+        'nuevo', 'activo', 'marca_id', 'usuario_id',
+        'temporada'
     ];
 
     /**
@@ -61,7 +62,8 @@ class Producto extends Model
      */
     protected $casts = [
         'nuevo' => 'boolean',
-        'activo' => 'boolean'
+        'activo' => 'boolean',
+        'temporada' => 'boolean'
     ];
 
     /**
@@ -73,7 +75,7 @@ class Producto extends Model
 
     public function getPictureAttribute()
     {
-        return Storage::disk('producto')->exists("{$this->id}/{$this->foto}") ? Storage::disk('producto')->url("{$this->id}/{$this->foto}") : null;
+        return Storage::disk('producto')->exists("{$this->id}/{$this->foto}") ? Storage::disk('producto')->url("{$this->id}/{$this->foto}") : asset('image/producto_default.png');
     }
 
     public function marca()

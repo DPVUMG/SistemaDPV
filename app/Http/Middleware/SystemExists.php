@@ -16,11 +16,10 @@ class SystemExists
      */
     public function handle($request, Closure $next)
     {
-        if($request)
-        {
-            if(is_null(Company::where('system', true)->first()))
+        /*if ($request) {
+            if (is_null(Company::where('system', true)->first()))
                 return redirect()->route('company.index_sistema');
-        }
+        }*/
 
         return $next($request);
     }

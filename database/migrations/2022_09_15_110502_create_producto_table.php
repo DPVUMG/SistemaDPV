@@ -17,8 +17,9 @@ class CreateProductoTable extends Migration
             $table->id();
             $table->string('codigo', 25)->unique();
             $table->string('nombre', 100);
-            $table->longText('descripcion');
-            $table->string('foto', 50);
+            $table->longText('descripcion')->nullable();
+            $table->string('foto', 50)->nullable();
+            $table->boolean('temporada')->default(false);
             $table->boolean('nuevo')->default(true);
             $table->boolean('activo')->default(true);
             $table->foreignId('marca_id')->constrained('marca');

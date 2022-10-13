@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="orange" data-background-color="white"
+<div class="sidebar" data-color="orange" data-background-color="dark"
   data-image="{{ asset('material') }}/img/sidebar-1.jpg">
   <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
@@ -78,9 +78,10 @@
         </a>
         <div class="collapse" id="credits">
           <ul class="nav">
-            <li class="nav-item {{URL::current() == URL::route('credit.index') ? 'active' : ''}}">
-              <a class="nav-link" href="{{ route('credit.index') }}">
-                <span class="sidebar-normal"> <i class="material-icons">card_giftcard</i> {{ __('Crédito') }} </span>
+            <li class="nav-item {{URL::current() == URL::route('catalogo_escuela.index') ? 'active' : ''}}">
+              <a class="nav-link" href="{{ route('catalogo_escuela.index') }}">
+                <span class="sidebar-normal"> <i class="material-icons">card_giftcard</i> {{ __('Catálogo de Escuelas')
+                  }} </span>
               </a>
             </li>
             <li class="nav-item {{URL::current() == URL::route('credit.history') ? 'active' : ''}}">

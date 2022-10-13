@@ -206,8 +206,8 @@
                                     </form>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped">
+                                    <div class="badge badge-secondary" style="width:100%">
+                                        <table class="dataTable display" style="width:100%">
                                             <thead class="thead-dark">
                                                 <th class="text-center">
                                                     {{ __('Variante') }}

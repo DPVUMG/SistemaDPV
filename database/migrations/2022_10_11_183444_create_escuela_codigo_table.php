@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateEscuelaCodigoTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('escuela_codigo', function (Blueprint $table) {
+            $table->id();
+            $table->string('codigo', 25)->unique();
+            $table->boolean('activo')->default(true);
+            $table->foreignId('escuela_id')->constrained('escuela');
+            $table->foreignId('nivel_id')->constrained('nivel');
+            $table->foreignId('usuario_id')->constrained('usuario');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('escuela_codigo');
+    }
+}

@@ -159,6 +159,16 @@ Route::group(['middleware' => ['auth', 'system']], function () {
 
     Route::resource('producto_variante', 'ProductoVarianteController')->except(['index', 'create', 'store', 'edit']);
     Route::resource('producto_foto', 'ProductoFotoController')->except(['index', 'create', 'store']);
+
+    Route::name('catalogo_escuela.')->group(function () {
+        Route::get('/catalogo_escuela', 'CatalogoEscuelaController@index')->name('index');
+        Route::post('/catalogo_escuela/distrito', 'CatalogoEscuelaController@distrito')->name('distrito');
+    });
+
+    Route::resource('departamental', 'DepartamentalController')->except(['create', 'show']);
+    Route::resource('distrito', 'DistritoController')->except(['create', 'show']);
+    Route::resource('nivel', 'NivelController')->except(['create', 'show']);
+    Route::resource('supervisor', 'SupervisorController')->except(['create']);
 });
 
 Route::group(['middleware' => ['auth']], function () {

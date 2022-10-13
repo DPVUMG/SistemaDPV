@@ -16,7 +16,7 @@ class CreateCategoriaTable extends Migration
         Schema::create('categoria', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 100)->unique();
-            $table->string('icono', 50);
+            $table->string('icono', 50)->nullable();
             $table->foreignId('usuario_id')->constrained('usuario');
             $table->timestamps();
         });

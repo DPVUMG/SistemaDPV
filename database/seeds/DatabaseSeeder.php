@@ -3,23 +3,24 @@
 use App\User;
 use App\Brand;
 use App\Image;
-use App\Order;
 use App\Credit;
-use App\Detail;
 use App\Comment;
 use App\Company;
 use App\Product;
 use App\Category;
+use App\Models\Mes;
 use App\SubCategory;
 use App\CompanyPhone;
 use App\DiscountRate;
 use App\CompanyAddress;
-use App\ProductComment;
-use Illuminate\Database\Seeder;
-use App\Imports\MunicipioImport;
-use App\Imports\DepartamentoImport;
 use App\Models\Persona;
 use App\Models\Usuario;
+use App\ProductComment;
+use App\Imports\EscuelasImport;
+use Illuminate\Database\Seeder;
+use App\Imports\MunicipioImport;
+use App\Imports\ProductosImport;
+use App\Imports\DepartamentoImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DatabaseSeeder extends Seeder
@@ -40,6 +41,7 @@ class DatabaseSeeder extends Seeder
         factory(CompanyAddress::class, 4)->create();
         echo "Direcciones de la empresa agregados." . PHP_EOL;
         factory(User::class, 25)->create();
+        User::where('id', 1)->update(['email' => 'admin@admin.com']);
         echo "Usuario ingresados" . PHP_EOL;
         factory(Credit::class, 20)->create();
         echo "Creditos a usuarios." . PHP_EOL;
@@ -71,5 +73,25 @@ class DatabaseSeeder extends Seeder
         echo "Personas." . PHP_EOL;
         factory(Usuario::class, 25)->create();
         echo "Usuarios." . PHP_EOL;
+
+        $meses = [
+            ['nombre' => 'Enero'],
+            ['nombre' => 'Febrero'],
+            ['nombre' => 'Marzo'],
+            ['nombre' => 'Abril'],
+            ['nombre' => 'Mayo'],
+            ['nombre' => 'Junio'],
+            ['nombre' => 'Julio'],
+            ['nombre' => 'Agosto'],
+            ['nombre' => 'Septiembre'],
+            ['nombre' => 'Octubre'],
+            ['nombre' => 'Noviembre'],
+            ['nombre' => 'Diciembre']
+        ];
+        Mes::insert($meses);
+        echo "Meses." . PHP_EOL;
+
+        Excel::import(new EscuelasImport, 'database/seeds/Catalogos/establecimientos.xlsx');
+        Excel::import(new ProductosImport, 'database/seeds/Catalogos/Productos.xlsx');
     }
 }
