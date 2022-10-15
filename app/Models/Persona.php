@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Municipio;
+use App\Models\Departamento;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Nicolaslopezj\Searchable\SearchableTrait;
@@ -77,8 +79,13 @@ class Persona extends Model
         return Storage::disk('avatar')->exists("{$this->avatar}") ? Storage::disk('avatar')->url("{$this->avatar}") : null;
     }
 
-    public function persona()
+    public function departamento()
     {
-        return $this->hasOne(Persona::class, 'id', 'persona_id');
+        return $this->hasOne(Departamento::class, 'id', 'departamento_id');
+    }
+
+    public function municipio()
+    {
+        return $this->hasOne(Municipio::class, 'id', 'municipio_id');
     }
 }

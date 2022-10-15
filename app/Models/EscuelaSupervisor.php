@@ -43,12 +43,12 @@ class EscuelaSupervisor extends Model
 
     public function distrito()
     {
-        return $this->hasMany(Distrito::class, 'id', 'distrito_id');
+        return $this->hasOne(Distrito::class, 'id', 'distrito_id');
     }
 
     public function supervisor()
     {
-        return $this->hasMany(Supervisor::class, 'id', 'supervisor_id');
+        return $this->hasOne(Supervisor::class, 'id', 'supervisor_id');
     }
 
     public function usuario()

@@ -16,6 +16,8 @@ use App\CompanyAddress;
 use App\Models\Persona;
 use App\Models\Usuario;
 use App\ProductComment;
+use App\Models\EstadoPedido;
+use App\Models\EscuelaPedido;
 use App\Imports\EscuelasImport;
 use Illuminate\Database\Seeder;
 use App\Imports\MunicipioImport;
@@ -93,5 +95,16 @@ class DatabaseSeeder extends Seeder
 
         Excel::import(new EscuelasImport, 'database/seeds/Catalogos/establecimientos.xlsx');
         Excel::import(new ProductosImport, 'database/seeds/Catalogos/Productos.xlsx');
+
+        $estados = [
+            ['nombre' => 'Ingresado'],
+            ['nombre' => 'Confirmado'],
+            ['nombre' => 'Entregado'],
+            ['nombre' => 'Pagado'],
+            ['nombre' => 'Anulado'],
+            ['nombre' => 'Cancelado']
+        ];
+        EstadoPedido::insert($estados);
+        echo "Estados de pedidos." . PHP_EOL;
     }
 }

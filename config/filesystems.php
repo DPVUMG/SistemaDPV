@@ -93,6 +93,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'escuela' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/escuela'),
+            'url' => env('ASSET_URL') . '/storage/escuela',
+            'visibility' => 'public',
+        ],
+
     ],
 
     /*

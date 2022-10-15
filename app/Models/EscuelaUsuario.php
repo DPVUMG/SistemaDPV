@@ -51,7 +51,7 @@ class EscuelaUsuario extends Model
      * @var array
      */
     protected $fillable = [
-        'usuario', 'activo', 'persona_id', 'escuela_id', 'usuario_id'
+        'usuario', 'activo', 'persona_id', 'escuela_id', 'usuario_id', 'password'
     ];
 
     /**

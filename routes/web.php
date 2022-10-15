@@ -157,18 +157,38 @@ Route::group(['middleware' => ['auth', 'system']], function () {
 
     Route::resource('producto', 'ProductoController')->except(['create', 'destroy']);
 
-    Route::resource('producto_variante', 'ProductoVarianteController')->except(['index', 'create', 'store', 'edit']);
+    Route::resource('producto_variante', 'ProductoVarianteController')->except(['create', 'store', 'edit']);
     Route::resource('producto_foto', 'ProductoFotoController')->except(['index', 'create', 'store']);
 
     Route::name('catalogo_escuela.')->group(function () {
         Route::get('/catalogo_escuela', 'CatalogoEscuelaController@index')->name('index');
+        Route::post('/catalogo_escuela/departamental', 'CatalogoEscuelaController@departamental')->name('departamental');
+        Route::get('/catalogo_escuela/supervisor', 'CatalogoEscuelaController@supervisor')->name('supervisor');
         Route::post('/catalogo_escuela/distrito', 'CatalogoEscuelaController@distrito')->name('distrito');
+        Route::get('/catalogo_escuela/nivel', 'CatalogoEscuelaController@nivel')->name('nivel');
+        Route::post('/catalogo_escuela/director', 'CatalogoEscuelaController@director')->name('director');
+        Route::post('/catalogo_escuela/plan', 'CatalogoEscuelaController@plan')->name('plan');
+        Route::get('/catalogo_escuela/escuela_codigos/{escuela}', 'CatalogoEscuelaController@escuela_codigos')->name('escuela_codigos');
+        Route::get('/catalogo_escuela/escuelas', 'CatalogoEscuelaController@escuelas')->name('escuelas');
     });
 
     Route::resource('departamental', 'DepartamentalController')->except(['create', 'show']);
     Route::resource('distrito', 'DistritoController')->except(['create', 'show']);
     Route::resource('nivel', 'NivelController')->except(['create', 'show']);
     Route::resource('supervisor', 'SupervisorController')->except(['create']);
+
+    Route::resource('escuela', 'EscuelaController');
+    Route::get('/escuela/status/{escuela}', 'EscuelaController@status')->name('escuela.status');
+    Route::resource('escuela_codigo', 'EscuelaCodigoController')->only(['show', 'update', 'destroy']);
+    Route::resource('escuela_alumno', 'EscuelaCodigoAlumnoController')->only(['show', 'update', 'destroy']);
+    Route::resource('escuela_supervisor', 'EscuelaSupervisorController')->only(['show', 'update', 'destroy']);
+    Route::resource('director', 'DirectorController')->only(['index', 'show', 'update', 'destroy']);
+
+    Route::resource('escuela_usuario', 'EscuelaUsuarioController')->except('destroy');
+    Route::get('/escuela_usuario/status/{escuela_usuario}', 'EscuelaController@status')->name('escuela_usuario.status');
+
+    Route::resource('escuela_descuento', 'EscuelaDescuentoController')->except(['create', 'edit']);
+    Route::get('/escuela_descuento/status/{escuela_descuento}', 'EscuelaDescuentoController@status')->name('escuela_descuento.status');
 });
 
 Route::group(['middleware' => ['auth']], function () {

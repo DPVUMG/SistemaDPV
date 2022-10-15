@@ -102,6 +102,7 @@ class SupervisorController extends Controller
 
         try {
             DB::beginTransaction();
+
             $supervisor->nombre = $request->nombre;
             $supervisor->telefono = $request->telefono;
             $supervisor->distrito_id = $this->createOrselect_distrito($request->distrito_id)->id;

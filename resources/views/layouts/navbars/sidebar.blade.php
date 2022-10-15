@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="orange" data-background-color="dark"
+<div class="sidebar ps" data-color="orange" data-background-color="black"
   data-image="{{ asset('material') }}/img/sidebar-1.jpg">
   <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
@@ -6,7 +6,7 @@
       Tip 2: you can also add an image using data-image tag
   -->
   <div class="logo">
-    <a href="https://creative-tim.com/" class="simple-text logo-normal">
+    <a href="{{ route('sistema.home') }}" class="simple-text logo-normal">
       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
         <div class="fileinput-new thumbnail">
           <img src="{{ $logotipo }}" width="50%" height="50px" rel="nofollow" alt="...">
@@ -20,7 +20,9 @@
     <ul class="nav">
       <li class="nav-item {{URL::current() == URL::route('sistema.home') ? 'active' : ''}}">
         <a class="nav-link" href="{{ route('sistema.home') }}">
-          <i class="material-icons">dashboard</i>
+          <i class="material-icons">
+            <img class="img" src="{{ asset('image/menu/dashboard.png') }}" width="40px" alt="Dashboard">
+          </i>
           <p>{{ __('Dashboard') }}</p>
         </a>
       </li>
@@ -32,41 +34,53 @@
           <ul class="nav">
             <li class="nav-item {{URL::current() == URL::route('marca.index') ? 'active' : ''}}">
               <a class="nav-link" href="{{ route('marca.index') }}">
-                <span class="sidebar-normal"> <i class="material-icons">bookmark</i> {{ __('Marcas DPV') }} </span>
+                <span class="sidebar-normal">
+                  <i class="material-icons">
+                    <img class="img" src="{{ asset('image/menu/marca.png') }}" width="20px" alt="Marcas">
+                  </i>
+                  {{ __('Marcas') }}
+                </span>
               </a>
             </li>
             <li class="nav-item {{URL::current() == URL::route('variante.index') ? 'active' : ''}}">
               <a class="nav-link" href="{{ route('variante.index') }}">
-                <span class="sidebar-normal"> <i class="material-icons">bookmark</i> {{ __('Variantes DPV') }} </span>
+                <span class="sidebar-normal">
+                  <i class="material-icons">
+                    <img class="img" src="{{ asset('image/menu/variante.png') }}" width="20px" alt="Variantes">
+                  </i>
+                  {{ __('Variantes') }}
+                </span>
               </a>
             </li>
             <li class="nav-item {{URL::current() == URL::route('presentacion.index') ? 'active' : ''}}">
               <a class="nav-link" href="{{ route('presentacion.index') }}">
-                <span class="sidebar-normal"> <i class="material-icons">bookmark</i> {{ __('Presentaciones DPV') }}
+                <span class="sidebar-normal">
+                  <i class="material-icons">
+                    <img class="img" src="{{ asset('image/menu/presentacion.png') }}" width="20px" alt="Presentaciones">
+                  </i>
+                  {{ __('Presentaciones') }}
                 </span>
               </a>
             </li>
             <li class="nav-item {{URL::current() == URL::route('variante_presentacion.index') ? 'active' : ''}}">
               <a class="nav-link" href="{{ route('variante_presentacion.index') }}">
-                <span class="sidebar-normal"> <i class="material-icons">bookmark</i> {{ __('Variantes y Presentaciones
-                  DPV') }}
+                <span class="sidebar-normal">
+                  <i class="material-icons">
+                    <img class="img" src="{{ asset('image/menu/variante_presentacion.png') }}" width="20px"
+                      alt="Variantes y Presentaciones">
+                  </i>
+                  {{ __('Variantes y Presentaciones') }}
                 </span>
               </a>
             </li>
             <li class="nav-item {{URL::current() == URL::route('categoria.index') ? 'active' : ''}}">
               <a class="nav-link" href="{{ route('categoria.index') }}">
-                <span class="sidebar-normal"> <i class="material-icons">drag_indicator</i> {{ __('Categoría DPV') }}
+                <span class="sidebar-normal">
+                  <i class="material-icons">
+                    <img class="img" src="{{ asset('image/menu/categoria.png') }}" width="20px" alt="Categoría">
+                  </i>
+                  {{ __('Categoría') }}
                 </span>
-              </a>
-            </li>
-            <li class="nav-item {{URL::current() == URL::route('brand.index') ? 'active' : ''}}">
-              <a class="nav-link" href="{{ route('brand.index') }}">
-                <span class="sidebar-normal"> <i class="material-icons">bookmark</i> {{ __('Marcas') }} </span>
-              </a>
-            </li>
-            <li class="nav-item {{URL::current() == URL::route('category.index') ? 'active' : ''}}">
-              <a class="nav-link" href="{{ route('category.index') }}">
-                <span class="sidebar-normal"> <i class="material-icons">drag_indicator</i> {{ __('Categoría') }} </span>
               </a>
             </li>
           </ul>
@@ -74,20 +88,49 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#credits" aria-expanded="true">
-          <p>Configuración<b class="caret"></b></p>
+          <p>Configuración de Escuelas<b class="caret"></b></p>
         </a>
         <div class="collapse" id="credits">
           <ul class="nav">
             <li class="nav-item {{URL::current() == URL::route('catalogo_escuela.index') ? 'active' : ''}}">
-              <a class="nav-link" href="{{ route('catalogo_escuela.index') }}">
-                <span class="sidebar-normal"> <i class="material-icons">card_giftcard</i> {{ __('Catálogo de Escuelas')
-                  }} </span>
+              <a class="nav-link" href="{{ route('catalogo_escuela.index') }}"><span class="sidebar-normal">
+                  <i class="material-icons">
+                    <img class="img" src="{{ asset('image/menu/catalogo.png') }}" width="20px"
+                      alt="Catálogo de Escuelas">
+                  </i>
+                  {{ __('Catálogo de Escuelas') }}
+                </span>
               </a>
             </li>
-            <li class="nav-item {{URL::current() == URL::route('credit.history') ? 'active' : ''}}">
-              <a class="nav-link" href="{{ route('credit.history') }}">
-                <span class="sidebar-normal"> <i class="material-icons">description</i> {{ __('Historial de créditos')
-                  }} </span>
+            <li class="nav-item {{URL::current() == URL::route('escuela_usuario.index') ? 'active' : ''}}">
+              <a class="nav-link" href="{{ route('escuela_usuario.index') }}">
+                <span class="sidebar-normal">
+                  <i class="material-icons">
+                    <img class="img" src="{{ asset('image/menu/usuario_escuela.png') }}" width="20px"
+                      alt="Usuario de la Escuela">
+                  </i>
+                  {{ __('Usuario de la Escuela') }}
+                </span>
+              </a>
+            </li>
+            <li class="nav-item {{URL::current() == URL::route('escuela_usuario.index') ? 'active' : ''}}">
+              <a class="nav-link" href="{{ route('escuela_usuario.index') }}">
+                <span class="sidebar-normal">
+                  <i class="material-icons">
+                    <img class="img" src="{{ asset('image/menu/director.png') }}" width="20px" alt="Directores">
+                  </i>
+                  {{ __('Directores') }}
+                </span>
+              </a>
+            </li>
+            <li class="nav-item {{URL::current() == URL::route('escuela_usuario.index') ? 'active' : ''}}">
+              <a class="nav-link" href="{{ route('escuela_usuario.index') }}">
+                <span class="sidebar-normal">
+                  <i class="material-icons">
+                    <img class="img" src="{{ asset('image/menu/contacto.png') }}" width="20px" alt="Contactos">
+                  </i>
+                  {{ __('Contactos') }}
+                </span>
               </a>
             </li>
           </ul>
@@ -95,26 +138,34 @@
       </li>
       <li class="nav-item {{URL::current() == URL::route('producto.index') ? 'active' : ''}}">
         <a class="nav-link" href="{{ route('producto.index') }}">
-          <i class="material-icons">store</i>
-          <p>{{ __('Producto DPV') }}</p>
-        </a>
-      </li>
-      <li class="nav-item {{URL::current() == URL::route('product.index') ? 'active' : ''}}">
-        <a class="nav-link" href="{{ route('product.index') }}">
-          <i class="material-icons">store</i>
+          <i class="material-icons">
+            <img class="img" src="{{ asset('image/menu/producto.png') }}" width="40px" alt="Producto">
+          </i>
           <p>{{ __('Producto') }}</p>
         </a>
       </li>
-      <li class="nav-item {{URL::current() == URL::route('order.index') ? 'active' : ''}}">
-        <a class="nav-link" href="{{ route('order.index') }}">
-          <i class="material-icons">shopping_cart</i>
-          <p>{{ __('Pedidos') }}</p>
+      <li class="nav-item {{URL::current() == URL::route('escuela.create') ? 'active' : ''}}">
+        <a class="nav-link" href="{{ route('escuela.create') }}">
+          <i class="material-icons">
+            <img class="img" src="{{ asset('image/menu/nueva_escuela.png') }}" width="40px" alt="Crear Escuela">
+          </i>
+          <p>{{ __('Crear Escuela') }}</p>
         </a>
       </li>
-      <li class="nav-item {{URL::current() == URL::route('user.index') ? 'active' : ''}}">
-        <a class="nav-link" href="{{ route('user.index') }}">
-          <i class="material-icons">supervisor_account</i>
-          <p>{{ __('Usuarios') }}</p>
+      <li class="nav-item {{URL::current() == URL::route('escuela.index') ? 'active' : ''}}">
+        <a class="nav-link" href="{{ route('escuela.index') }}">
+          <i class="material-icons">
+            <img class="img" src="{{ asset('image/menu/escuela.png') }}" width="40px" alt="Escuelas">
+          </i>
+          <p>{{ __('Escuelas') }}</p>
+        </a>
+      </li>
+      <li class="nav-item {{URL::current() == URL::route('escuela_descuento.index') ? 'active' : ''}}">
+        <a class="nav-link" href="{{ route('escuela_descuento.index') }}">
+          <i class="material-icons">
+            <img class="img" src="{{ asset('image/menu/descuento.png') }}" width="40px" alt="Descuentos">
+          </i>
+          <p>{{ __('Descuentos') }}</p>
         </a>
       </li>
       @if (Auth::user()->admin)
@@ -148,22 +199,52 @@
       @endif
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#systems" aria-expanded="true">
-          <p>Configuración<b class="caret"></b></p>
+          <p>Configuración del Sistema<b class="caret"></b></p>
         </a>
         <div class="collapse" id="systems">
           <ul class="nav">
+            <li class="nav-item {{URL::current() == URL::route('user.index') ? 'active' : ''}}">
+              <a class="nav-link" href="{{ route('user.index') }}">
+                <span class="sidebar-normal">
+                  <i class="material-icons">
+                    <img class="img" src="{{ asset('image/menu/usuario_sistema.png') }}" width="20px"
+                      alt="Usuario del Sistema">
+                  </i>
+                  {{ __('Usuario del Sistema') }}
+                </span>
+              </a>
+            </li>
             <li class="nav-item {{URL::current() == URL::route('company.index_sistema') ? 'active' : ''}}">
               <a class="nav-link" href="{{ route('company.index_sistema') }}">
-                <span class="sidebar-normal"> <i class="material-icons">phonelink</i> {{ __('Sistema WEB') }} </span>
+                <span class="sidebar-normal">
+                  <i class="material-icons">
+                    <img class="img" src="{{ asset('image/menu/sistema_web.png') }}" width="20px" alt="Sistema WEB">
+                  </i>
+                  {{ __('Sistema WEB') }}
+                </span>
               </a>
             </li>
             <li class="nav-item {{URL::current() == URL::route('company.index_pagina') ? 'active' : ''}}">
               <a class="nav-link" href="{{ route('company.index_pagina') }}">
-                <span class="sidebar-normal"> <i class="material-icons">phonelink</i> {{ __('Página WEB') }} </span>
+                <span class="sidebar-normal">
+                  <i class="material-icons">
+                    <img class="img" src="{{ asset('image/menu/pagina_web.png') }}" width="20px" alt="Página WEB">
+                  </i>
+                  {{ __('Página WEB') }}
+                </span>
               </a>
             </li>
           </ul>
         </div>
+      </li>
+      <li class="nav-item {{URL::current() == URL::route('logout') ? 'active' : ''}}">
+        <a class="nav-link" href="{{ route('logout') }}"
+          onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+          <i class="material-icons">
+            <img class="img" src="{{ asset('image/menu/salir.png') }}" width="40px" alt="Cerrar Sesión">
+          </i>
+          <p>{{ __('Cerrar Sesión') }}</p>
+        </a>
       </li>
     </ul>
   </div>

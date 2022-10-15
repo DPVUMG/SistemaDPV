@@ -6,14 +6,15 @@ use App\Models\Usuario;
 use App\Models\Director;
 use App\Models\Distrito;
 use App\Models\Municipio;
-use App\Models\Supervisor;
 use App\Models\Departamento;
 use App\Models\Departamental;
 use App\Models\EscuelaCodigo;
 use App\Models\EscuelaUsuario;
+use App\Models\EscuelaDescuento;
 use App\Models\EscuelaSupervisor;
 use App\Models\EscuelaCodigoAlumno;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Escuela extends Model
@@ -41,9 +42,9 @@ class Escuela extends Model
             'escuela.jornada' => 16,
             'escuela.plan' => 14,
             'distrito.codigo' => 12,
-            'departamental.nombre' => 12,
+            'departamental.nombre' => 13,
             'departamento.nombre' => 10,
-            'municipio.nombre' => 10
+            'municipio.nombre' => 22
         ],
         'joins' => [
             'distrito' => ['distrito.id', 'escuela.distrito_id'],
@@ -79,6 +80,12 @@ class Escuela extends Model
     protected $casts = [
         'activo' => 'boolean',
     ];
+
+    //Mutadores
+    public function getPictureAttribute()
+    {
+        return Storage::disk('escuela')->exists("{$this->logo}") ? Storage::disk('escuela')->url("{$this->logo}") : null;
+    }
 
     public function distrito()
     {
@@ -128,5 +135,10 @@ class Escuela extends Model
     public function usuarios()
     {
         return $this->hasMany(EscuelaUsuario::class, 'escuela_id', 'id');
+    }
+
+    public function descuentos()
+    {
+        return $this->hasMany(EscuelaDescuento::class, 'escuela_id', 'id');
     }
 }

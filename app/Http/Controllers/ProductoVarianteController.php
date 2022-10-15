@@ -19,28 +19,29 @@ class ProductoVarianteController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $productos = Producto::join('producto_variante', 'producto_variante.producto_id', 'producto.id')
+            ->select(
+                'producto.id AS id',
+                'producto.nombre AS producto'
+            )
+            ->where('producto.activo', true)
+            ->groupBy('id', 'producto')
+            ->orderby('producto.nombre', 'asc')->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        $precios = ProductoVariante::join('producto', 'producto.id', 'producto_variante.producto_id')
+            ->join('variante', 'variante.id', 'producto_variante.variante_id')
+            ->join('presentacion', 'presentacion.id', 'producto_variante.presentacion_id')
+            ->select(
+                'producto_variante.id AS id',
+                'producto.id AS producto_id',
+                DB::RAW("CONCAT(variante.nombre,' - ',presentacion.nombre) AS producto"),
+                DB::raw("FORMAT(producto_variante.precio, 2) AS precio")
+            )
+            ->where('producto_variante.activo', true)
+            ->where('producto.activo', true)
+            ->orderby('producto.nombre', 'asc')->get();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return response()->json(['productos' => $productos, 'precios' => $precios]);
     }
 
     /**
@@ -69,17 +70,6 @@ class ProductoVarianteController extends Controller
             toastr()->error('Error al cambiar el estado del precio.');
             return redirect()->route('producto.edit', $producto_variante->producto_id);
         }
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ProductoVariante  $producto_variante
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ProductoVariante $producto_variante)
-    {
-        //
     }
 
     /**

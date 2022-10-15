@@ -35,16 +35,6 @@ class VariantePresentacionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -73,40 +63,6 @@ class VariantePresentacionController extends Controller
             toastr()->error('Error al guardar.');
             return redirect()->route('variante_presentacion.index');
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\VariantePresentacion  $variante_presentacion
-     * @return \Illuminate\Http\Response
-     */
-    public function show(VariantePresentacion $variante_presentacion)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\VariantePresentacion  $variante_presentacion
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(VariantePresentacion $variante_presentacion)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\VariantePresentacion  $variante_presentacion
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, VariantePresentacion $variante_presentacion)
-    {
-        //
     }
 
     /**
