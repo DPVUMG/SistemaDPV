@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Escuela;
 use Illuminate\Http\Request;
 use App\Models\EscuelaDescuento;
@@ -37,7 +38,7 @@ class EscuelaDescuentoController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'precio' => 'required|numeric|between:0,100000',
+            'precio' => 'required|numeric|between:1,100000',
             'producto_variante_id' => 'required|integer|exists:producto_variante,id',
             'escuela_id.*' => 'required|integer|exists:escuela,id',
         ], [
@@ -57,9 +58,13 @@ class EscuelaDescuentoController extends Controller
         try {
             DB::beginTransaction();
 
-            foreach ($request->escuela_id as $escuela_id) {
+            $producto_variante = ProductoVariante::find($request->producto_variante_id);
 
-                $producto_variante = ProductoVariante::find($request->producto_variante_id);
+            if ($request->precio > $producto_variante->precio) {
+                throw new Exception("El precio original del producto no puede ser menor al descuento.", 1000);
+            }
+
+            foreach ($request->escuela_id as $escuela_id) {
 
                 EscuelaDescuento::where('escuela_id', $escuela_id)
                     ->where('producto_variante_id', $producto_variante->id)->update([

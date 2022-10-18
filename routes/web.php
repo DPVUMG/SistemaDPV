@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome')->middleware('guest');
+
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login')->middleware('guest');
 Route::post('login', 'Auth\LoginController@login')->middleware('guest');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
@@ -189,6 +190,9 @@ Route::group(['middleware' => ['auth', 'system']], function () {
 
     Route::resource('escuela_descuento', 'EscuelaDescuentoController')->except(['create', 'edit']);
     Route::get('/escuela_descuento/status/{escuela_descuento}', 'EscuelaDescuentoController@status')->name('escuela_descuento.status');
+
+    Route::resource('usuario', 'UsuarioControlller')->except(['destroy', 'show']);
+    Route::get('/usuario/status/{usuario}', 'EscuelaController@status')->name('usuario.status');
 });
 
 Route::group(['middleware' => ['auth']], function () {

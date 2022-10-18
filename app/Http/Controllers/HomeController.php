@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Producto;
 use App\Order;
 
 class HomeController extends Controller
@@ -19,6 +20,11 @@ class HomeController extends Controller
         $entregados = Order::where('status', Order::ENTREGADO)->paginate(5);
         $anulados = Order::where('status', Order::ANULADO)->paginate(5);
 
-        return view('dashboard', compact('pedidos','procesos','facturados','entregados','anulados'));
+        $fecha_actual = date("d-m-Y");
+        $desactivar_nuevo = date("Y-m-d", strtotime($fecha_actual . "- 6 days"));
+
+        Producto::whereDate('created_at', '<', $desactivar_nuevo)->update(['nuevo' => false]);
+
+        return view('dashboard', compact('pedidos', 'procesos', 'facturados', 'entregados', 'anulados'));
     }
 }

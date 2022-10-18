@@ -22,15 +22,16 @@ trait AuthenticatesUsers
     {
         $this->validateLogin($request);
 
-        if (method_exists($this, 'hasTooManyLoginAttempts') &&
-            $this->hasTooManyLoginAttempts($request)) {
+        if (
+            method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)
+        ) {
             $this->fireLockoutEvent($request);
 
             return $this->sendLockoutResponse($request);
         }
 
         if ($this->attemptLogin($request)) {
-
             return $this->sendLoginResponse($request);
         }
 
@@ -42,15 +43,20 @@ trait AuthenticatesUsers
     protected function validateLogin(Request $request)
     {
         $request->validate([
-            $this->username() => 'required|email|string',
+            $this->username() => 'required|string|exists:usuario,usuario',
             'password' => 'required|string',
+        ], [
+            'usuario.required' => 'Es obligatorio que ingrese el usuario',
+            'usuario.exists' => 'Es usuario ingresado no existe',
+
+            'password.required' => 'Es obligatorio que ingrese la contraseña'
         ]);
     }
 
     protected function attemptLogin(Request $request)
     {
         return $this->guard()->attempt(
-          ['email' => $request->email, 'password' => $request->password, 'current' => true, 'system' => 1]
+            ['usuario' => $request->usuario, 'password' => $request->password, 'activo' => true]
         );
     }
 
@@ -66,12 +72,11 @@ trait AuthenticatesUsers
         $this->clearLoginAttempts($request);
 
         return $this->authenticated($request, $this->guard()->user())
-                ?: redirect()->intended($this->redirectPath());
+            ?: redirect()->intended($this->redirectPath());
     }
 
     protected function authenticated(Request $request, $user)
     {
-
     }
 
     protected function sendFailedLoginResponse(Request $request)
@@ -83,7 +88,7 @@ trait AuthenticatesUsers
 
     public function username()
     {
-        return 'email';
+        return 'usuario';
     }
 
     public function logout(Request $request)

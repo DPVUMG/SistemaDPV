@@ -358,11 +358,21 @@
 </div>
 @endif
 @push('js')
+@if (is_null($escuela_usuario))
 <script type="text/javascript">
     $(document).ready(function () {
-    if(@json($escuelas)) {
-        cargarListEscuelas(true)
-    }
-});
+        if(@json($escuelas)) {
+            cargarListEscuelas(true, false)
+        }
+    });
 </script>
+@else
+<script type="text/javascript">
+    $(document).ready(function () {
+        if(@json($escuelas)) {
+            cargarListEscuelas(true, false, @json($escuela_usuario->escuela_id))
+        }
+    });
+</script>
+@endif
 @endpush

@@ -107,7 +107,7 @@
     }
   }
 
-  function cargarListEscuelas(cargar = false, masivo = false) {
+  function cargarListEscuelas(cargar = false, masivo = false, escuela_id = 0) {
     if(cargar) {
         let tag = masivo ? 'escuela_id[]' : 'escuela_id';
         $.ajax({
@@ -119,7 +119,8 @@
                     $(`select[name="${tag}"]`).append(`<option value="">Seleccionar uno porfavor</option>`);
                 }
                 $.each(data, function(key, value) {
-                    $(`select[name="${tag}"]`).append(`<option value="${value.id}">${value.establecimiento}</option>`).selectpicker('refresh');
+                    let selected = (value.id == escuela_id) ? 'selected' : '';
+                    $(`select[name="${tag}"]`).append(`<option value="${value.id}" ${selected}>${value.establecimiento}</option>`).selectpicker('refresh');
                 });
             }
         });

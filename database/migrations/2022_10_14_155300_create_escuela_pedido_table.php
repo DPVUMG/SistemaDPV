@@ -22,7 +22,7 @@ class CreateEscuelaPedidoTable extends Migration
             $table->double('descuento', 8, 2)->default(0);
             $table->double('total', 8, 2)->default(0);
             $table->smallInteger('anio');
-            $table->longText('descripcion');
+            $table->longText('descripcion')->nullable();
             $table->foreignId('escuela_usuario_id')->constrained('escuela_usuario');
             $table->foreignId('escuela_id')->constrained('escuela');
             $table->foreignId('estado_pedido_id')->constrained('estado_pedido');

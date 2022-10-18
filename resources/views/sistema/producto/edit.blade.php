@@ -101,6 +101,26 @@
                                         @endif
                                     </div>
                                 </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <br>
+                                    <div class="checkbox-radios">
+                                        <div class="form-check {{ $errors->has('temporal') ? ' has-danger' : '' }}">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" name="temporal"
+                                                    id="input-temporal"
+                                                    value="{{ old('temporal', $producto->temporada) }}"> Producto
+                                                temporal
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                            @if ($errors->has('temporal'))
+                                            <span id="temporal-error" class="error text-danger" for="input-temporal">{{
+                                                $errors->first('temporal') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-footer ml-auto mr-auto">
                                 <a rel="tooltip" class="btn btn-flat btn-md btn-danger"
@@ -235,7 +255,8 @@
                                                         Q {{ number_format($item->precio, 2, ',', ' ') }}
                                                     </td>
                                                     <td class="text-center">
-                                                        <form method="post"
+                                                        @if ($producto->producto_variante->count() > 1)
+                                                        <form id="formDelete{{ $item->id }}" method="post"
                                                             action="{{ route('producto_variante.destroy', $item) }}">
                                                             @csrf
                                                             @method('delete')
@@ -250,9 +271,9 @@
                                                                     aria-hidden="true"></i>
                                                                 <div class="ripple-container"></div>
                                                             </a>
-                                                            <button rel="tooltip" data-toggle="tooltip"
-                                                                data-placement="top" title="{{ __(" Eliminar
-                                                                {$item->variante->nombre} -
+                                                            <button id="btnDelete-{{ $item->id }}" rel="tooltip"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="{{ __(" Eliminar {$item->variante->nombre} -
                                                                 {$item->presentacion->nombre}") }}"
                                                                 type="submit"
                                                                 class="btn btn-danger btn-sm btn-round">
@@ -260,6 +281,7 @@
                                                                 <div class="ripple-container"></div>
                                                             </button>
                                                         </form>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 @endforeach

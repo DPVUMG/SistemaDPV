@@ -351,7 +351,7 @@ class EscuelaController extends Controller
                 'municipio_id_persona' => 'required|integer|exists:municipio,id',
 
                 //Usuario
-                'usuario' => 'required|max:30|unique:usuario,usuario',
+                'usuario' => 'required|max:30|unique:escuela_usuario,usuario',
                 'password' => 'required|min:6',
             ];
         } else {

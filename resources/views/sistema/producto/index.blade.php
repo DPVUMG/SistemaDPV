@@ -125,7 +125,7 @@
                                                             @endif
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-12 col-md-6">
+                                                    <div class="col-sm-12 col-md-5">
                                                         <div
                                                             class="form-group{{ $errors->has('variante_presentacion_id') ? ' has-danger' : '' }}">
                                                             <label for="variante_presentacion_id">Varaciones y
@@ -168,6 +168,27 @@
                                                                 for="input-precio">{{
                                                                 $errors->first('precio') }}</span>
                                                             @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <br>
+                                                        <div class="checkbox-radios">
+                                                            <div
+                                                                class="form-check {{ $errors->has('temporal') ? ' has-danger' : '' }}">
+                                                                <label class="form-check-label">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        name="temporal" id="input-temporal"
+                                                                        value="{{ old('temporal') }}"> Producto temporal
+                                                                    <span class="form-check-sign">
+                                                                        <span class="check"></span>
+                                                                    </span>
+                                                                </label>
+                                                                @if ($errors->has('temporal'))
+                                                                <span id="temporal-error" class="error text-danger"
+                                                                    for="input-temporal">{{
+                                                                    $errors->first('temporal') }}</span>
+                                                                @endif
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -290,6 +311,8 @@
                                                     <h4 class="card-title">{{ $item->nombre }}</h4>
                                                     <h6 class="card-category text-gray">{{ $item->codigo }}</h6>
                                                     <h5 class="card-category text-gray">{{ $item->marca->nombre }}</h5>
+                                                    <h5 class="card-category text-gray">Temporal: {{ $item->temporada ?
+                                                        'SI' : 'NO' }}</h5>
                                                     {!! $item->descripcion !!}
                                                 </div>
                                                 <div class="card-footer justify-content-center">

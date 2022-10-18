@@ -6,6 +6,7 @@
                 class="my-auto" height="40px" alt="Escuela">
             <p class="card-category">Editar Escuela</p>
             <h3 class="card-title">{{ $escuela->establecimiento }}</h3>
+            <h1 class="card-title"># {{ $escuela->id }}</h1>
         </div>
     </div>
     <div class="card-body">

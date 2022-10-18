@@ -138,7 +138,7 @@ class ProductoVarianteController extends Controller
     {
         $validar = [
             'variante_presentacion_id' => 'required|integer|exists:variante_presentacion,id',
-            'precio' => 'required|numeric|between:0,100000',
+            'precio' => 'required|numeric|between:1,100000',
         ];
 
         return $validar;

@@ -9,14 +9,64 @@
     <a href="{{ route('sistema.home') }}" class="simple-text logo-normal">
       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
         <div class="fileinput-new thumbnail">
-          <img src="{{ $logotipo }}" width="50%" height="50px" rel="nofollow" alt="...">
+          <img src="{{ $logotipo }}" width="50%" height="50px" rel="nofollow" alt="logo">
         </div>
         <strong>{{ $nombre_empresa }}</strong><br>
         {{ $slogan }}
       </div>
     </a>
   </div>
-  <div class="sidebar-wrapper ps-container ps-theme-default">
+  <div class="sidebar-wrapper ps">
+    <br>
+    <div class="user text-center">
+      <div class="photo">
+        <img src="{{ Auth::user()->getPictureAttribute() }}" class="img img-circle" width="10%">
+      </div>
+      <div class="user-info">
+        <a data-toggle="collapse" href="#collapseExample" class="username collapsed" aria-expanded="false">
+          <small>
+            {{ Auth::user()->getNameCompleteAttribute() }}
+            <b class="caret"></b>
+          </small>
+        </a>
+        <div class="collapse" id="collapseExample">
+          <ul class="nav">
+            <li class="nav-item {{URL::current() == URL::route('usuario.index') ? 'active' : ''}}">
+              <a class="nav-link" href="{{ route('usuario.index') }}">
+                <span class="sidebar-normal">
+                  <i class="material-icons">
+                    <img class="img" src="{{ asset('image/menu/usuario_sistema.png') }}" width="20px"
+                      alt="Usuario del Sistema">
+                  </i>
+                  {{ __('Usuario del Sistema') }}
+                </span>
+              </a>
+            </li>
+            <li class="nav-item {{URL::current() == URL::route('company.index_sistema') ? 'active' : ''}}">
+              <a class="nav-link" href="{{ route('company.index_sistema') }}">
+                <span class="sidebar-normal">
+                  <i class="material-icons">
+                    <img class="img" src="{{ asset('image/menu/sistema_web.png') }}" width="20px" alt="Sistema WEB">
+                  </i>
+                  {{ __('Sistema WEB') }}
+                </span>
+              </a>
+            </li>
+            <li class="nav-item {{URL::current() == URL::route('company.index_pagina') ? 'active' : ''}}">
+              <a class="nav-link" href="{{ route('company.index_pagina') }}">
+                <span class="sidebar-normal">
+                  <i class="material-icons">
+                    <img class="img" src="{{ asset('image/menu/pagina_web.png') }}" width="20px" alt="Página WEB">
+                  </i>
+                  {{ __('Página WEB') }}
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr>
     <ul class="nav">
       <li class="nav-item {{URL::current() == URL::route('sistema.home') ? 'active' : ''}}">
         <a class="nav-link" href="{{ route('sistema.home') }}">
@@ -197,46 +247,7 @@
         </div>
       </li>
       @endif
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#systems" aria-expanded="true">
-          <p>Configuración del Sistema<b class="caret"></b></p>
-        </a>
-        <div class="collapse" id="systems">
-          <ul class="nav">
-            <li class="nav-item {{URL::current() == URL::route('user.index') ? 'active' : ''}}">
-              <a class="nav-link" href="{{ route('user.index') }}">
-                <span class="sidebar-normal">
-                  <i class="material-icons">
-                    <img class="img" src="{{ asset('image/menu/usuario_sistema.png') }}" width="20px"
-                      alt="Usuario del Sistema">
-                  </i>
-                  {{ __('Usuario del Sistema') }}
-                </span>
-              </a>
-            </li>
-            <li class="nav-item {{URL::current() == URL::route('company.index_sistema') ? 'active' : ''}}">
-              <a class="nav-link" href="{{ route('company.index_sistema') }}">
-                <span class="sidebar-normal">
-                  <i class="material-icons">
-                    <img class="img" src="{{ asset('image/menu/sistema_web.png') }}" width="20px" alt="Sistema WEB">
-                  </i>
-                  {{ __('Sistema WEB') }}
-                </span>
-              </a>
-            </li>
-            <li class="nav-item {{URL::current() == URL::route('company.index_pagina') ? 'active' : ''}}">
-              <a class="nav-link" href="{{ route('company.index_pagina') }}">
-                <span class="sidebar-normal">
-                  <i class="material-icons">
-                    <img class="img" src="{{ asset('image/menu/pagina_web.png') }}" width="20px" alt="Página WEB">
-                  </i>
-                  {{ __('Página WEB') }}
-                </span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </li>
+      <hr>
       <li class="nav-item {{URL::current() == URL::route('logout') ? 'active' : ''}}">
         <a class="nav-link" href="{{ route('logout') }}"
           onclick="event.preventDefault();document.getElementById('logout-form').submit();">

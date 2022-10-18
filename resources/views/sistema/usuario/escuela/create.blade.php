@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Crear Escuela')
+@section('title', 'Crear Usuario')
 
 @section('content')
 <div class="content">
@@ -11,7 +11,7 @@
                         <li class="breadcrumb-item"><a href="{{ route('sistema.home') }}">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('escuela_usuario.index') }}">Usuarios de la
                                 Escuela</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Crear Escuela</li>
+                        <li class="breadcrumb-item active" aria-current="page">Crear Usuario</li>
                     </ol>
                 </nav>
             </div>

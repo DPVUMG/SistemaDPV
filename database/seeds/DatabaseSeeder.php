@@ -17,7 +17,6 @@ use App\Models\Persona;
 use App\Models\Usuario;
 use App\ProductComment;
 use App\Models\EstadoPedido;
-use App\Models\EscuelaPedido;
 use App\Imports\EscuelasImport;
 use Illuminate\Database\Seeder;
 use App\Imports\MunicipioImport;
@@ -57,10 +56,6 @@ class DatabaseSeeder extends Seeder
         echo "Sub categorias para productos ingresados" . PHP_EOL;
         factory(Product::class, 75)->create();
         echo "Productos ingresados" . PHP_EOL;
-        //factory(Order::class, 25)->create();
-        echo "Pedidos ingresados" . PHP_EOL;
-        //factory(Detail::class, 100)->create();
-        echo "Detalle de pedidos ingresados" . PHP_EOL;
         factory(Image::class, 300)->create();
         echo "Imagenes para productos ingresados" . PHP_EOL;
         factory(ProductComment::class, 50)->create();
@@ -74,6 +69,7 @@ class DatabaseSeeder extends Seeder
         factory(Persona::class, 25)->create();
         echo "Personas." . PHP_EOL;
         factory(Usuario::class, 25)->create();
+        Usuario::where('id', 1)->update(['usuario' => 'admin@admin.com']);
         echo "Usuarios." . PHP_EOL;
 
         $meses = [

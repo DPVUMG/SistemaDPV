@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Persona;
+use Illuminate\Support\Facades\Storage;
 use Nicolaslopezj\Searchable\SearchableTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -49,7 +50,8 @@ class Usuario extends Authenticatable
     protected $fillable = [
         'usuario',
         'activo',
-        'persona_id'
+        'persona_id',
+        'password'
     ];
 
     /**
@@ -71,6 +73,18 @@ class Usuario extends Authenticatable
         'updated_at' => 'datetime:d-m-Y h:i:s',
         'activo' => 'boolean'
     ];
+
+    //Mutadores
+    public function getNameCompleteAttribute()
+    {
+        return "{$this->persona->nombre} {$this->persona->apellido}";
+    }
+
+    //Mutadores
+    public function getPictureAttribute()
+    {
+        return Storage::disk('avatar')->exists("{$this->persona->avatar}") ? Storage::disk('avatar')->url("{$this->persona->avatar}") : asset('image/persona_default.png');
+    }
 
     public function setPasswordAttribute($value)
     {

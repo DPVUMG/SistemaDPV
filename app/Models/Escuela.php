@@ -84,7 +84,7 @@ class Escuela extends Model
     //Mutadores
     public function getPictureAttribute()
     {
-        return Storage::disk('escuela')->exists("{$this->logo}") ? Storage::disk('escuela')->url("{$this->logo}") : null;
+        return Storage::disk('escuela')->exists("{$this->logo}") ? Storage::disk('escuela')->url("{$this->logo}") : asset('image/escuela/escuela_default.png');
     }
 
     public function distrito()

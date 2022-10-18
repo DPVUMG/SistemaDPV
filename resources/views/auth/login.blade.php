@@ -17,19 +17,19 @@
             </div>
           </div>
           <div class="card-body">
-            <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+            <div class="bmd-form-group{{ $errors->has('usuario') ? ' has-danger' : '' }}">
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
-                    <i class="material-icons">email</i>
+                    <i class="material-icons">person</i>
                   </span>
                 </div>
-                <input type="email" name="email" class="form-control" placeholder="{{ __('correo electrónico') }}"
-                  value="{{ old('email') }}" required>
+                <input type="text" name="usuario" class="form-control" placeholder="{{ __('usuario') }}"
+                  value="{{ old('usuario') }}" required>
               </div>
-              @if ($errors->has('email'))
-              <div id="email-error" class="error text-danger pl-3" for="email" style="display: block;">
-                <strong>{{ $errors->first('email') }}</strong>
+              @if ($errors->has('usuario'))
+              <div id="usuario-error" class="error text-danger pl-3" for="usuario" style="display: block;">
+                <strong>{{ $errors->first('usuario') }}</strong>
               </div>
               @endif
             </div>

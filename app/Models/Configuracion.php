@@ -70,11 +70,11 @@ class Configuracion extends Model
     //Relaciones
     public function telefonos()
     {
-        return $this->hasMany(ConfiguracionTelefono::class);
+        return $this->hasMany(ConfiguracionTelefono::class, 'configuracion_id', 'id');
     }
 
     public function direcciones()
     {
-        return $this->hasMany(ConfiguracionDireccion::class);
+        return $this->hasMany(ConfiguracionDireccion::class, 'configuracion_id', 'id');
     }
 }

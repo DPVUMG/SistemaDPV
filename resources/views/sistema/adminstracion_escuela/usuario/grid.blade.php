@@ -3,7 +3,8 @@
         <h4 class="card-title ">
             {{ __('Usuarios') }}
             @if ($administracion)
-            <a href="{{ route('escuela_usuario.create') }}" title="Agregar uno nuevo" rel="noopener noreferrer">
+            <a href="{{ route($escuela ? 'escuela_usuario.create' : 'usuario.create') }}" title="Agregar uno nuevo"
+                rel="noopener noreferrer">
                 <img class="img" src="{{ asset('image/ico_agregar.png') }}" width="28px" alt="Agregar">
             </a>
             @endif
@@ -21,7 +22,7 @@
             <thead>
                 <tr>
                     <th rowspan="2" class="text-center align-middle">Fotografía</th>
-                    <th colspan="3" class="text-center align-middle">Identificador</th>
+                    <th colspan="{{ $escuela ? '3' : '2' }}" class="text-center align-middle">Identificador</th>
                     <th rowspan="2" class="text-center align-middle">Nombre Completo</th>
                     <th colspan="3" class="text-center align-middle">Ubicación</th>
                     <th colspan="2" class="text-center align-middle">Contacto</th>
@@ -33,7 +34,9 @@
                 <tr>
                     <th class="text-center align-middle">CUI</th>
                     <th class="text-center align-middle">Usuario</th>
+                    @if ($escuela)
                     <th class="text-center align-middle">Escuela</th>
+                    @endif
 
                     <th class="text-center align-middle">Departamento</th>
                     <th class="text-center align-middle">Municipio</th>
@@ -56,7 +59,9 @@
 
                     <td class="text-center align-middle">{{ $item->persona->cui }}</td>
                     <td class="text-center align-middle">{{ $item->usuario }}</td>
+                    @if ($escuela)
                     <td class="text-center align-middle">{{ $item->escuela->establecimiento }}</td>
+                    @endif
 
                     <td class="text-center align-middle">{{ "{$item->persona->nombre} {$item->persona->apellido}"}}</td>
 
@@ -86,6 +91,11 @@
                             title="Editar información">
                             <i class="material-icons">edit</i>
                             <div class="ripple-container"></div>
+                        </a>
+                        <a rel="tooltip" class="btn btn-info btn-sm btn-round"
+                            href="{{ route('escuela.edit', $item->escuela_id) }}" data-toggle="tooltip"
+                            data-placement="top" title="Ver escuela">
+                            <i class="fa fa-eye"></i>
                         </a>
                         @else
                         <form id="formStatus{{ $item->id }}" method="get"

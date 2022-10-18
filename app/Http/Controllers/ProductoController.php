@@ -76,6 +76,7 @@ class ProductoController extends Controller
             $data['foto'] = "{$nombre}.jpg";
             $data['nuevo'] = true;
             $data['activo'] = false;
+            $data['temporada'] = $request->temporal;
 
             $producto = Producto::create($data); //Guardamos el producto
 
@@ -160,6 +161,7 @@ class ProductoController extends Controller
             $producto->nombre = $request->nombre;
             $producto->marca_id = $request->marca_id;
             $producto->descripcion = $request->descripcion;
+            $producto->temporada = $request->temporal;
             $producto->save(); //Guardamos el producto
 
             ProductoSubCategoria::where('producto_id', $producto->id)->delete();
@@ -206,7 +208,7 @@ class ProductoController extends Controller
                 'producto_subcategoria.*' => 'required|integer|exists:sub_categoria,id',
                 'descripcion' => 'required',
                 'variante_presentacion_id' => 'required|integer|exists:variante_presentacion,id',
-                'precio' => 'required|numeric|between:0,100000',
+                'precio' => 'required|numeric|between:1,100000',
                 'foto' => 'required|file'
             ];
         } else {

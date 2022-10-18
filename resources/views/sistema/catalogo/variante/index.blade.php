@@ -109,7 +109,8 @@
                                             {{ $item->nombre }}
                                         </td>
                                         <td class="text-center">
-                                            <form method="post" action="{{ route('variante.destroy', $item) }}">
+                                            <form id="formDelete{{ $item->id }}" method="post"
+                                                action="{{ route('variante.destroy', $item) }}">
                                                 @csrf
                                                 @method('delete')
                                                 <a rel="tooltip" class="btn btn-warning btn-sm btn-round"
@@ -118,10 +119,11 @@
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
-                                                <button rel="tooltip" data-toggle="tooltip" data-placement="top"
-                                                    title="{{ __(" Eliminar {$item->nombre}") }}"
-                                                    type="submit"
-                                                    class="btn btn-danger btn-sm btn-round">
+                                                <button id="btnDelete-{{ $item->id }}" rel="tooltip"
+                                                    data-toggle="tooltip" data-placement="top" title="{{ __(" Eliminar
+                                                    {$item->nombre}")
+                                                    }}"
+                                                    class="btn btn-danger btn-sm btn-round btnDelete">
                                                     <i class="material-icons">close</i>
                                                     <div class="ripple-container"></div>
                                                 </button>
