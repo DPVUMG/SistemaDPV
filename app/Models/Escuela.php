@@ -35,7 +35,7 @@ class Escuela extends Model
          * @var array
          */
         'columns' => [
-            'escuela.establecimiento' => 18,
+            'escuela.establecimiento' => 1,
             'escuela.nit' => 18,
             'escuela.sector' => 16,
             'escuela.area' => 16,

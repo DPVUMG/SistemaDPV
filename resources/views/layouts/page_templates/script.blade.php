@@ -13,7 +13,7 @@
 <!-- Plugin for the momentJs  -->
 <script src="{{ asset('material') }}/js/plugins/moment.min.js"></script>
 <!--  Plugin for Sweet Alert -->
-<script src="{{ asset('material') }}/js/plugins/sweetalert2.js"></script>
+<script src="{{ asset('material') }}/js/plugins/sweetalert2.min.js"></script>
 <!-- Forms Validations Plugin -->
 <script src="{{ asset('material') }}/js/plugins/jquery.validate.min.js"></script>
 <script src="{{ asset('material') }}/js/plugins/additional-methods.min.js"></script>
@@ -25,6 +25,12 @@
 <script src="{{ asset('material') }}/js/jquery-ui/jquery-ui.min.js"></script>
 <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
 <script src="{{ asset('material') }}/js/plugins/jquery.dataTables.min.js"></script>
+<script src="{{ asset('material') }}/js/plugins/dataTables.buttons.min.js"></script>
+<script src="{{ asset('material') }}/js/plugins/jszip.min.js"></script>
+<script src="{{ asset('material') }}/js/plugins/pdfmake.min.js"></script>
+<script src="{{ asset('material') }}/js/plugins/vfs_fonts.js"></script>
+<script src="{{ asset('material') }}/js/plugins/buttons.html5.min.js"></script>
+<script src="{{ asset('material') }}/js/plugins/buttons.print.min.js"></script>
 <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
 <script src="{{ asset('material') }}/js/plugins/jasny-bootstrap.min.js"></script>
 <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
@@ -44,7 +50,6 @@
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{ asset('material') }}/demo/demo.js"></script>
 <script src="{{ asset('material') }}/js/settings.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).ready( function () {
         $('.dataTable').DataTable({
@@ -59,6 +64,24 @@
             language: {
                 url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json',
             }
+        });
+
+        $('.dataTableExport').DataTable({
+            serverSide: false,
+            paging: true,
+            autoWidth: true,
+            processing: true,
+            ordering: true,
+            info: true,
+            searching: true,
+            responsive: true,        
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json',
+            },
+            dom: 'Bfrtip',
+            buttons: [
+                'copyHtml5', 'csvHtml5', 'excelHtml5', 'pdfHtml5', 'print'
+            ]
         });
         
         $('.selectpicker').selectpicker();

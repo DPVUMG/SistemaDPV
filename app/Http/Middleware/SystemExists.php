@@ -18,7 +18,7 @@ class SystemExists
     {
         /*if ($request) {
             if (is_null(Company::where('system', true)->first()))
-                return redirect()->route('company.index_sistema');
+                return redirect()->route('configuracion.index_sistema');
         }*/
 
         return $next($request);

@@ -17,7 +17,22 @@ class DirectorController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $items = Director::join('escuela', 'escuela.id', 'director.escuela_id')
+                ->select(
+                    'director.nombre AS nombre',
+                    'director.telefono AS telefono',
+                    'escuela.establecimiento AS establecimiento',
+                )
+                ->where('director.activo', true)
+                ->groupBy('director.nombre', 'director.telefono', 'escuela.establecimiento')
+                ->orderBy('director.nombre', 'asc')->get();
+
+            return view('sistema.director.index', compact('items'));
+        } catch (\Throwable $th) {
+            toastr()->error('Error al cargar la pantalla.');
+            return redirect()->route($this->redireccionarCatch());
+        }
     }
 
     /**

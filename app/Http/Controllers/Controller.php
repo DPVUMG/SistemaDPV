@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Persona;
+use App\Models\Usuario;
 use App\Models\Director;
 use App\Models\Distrito;
 use App\Models\Municipio;
 use Illuminate\Support\Str;
+use App\Models\EstadoPedido;
 use Illuminate\Http\Request;
 use App\Models\Departamental;
 use App\Models\EscuelaUsuario;
-use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
+use App\Models\EscuelaPedidoHistorial;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -168,5 +170,43 @@ class Controller extends BaseController
         $codigo = str_pad(strval($correlativo), 5, "0", STR_PAD_LEFT);
         $anio = date('Y');
         return "{$palabra}{$codigo}{$anio}";
+    }
+
+    public function historialPedido(int $estado_anterior, int $estado_actual, int $escuela_pedido_id, int $escuela_id, string $descripcion = null)
+    {
+        if (is_null($descripcion)) {
+            switch ($estado_actual) {
+                case 1:
+                    $descripcion = "El pedido con número {$escuela_pedido_id} fue ingresado.";
+                    break;
+                case 2:
+                    $descripcion = "El pedido con número {$escuela_pedido_id} fue confirmado.";
+                    break;
+                case 3:
+                    $descripcion = "El pedido con número {$escuela_pedido_id} fue entregado.";
+                    break;
+                case 4:
+                    $descripcion = "El pedido con número {$escuela_pedido_id} fue pagado.";
+                    break;
+                case 5:
+                    $descripcion = "El pedido con número {$escuela_pedido_id} fue anulado.";
+                    break;
+                case 6:
+                    $descripcion = "El pedido con número {$escuela_pedido_id} fue cancelado.";
+                    break;
+            }
+        }
+
+        EscuelaPedidoHistorial::create(
+            [
+                'estado_anterior' => EstadoPedido::find($estado_anterior)->nombre,
+                'estado_actual' => EstadoPedido::find($estado_actual)->nombre,
+                'descripcion' => $descripcion,
+                'usuario' => Auth::user()->usuario,
+                'escuela_id' => $escuela_id,
+                'estado_pedido_id' => $estado_actual,
+                'escuela_pedido_id' => $escuela_pedido_id
+            ]
+        );
     }
 }

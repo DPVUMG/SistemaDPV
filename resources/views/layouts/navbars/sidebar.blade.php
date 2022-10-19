@@ -42,8 +42,8 @@
                 </span>
               </a>
             </li>
-            <li class="nav-item {{URL::current() == URL::route('company.index_sistema') ? 'active' : ''}}">
-              <a class="nav-link" href="{{ route('company.index_sistema') }}">
+            <li class="nav-item {{URL::current() == URL::route('configuracion.index_sistema') ? 'active' : ''}}">
+              <a class="nav-link" href="{{ route('configuracion.index_sistema') }}">
                 <span class="sidebar-normal">
                   <i class="material-icons">
                     <img class="img" src="{{ asset('image/menu/sistema_web.png') }}" width="20px" alt="Sistema WEB">
@@ -52,8 +52,8 @@
                 </span>
               </a>
             </li>
-            <li class="nav-item {{URL::current() == URL::route('company.index_pagina') ? 'active' : ''}}">
-              <a class="nav-link" href="{{ route('company.index_pagina') }}">
+            <li class="nav-item {{URL::current() == URL::route('configuracion.index_pagina') ? 'active' : ''}}">
+              <a class="nav-link" href="{{ route('configuracion.index_pagina') }}">
                 <span class="sidebar-normal">
                   <i class="material-icons">
                     <img class="img" src="{{ asset('image/menu/pagina_web.png') }}" width="20px" alt="Página WEB">
@@ -163,8 +163,8 @@
                 </span>
               </a>
             </li>
-            <li class="nav-item {{URL::current() == URL::route('escuela_usuario.index') ? 'active' : ''}}">
-              <a class="nav-link" href="{{ route('escuela_usuario.index') }}">
+            <li class="nav-item {{URL::current() == URL::route('director.index') ? 'active' : ''}}">
+              <a class="nav-link" href="{{ route('director.index') }}">
                 <span class="sidebar-normal">
                   <i class="material-icons">
                     <img class="img" src="{{ asset('image/menu/director.png') }}" width="20px" alt="Directores">
@@ -173,8 +173,8 @@
                 </span>
               </a>
             </li>
-            <li class="nav-item {{URL::current() == URL::route('escuela_usuario.index') ? 'active' : ''}}">
-              <a class="nav-link" href="{{ route('escuela_usuario.index') }}">
+            <li class="nav-item {{URL::current() == URL::route('contacto.index') ? 'active' : ''}}">
+              <a class="nav-link" href="{{ route('contacto.index') }}">
                 <span class="sidebar-normal">
                   <i class="material-icons">
                     <img class="img" src="{{ asset('image/menu/contacto.png') }}" width="20px" alt="Contactos">
@@ -208,6 +208,14 @@
             <img class="img" src="{{ asset('image/menu/escuela.png') }}" width="40px" alt="Escuelas">
           </i>
           <p>{{ __('Escuelas') }}</p>
+        </a>
+      </li>
+      <li class="nav-item {{URL::current() == URL::route('escuela_pedido.index') ? 'active' : ''}}">
+        <a class="nav-link" href="{{ route('escuela_pedido.index') }}">
+          <i class="material-icons">
+            <img class="img" src="{{ asset('image/menu/pedido.png') }}" width="40px" alt="Pedidos">
+          </i>
+          <p>{{ __('Pedidos') }}</p>
         </a>
       </li>
       <li class="nav-item {{URL::current() == URL::route('escuela_descuento.index') ? 'active' : ''}}">

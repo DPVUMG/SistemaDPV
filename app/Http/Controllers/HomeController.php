@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Producto;
-use App\Order;
+use App\Models\EscuelaPedido;
 
 class HomeController extends Controller
 {
@@ -14,17 +13,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $pedidos = Order::where('status', Order::PEDIDO)->paginate(5);
-        $procesos = Order::where('status', Order::PROCESO)->paginate(5);
-        $facturados = Order::where('status', Order::FACTURADO)->paginate(5);
-        $entregados = Order::where('status', Order::ENTREGADO)->paginate(5);
-        $anulados = Order::where('status', Order::ANULADO)->paginate(5);
+        $fecha_actual = date('Y-m-d');
+        $fecha_menos_siete_dias = date("d-m-Y", strtotime($fecha_actual . "- 7 days"));
 
-        $fecha_actual = date("d-m-Y");
-        $desactivar_nuevo = date("Y-m-d", strtotime($fecha_actual . "- 6 days"));
+        $data['count_ingresado'] = EscuelaPedido::where('estado_pedido_id', 1)->whereBetween('fecha_pedido', [$fecha_menos_siete_dias, $fecha_actual])->count();
+        $data['count_confirmado'] = EscuelaPedido::where('estado_pedido_id', 2)->whereBetween('fecha_pedido', [$fecha_menos_siete_dias, $fecha_actual])->count();
+        $data['count_entregado'] = EscuelaPedido::where('estado_pedido_id', 3)->whereBetween('fecha_pedido', [$fecha_menos_siete_dias, $fecha_actual])->count();
+        $data['count_pagado'] = EscuelaPedido::where('estado_pedido_id', 4)->whereBetween('fecha_pedido', [$fecha_menos_siete_dias, $fecha_actual])->count();
+        $data['count_anulado'] = EscuelaPedido::where('estado_pedido_id', 5)->whereBetween('fecha_pedido', [$fecha_menos_siete_dias, $fecha_actual])->count();
+        $data['count_cancelado'] = EscuelaPedido::where('estado_pedido_id', 6)->whereBetween('fecha_pedido', [$fecha_menos_siete_dias, $fecha_actual])->count();
 
-        Producto::whereDate('created_at', '<', $desactivar_nuevo)->update(['nuevo' => false]);
-
-        return view('dashboard', compact('pedidos', 'procesos', 'facturados', 'entregados', 'anulados'));
+        return view('dashboard', compact('data'));
     }
 }

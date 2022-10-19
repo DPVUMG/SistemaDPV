@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="{{ asset('material') }}/css/jquery-ui/jquery-ui.structure.css">
 <link rel="stylesheet" href="{{ asset('material') }}/css/jquery-ui/jquery-ui.theme.css">
 <link rel="stylesheet" href="{{ asset('material') }}/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="{{ asset('material') }}/css/buttons.dataTables.min.css">
 <link rel="stylesheet" href="{{ asset('material') }}/css/animate.min.css">
 <link rel="stylesheet" href="{{ asset('material') }}/css/jasny-bootstrap.min.css">
+<link rel="stylesheet" href="{{ asset('material') }}/css/sweetalert2.css">
 @toastr_css

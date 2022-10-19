@@ -52,7 +52,9 @@ class Configuracion extends Model
      */
     protected $casts = [
         'created_at' => 'datetime:d-m-Y h:i:s',
-        'updated_at' => 'datetime:d-m-Y h:i:s'
+        'updated_at' => 'datetime:d-m-Y h:i:s',
+        'pagina' => 'boolean',
+        'sistema' => 'boolean'
     ];
 
     //Mutadores
