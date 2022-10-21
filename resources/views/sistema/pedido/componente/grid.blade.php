@@ -17,9 +17,9 @@
                 </h4>
             </div>
             <div class="card-body">
-                @include('sistema.pedido.table', [ 'items' => $items->filter(function($item) {
+                @include('sistema.pedido.componente.table', [ 'items' => $items->filter(function($item) {
                 return $item->estado_pedido_id == 1;
-                })->all() ])
+                })->all(), 'estado' => 1 ])
             </div>
         </div>
     </div>
@@ -33,9 +33,9 @@
                 </h4>
             </div>
             <div class="card-body">
-                @include('sistema.pedido.table', [ 'items' => $items->filter(function($item) {
+                @include('sistema.pedido.componente.table', [ 'items' => $items->filter(function($item) {
                 return $item->estado_pedido_id == 2;
-                })->all() ])
+                })->all(), 'estado' => 2 ])
             </div>
         </div>
     </div>
@@ -49,9 +49,9 @@
                 </h4>
             </div>
             <div class="card-body">
-                @include('sistema.pedido.table', [ 'items' => $items->filter(function($item) {
+                @include('sistema.pedido.componente.table', [ 'items' => $items->filter(function($item) {
                 return $item->estado_pedido_id == 3;
-                })->all() ])
+                })->all(), 'estado' => 3 ])
             </div>
         </div>
     </div>
@@ -65,9 +65,9 @@
                 </h4>
             </div>
             <div class="card-body">
-                @include('sistema.pedido.table', [ 'items' => $items->filter(function($item) {
+                @include('sistema.pedido.componente.table', [ 'items' => $items->filter(function($item) {
                 return $item->estado_pedido_id == 4;
-                })->all() ])
+                })->all(), 'estado' => 4 ])
             </div>
         </div>
     </div>
@@ -81,9 +81,9 @@
                 </h4>
             </div>
             <div class="card-body">
-                @include('sistema.pedido.table', [ 'items' => $items->filter(function($item) {
+                @include('sistema.pedido.componente.table', [ 'items' => $items->filter(function($item) {
                 return $item->estado_pedido_id == 5;
-                })->all() ])
+                })->all(), 'estado' => 5 ])
             </div>
         </div>
     </div>
@@ -97,9 +97,9 @@
                 </h4>
             </div>
             <div class="card-body">
-                @include('sistema.pedido.table', [ 'items' => $items->filter(function($item) {
+                @include('sistema.pedido.componente.table', [ 'items' => $items->filter(function($item) {
                 return $item->estado_pedido_id == 6;
-                })->all() ])
+                })->all(), 'estado' => 6 ])
             </div>
         </div>
     </div>

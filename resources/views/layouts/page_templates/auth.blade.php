@@ -195,6 +195,25 @@
         })
     });
 
+    $(".btnAnular").on( "click", function(e) {
+        e.preventDefault();
+        Swal.fire({
+            title: '¿Anular Pedido?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'SI',
+            cancelButtonText: 'NO'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                let id = $(this).attr('id').split("-");
+                console.log(`#formAnular${id[1]}`);
+                $(`#formAnular${id[1]}`).first().submit();
+            }
+        })
+    });
+
     $(".departamentalInput" ).autocomplete({
         source: function( request, response ) {
             $.ajax({
@@ -324,6 +343,10 @@
 
     $('.solo-numero').keyup(function () {
         this.value = (this.value + '').replace(/[^0-9]/g, '');
+    });
+
+    $('.decimales').on('input', function () {
+        this.value = this.value.replace(/[^0-9.]/g, '').replace(/,/g, '.');
     });
   });
 </script>

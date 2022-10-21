@@ -42,6 +42,16 @@
                 </span>
               </a>
             </li>
+            <li class="nav-item {{URL::current() == URL::route('caja_chica.index') ? 'active' : ''}}">
+              <a class="nav-link" href="{{ route('caja_chica.index') }}">
+                <span class="sidebar-normal">
+                  <i class="material-icons">
+                    <img class="img" src="{{ asset('image/menu/caja_chica.png') }}" width="20px" alt="Caja Chica">
+                  </i>
+                  {{ __('Caja Chica') }}
+                </span>
+              </a>
+            </li>
             <li class="nav-item {{URL::current() == URL::route('configuracion.index_sistema') ? 'active' : ''}}">
               <a class="nav-link" href="{{ route('configuracion.index_sistema') }}">
                 <span class="sidebar-normal">
@@ -77,7 +87,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#catalogos" aria-expanded="true">
+        <a class="nav-link" data-toggle="collapse" href="#catalogos" aria-expanded="false">
           <p>Catálogos<b class="caret"></b></p>
         </a>
         <div class="collapse" id="catalogos">
@@ -137,7 +147,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#credits" aria-expanded="true">
+        <a class="nav-link" data-toggle="collapse" href="#credits" aria-expanded="false">
           <p>Configuración de Escuelas<b class="caret"></b></p>
         </a>
         <div class="collapse" id="credits">
@@ -224,6 +234,14 @@
             <img class="img" src="{{ asset('image/menu/descuento.png') }}" width="40px" alt="Descuentos">
           </i>
           <p>{{ __('Descuentos') }}</p>
+        </a>
+      </li>
+      <li class="nav-item {{URL::current() == URL::route('escuela_pedido_historial.index') ? 'active' : ''}}">
+        <a class="nav-link" href="{{ route('escuela_pedido_historial.index') }}">
+          <i class="material-icons">
+            <img class="img" src="{{ asset('image/menu/historial.png') }}" width="40px" alt="Bitácora de Pedidos">
+          </i>
+          <p>{{ __('Bitácora de Pedidos') }}</p>
         </a>
       </li>
       @if (Auth::user()->admin)

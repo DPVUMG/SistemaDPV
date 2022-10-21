@@ -14,125 +14,66 @@
             </div>
         </div>
         <div class="row badge-dark">
+            <br><br>
+            <div class="col-sm-12 col-md-12 text-white text-center">
+                <h3>
+                    Información correspondiente del {{ date('d-m-Y', strtotime($data['fecha_actual'])) }} hasta {{
+                    date('d-m-Y', strtotime($data['fecha_menos_siete_dias'])) }}
+                </h3>
+            </div>
+            <hr>
             <div class="col-sm-12 col-md-4">
-                <div class="card card-stats">
-                    <div class="card-header card-header-info card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">
-                                <img src="{{ asset('image/pedido/ingreso.png') }}" title="ingreso" width="50px"
-                                    height="50px" alt="ingreso">
-                            </i>
-                        </div>
-                        <p class="card-category">Pedidos Ingresados</p>
-                        <h3 class="card-title">{{ $data['count_ingresado'] }}</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons text-primary">info</i>
-                            <a href="{{ route('escuela_pedido.index') }}">Ver más</a>
-                        </div>
-                    </div>
-                </div>
+                @include('sistema.componente_dashboard.tarjeta', [
+                'titulo' => "Pedidos Ingresados",
+                'data' => $data,
+                'count' => 'count_ingresado',
+                'estado_id' => 1
+                ])
             </div>
             <div class="col-sm-12 col-md-4">
-                <div class="card card-stats">
-                    <div class="card-header card-header-info card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">
-                                <img src="{{ asset('image/pedido/confirmado.png') }}" title="Libreta" width="50px"
-                                    height="50px" alt="Libreta">
-                            </i>
-                        </div>
-                        <p class="card-category">Pedidos Confirmados</p>
-                        <h3 class="card-title">{{ $data['count_confirmado'] }}</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons text-primary">info</i>
-                            <a href="{{ route('escuela_pedido.index') }}">Ver más</a>
-                        </div>
-                    </div>
-                </div>
+                @include('sistema.componente_dashboard.tarjeta', [
+                'titulo' => "Pedidos Confirmados",
+                'data' => $data,
+                'count' => 'count_confirmado',
+                'estado_id' => 2
+                ])
             </div>
             <div class="col-sm-12 col-md-4">
-                <div class="card card-stats">
-                    <div class="card-header card-header-info card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">
-                                <img src="{{ asset('image/pedido/entregado.png') }}" title="Libreta" width="50px"
-                                    height="50px" alt="Libreta">
-                            </i>
-                        </div>
-                        <p class="card-category">Pedidos Entregados</p>
-                        <h3 class="card-title">{{ $data['count_entregado'] }}</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons text-primary">info</i>
-                            <a href="{{ route('escuela_pedido.index') }}">Ver más</a>
-                        </div>
-                    </div>
-                </div>
+                @include('sistema.componente_dashboard.tarjeta', [
+                'titulo' => "Pedidos Entregados",
+                'data' => $data,
+                'count' => 'count_entregado',
+                'estado_id' => 3
+                ])
             </div>
             <div class="col-sm-12 col-md-4">
-                <div class="card card-stats">
-                    <div class="card-header card-header-info card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">
-                                <img src="{{ asset('image/pedido/pagado.png') }}" title="Libreta" width="50px"
-                                    height="50px" alt="Libreta">
-                            </i>
-                        </div>
-                        <p class="card-category">Pedidos Pagados</p>
-                        <h3 class="card-title">{{ $data['count_pagado'] }}</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons text-primary">info</i>
-                            <a href="{{ route('escuela_pedido.index') }}">Ver más</a>
-                        </div>
-                    </div>
-                </div>
+                @include('sistema.componente_dashboard.tarjeta', [
+                'titulo' => "Pedidos Pagados",
+                'data' => $data,
+                'count' => 'count_pagado',
+                'estado_id' => 4
+                ])
             </div>
             <div class="col-sm-12 col-md-4">
-                <div class="card card-stats">
-                    <div class="card-header card-header-info card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">
-                                <img src="{{ asset('image/pedido/anulado.png') }}" title="Libreta" width="50px"
-                                    height="50px" alt="Libreta">
-                            </i>
-                        </div>
-                        <p class="card-category">Pedidos Anulados</p>
-                        <h3 class="card-title">{{ $data['count_anulado'] }}</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons text-primary">info</i>
-                            <a href="{{ route('escuela_pedido.index') }}">Ver más</a>
-                        </div>
-                    </div>
-                </div>
+                @include('sistema.componente_dashboard.tarjeta', [
+                'titulo' => "Pedidos Anulados",
+                'data' => $data,
+                'count' => 'count_anulado',
+                'estado_id' => 5
+                ])
             </div>
             <div class="col-sm-12 col-md-4">
-                <div class="card card-stats">
-                    <div class="card-header card-header-info card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">
-                                <img src="{{ asset('image/pedido/cancelado.png') }}" title="Libreta" width="50px"
-                                    height="50px" alt="Libreta">
-                            </i>
-                        </div>
-                        <p class="card-category">Pedidos Cancelados</p>
-                        <h3 class="card-title">{{ $data['count_cancelado'] }}</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons text-primary">info</i>
-                            <a href="{{ route('escuela_pedido.index') }}">Ver más</a>
-                        </div>
-                    </div>
-                </div>
+                @include('sistema.componente_dashboard.tarjeta', [
+                'titulo' => "Pedidos Cancelados",
+                'data' => $data,
+                'count' => 'count_cancelado',
+                'estado_id' => 6
+                ])
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @include('sistema.componente_dashboard.calendario')
             </div>
         </div>
     </div>

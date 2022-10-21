@@ -9,6 +9,11 @@
             <th rowspan="2" class="text-center align-middle">Solicitante</th>
             <th rowspan="2" class="text-center align-middle">Mes</th>
             <th rowspan="2" class="text-center align-middle">Año</th>
+            @if ($estado == 1)
+            <th rowspan="2" class="text-center align-middle">
+                <img src="{{ asset('image/ico_opcion.png') }}" title="Opciones" height="20px" alt="Opciones">
+            </th>
+            @endif
         </tr>
         <tr>
             <th class="text-center align-middle">Pedido</th>
@@ -39,6 +44,25 @@
             <td class="text-left align-middle">{{ $item->solicitante }}</td>
             <td class="text-center align-middle">{{ $item->mes }}</td>
             <td class="text-center align-middle">{{ $item->anio }}</td>
+            @if ($estado == 1)
+            <td class="text-center align-middle">
+                <a rel="tooltip" class="btn btn-success btn-sm btn-round"
+                    href="{{ route('escuela_pedido_detalle.show', $item->id) }}" data-toggle="tooltip"
+                    data-placement="top" title="Confirmar pedido número {{ $item->id }}">
+                    <i class="fa fa-check-circle"></i>
+                </a>
+                <form id="formAnular{{ $item->id }}" method="post"
+                    action="{{ route('escuela_pedido.destroy', $item) }}">
+                    @csrf
+                    @method('delete')
+                    <button rel="tooltip" data-toggle="tooltip" data-placement="top"
+                        title="Anular el pedido número {{ $item->id }}" class="btn btn-danger btn-sm btnAnular"
+                        id="btnAnular-{{ $item->id }}">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </form>
+            </td>
+            @endif
         </tr>
         @endforeach
     </tbody>

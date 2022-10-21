@@ -2,9 +2,6 @@
 
 namespace App\Providers;
 
-use App\Comment;
-use App\Company;
-use App\ProductComment;
 use App\Models\Configuracion;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;

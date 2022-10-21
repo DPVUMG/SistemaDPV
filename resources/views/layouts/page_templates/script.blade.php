@@ -35,6 +35,7 @@
 <script src="{{ asset('material') }}/js/plugins/jasny-bootstrap.min.js"></script>
 <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
 <script src="{{ asset('material') }}/js/plugins/fullcalendar.min.js"></script>
+<script src="{{ asset('material') }}/js/plugins/fullcalendar_es.js"></script>
 <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
 <script src="{{ asset('material') }}/js/plugins/nouislider.min.js"></script>
 <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->

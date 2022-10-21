@@ -28,7 +28,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('passw
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 
 
-Route::group(['middleware' => ['auth', 'system']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::name('sistema.')->group(function () {
         Route::get('/dashboard', 'HomeController@index')->name('home');
     });
@@ -52,7 +52,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 /* ================================== RUTAS PARA LOS CONTROLADORES =============================== */
 
-Route::group(['middleware' => ['auth', 'system']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::name('configuracion.')->group(function () {
         Route::get('configuracion/page', 'ConfiguracionController@index_pagina')->name('index_pagina');
         Route::put('configuracion/update/{configuracion}', 'ConfiguracionController@update')->name('update');
@@ -110,8 +110,14 @@ Route::group(['middleware' => ['auth', 'system']], function () {
     Route::resource('contacto', 'ContactoController')->only(['index']);
 
     Route::resource('escuela_pedido', 'EscuelaPedidoController')->only(['index', 'show', 'update', 'destroy']);
+    Route::get('/escuela_pedido/estado/{estado}', 'EscuelaPedidoController@estado')->name('escuela_pedido.estado');
+    Route::get('/escuela_pedido/entregado/{escuela_pedido}', 'EscuelaPedidoController@entregado')->name('escuela_pedido.entregado');
+    Route::get('/escuela_pedido/ingresado/{escuela_pedido}', 'EscuelaPedidoController@ingresado')->name('escuela_pedido.ingresado');
     Route::resource('escuela_pedido_detalle', 'EscuelaDetallePedidoController')->only(['show', 'update', 'destroy']);
     Route::resource('escuela_pedido_historial', 'EscuelaPedidoHistorialController')->only(['index', 'show']);
+
+    Route::resource('caja_chica', 'CajaChicaController')->only(['index']);
+    Route::resource('caja_chica_historial', 'CajaChicaHistorialController')->only(['index']);
 });
 
 Route::group(['middleware' => ['auth']], function () {

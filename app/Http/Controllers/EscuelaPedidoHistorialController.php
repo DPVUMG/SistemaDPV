@@ -15,7 +15,14 @@ class EscuelaPedidoHistorialController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $items = EscuelaPedidoHistorial::get();
+
+            return view('sistema.pedido.historial', compact('items'));
+        } catch (\Throwable $th) {
+            toastr()->error('Error al cargar la pantalla.');
+            return redirect()->route($this->redireccionarCatch());
+        }
     }
 
     /**
@@ -26,6 +33,11 @@ class EscuelaPedidoHistorialController extends Controller
      */
     public function show(EscuelaPedido $escuela_pedido_historial)
     {
-        //
+        try {
+            return view('sistema.pedido.ver_historial', compact('escuela_pedido_historial'));
+        } catch (\Throwable $th) {
+            toastr()->error('Error al cargar la pantalla.');
+            return redirect()->route($this->redireccionarCatch());
+        }
     }
 }

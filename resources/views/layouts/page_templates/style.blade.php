@@ -15,4 +15,6 @@
 <link rel="stylesheet" href="{{ asset('material') }}/css/animate.min.css">
 <link rel="stylesheet" href="{{ asset('material') }}/css/jasny-bootstrap.min.css">
 <link rel="stylesheet" href="{{ asset('material') }}/css/sweetalert2.css">
+<link rel="stylesheet" href="{{ asset('material') }}/css/fullcalendar.min.css">
+<link rel="stylesheet" href="{{ asset('css/personalizado.css') }}">
 @toastr_css

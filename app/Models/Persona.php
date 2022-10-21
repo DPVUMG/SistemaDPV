@@ -76,7 +76,7 @@ class Persona extends Model
     //Mutadores
     public function getPictureAttribute()
     {
-        return Storage::disk('avatar')->exists("{$this->avatar}") ? Storage::disk('avatar')->url("{$this->avatar}") : null;
+        return Storage::disk('avatar')->exists("{$this->avatar}") ? Storage::disk('avatar')->url("{$this->avatar}") : asset('image/persona_default.png');
     }
 
     public function departamento()

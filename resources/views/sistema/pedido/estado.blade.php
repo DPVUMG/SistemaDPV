@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Pedidos')
+@section('title', 'Estado')
 
 @section('content')
 <div class="content">
@@ -9,7 +9,7 @@
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('sistema.home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Pedidos</li>
+                        <li class="breadcrumb-item active" aria-current="page">Estado</li>
                     </ol>
                 </nav>
             </div>
@@ -19,11 +19,11 @@
                 <div class="card">
                     <div class="card-header card-header-primary">
                         <h4 class="card-title">
-                            {{ __('Pedidos') }}
+                            {{ "Pedidos en estado {$estado->nombre}" }}
                         </h4>
                     </div>
                     <div class="card-body">
-                        @include('sistema.pedido.componente.grid', [ 'data' => $items ])
+                        @include('sistema.pedido.componente.table', [ 'items' => $items, 'estado' => $estado->id ])
                     </div>
                 </div>
             </div>

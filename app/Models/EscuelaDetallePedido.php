@@ -109,4 +109,9 @@ class EscuelaDetallePedido extends Model
     {
         return $this->hasOne(Mes::class, 'id', 'mes_id');
     }
+
+    public function descuentos()
+    {
+        return $this->hasMany(EscuelaDescuento::class, 'producto_variante_id', 'producto_variante_id');
+    }
 }
