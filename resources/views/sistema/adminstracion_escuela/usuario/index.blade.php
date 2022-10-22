@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-md-12">
                 @include('sistema.adminstracion_escuela.usuario.grid', [ 'data' => $escuela_usuario->usuarios,
-                'establecimiento' => $escuela_usuario->establecimiento, 'administracion' => false ])
+                'establecimiento' => $escuela_usuario->establecimiento, 'administracion' => false, 'escuela' => true ])
             </div>
         </div>
     </div>
