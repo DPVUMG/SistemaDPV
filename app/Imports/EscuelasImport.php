@@ -62,7 +62,8 @@ class EscuelasImport implements ToCollection
                             'departamental_id' => $departamental->id,
                             'departamento_id' => Departamento::where("nombre", $value[2])->first()->id,
                             'municipio_id' => Municipio::where("nombre", $value[3])->first()->id,
-                            'usuario_id' => Usuario::all()->random()->first()->id
+                            'usuario_id' => Usuario::all()->random()->first()->id,
+                            'activo' => true
                         ],
                         ['establecimiento' => $value[4]]
                     );
@@ -127,7 +128,7 @@ class EscuelasImport implements ToCollection
                     EscuelaUsuario::create([
                         'password' => 'admin',
                         'usuario' => $escuela_codigo->codigo,
-                        'persona_id' => Persona::all()->random()->first()->id,
+                        'persona_id' => random_int(1, 25),
                         'escuela_id' => $escuela->id,
                         'usuario_id' => $escuela->usuario_id
                     ]);
