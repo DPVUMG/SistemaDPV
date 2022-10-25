@@ -89,7 +89,7 @@
                         @if (!$escuela)
                         <a rel="tooltip" class="btn btn-warning btn-sm btn-round"
                             href="{{ route('usuario.edit', $item) }}" data-toggle="tooltip" data-placement="top"
-                            title="Ver escuela">
+                            title="Ver usuario">
                             <i class="fa fa-edit"></i>
                         </a>
 
