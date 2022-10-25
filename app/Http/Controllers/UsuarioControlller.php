@@ -121,7 +121,7 @@ class UsuarioControlller extends Controller
      */
     public function update(Request $request, Usuario $usuario)
     {
-        $this->validate($request, $this->rules($usuario->persona_id, $usuario->usuario_id), $this->messages());
+        $this->validate($request, $this->rules($usuario->persona_id, $usuario->id), $this->messages());
 
         try {
             DB::beginTransaction();
