@@ -2,19 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\Mes;
-use App\Models\Banco;
-use App\Models\Escuela;
-use App\Models\Usuario;
-use App\Models\EscuelaPedido;
 use Illuminate\Database\Eloquent\Model;
 use Nicolaslopezj\Searchable\SearchableTrait;
 
-class PagoPedido extends Model
+class Gasto extends Model
 {
     use SearchableTrait;
-
-    public const CHEQUE = 'Cheque';
 
     /**
      * Searchable rules.
@@ -47,7 +40,7 @@ class PagoPedido extends Model
      *
      * @var string
      */
-    protected $table = 'pago_pedido';
+    protected $table = 'gasto';
 
     /**
      * The attributes that are mass assignable.
@@ -55,28 +48,13 @@ class PagoPedido extends Model
      * @var array
      */
     protected $fillable = [
-        'numero_cheque', 'tipo_pago', 'anio', 'mes_id', 'escuela_id',
-        'escuela_pedido_id', 'usuario_id', 'banco_id', 'monto'
+        'monto', 'descripcion', 'anio', 'mes_id',
+        'usuario_id'
     ];
 
     public function mes()
     {
         return $this->hasOne(Mes::class, 'id', 'mes_id');
-    }
-
-    public function escuela()
-    {
-        return $this->hasOne(Escuela::class, 'id', 'escuela_id');
-    }
-
-    public function banco()
-    {
-        return $this->hasOne(Banco::class, 'id', 'banco_id');
-    }
-
-    public function escuela_pedido()
-    {
-        return $this->hasOne(EscuelaPedido::class, 'id', 'escuela_pedido_id');
     }
 
     public function usuario()

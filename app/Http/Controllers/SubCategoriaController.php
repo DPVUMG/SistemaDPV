@@ -11,26 +11,6 @@ use Illuminate\Database\QueryException;
 class SubCategoriaController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -57,17 +37,6 @@ class SubCategoriaController extends Controller
             toastr()->error('Error al guardar.');
             return redirect()->route('categoria.show', $category);
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\SubCategoria  $sub_categorium
-     * @return \Illuminate\Http\Response
-     */
-    public function show(SubCategoria $sub_categorium)
-    {
-        //
     }
 
     /**

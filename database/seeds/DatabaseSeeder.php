@@ -9,6 +9,7 @@ use Illuminate\Database\Seeder;
 use App\Imports\MunicipioImport;
 use App\Imports\ProductosImport;
 use App\Imports\DepartamentoImport;
+use App\Models\Banco;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DatabaseSeeder extends Seeder
@@ -60,5 +61,41 @@ class DatabaseSeeder extends Seeder
         ];
         EstadoPedido::insert($estados);
         echo "Estados de pedidos." . PHP_EOL;
+
+        $bancos = [
+            ['nombre' => 'Banco G&T'],
+            ['nombre' => 'Scotiabank'],
+            ['nombre' => 'Multibank'],
+            ['nombre' => 'HSBC'],
+            ['nombre' => 'Óptima Servicios Financieros'],
+            ['nombre' => 'Financiera Fama'],
+            ['nombre' => 'Fedecrédito'],
+            ['nombre' => 'Credimás'],
+            ['nombre' => 'Credicorp Bank'],
+            ['nombre' => 'Corporación Pacífico'],
+            ['nombre' => 'Banistmo'],
+            ['nombre' => 'Banco de Finanzas'],
+            ['nombre' => 'Banco Davivienda'],
+            ['nombre' => 'Grupo Lafise'],
+            ['nombre' => 'Banco Atlántida'],
+            ['nombre' => 'Integral'],
+            ['nombre' => 'Banco Hipotecario'],
+            ['nombre' => 'Banco Agrícola'],
+            ['nombre' => 'Grupo Financiero Occidente, S.A.'],
+            ['nombre' => 'Banco Promerica'],
+            ['nombre' => 'BAC'],
+            ['nombre' => 'Banco de Credito'],
+            ['nombre' => 'Financiera Summa'],
+            ['nombre' => 'Westrust Bank'],
+            ['nombre' => 'Banrural'],
+            ['nombre' => 'Compartamos S.A.'],
+            ['nombre' => '5B'],
+            ['nombre' => 'Vivi Banco'],
+            ['nombre' => 'Invest in Guatemala'],
+            ['nombre' => 'Bantrab'],
+            ['nombre' => 'Banco Industrial']
+        ];
+        Banco::insert($bancos);
+        echo "Bancos." . PHP_EOL;
     }
 }

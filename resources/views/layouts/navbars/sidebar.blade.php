@@ -42,13 +42,13 @@
                 </span>
               </a>
             </li>
-            <li class="nav-item {{URL::current() == URL::route('caja_chica.index') ? 'active' : ''}}">
-              <a class="nav-link" href="{{ route('caja_chica.index') }}">
+            <li class="nav-item {{URL::current() == URL::route('gasto.index') ? 'active' : ''}}">
+              <a class="nav-link" href="{{ route('gasto.index') }}">
                 <span class="sidebar-normal">
                   <i class="material-icons">
-                    <img class="img" src="{{ asset('image/menu/caja_chica.png') }}" width="20px" alt="Caja Chica">
+                    <img class="img" src="{{ asset('image/menu/caja_chica.png') }}" width="20px" alt="Gastos">
                   </i>
-                  {{ __('Caja Chica') }}
+                  {{ __('Gastos') }}
                 </span>
               </a>
             </li>
@@ -226,6 +226,14 @@
             <img class="img" src="{{ asset('image/menu/pedido.png') }}" width="40px" alt="Pedidos">
           </i>
           <p>{{ __('Pedidos') }}</p>
+        </a>
+      </li>
+      <li class="nav-item {{URL::current() == URL::route('pago.index') ? 'active' : ''}}">
+        <a class="nav-link" href="{{ route('pago.index') }}">
+          <i class="material-icons">
+            <img class="img" src="{{ asset('image/menu/pago.png') }}" width="40px" alt="Pagos">
+          </i>
+          <p>{{ __('Pagos') }}</p>
         </a>
       </li>
       <li class="nav-item {{URL::current() == URL::route('escuela_descuento.index') ? 'active' : ''}}">

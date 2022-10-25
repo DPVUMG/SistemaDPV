@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banco;
 use App\Models\Persona;
 use App\Models\Usuario;
 use App\Models\Director;
@@ -86,6 +87,14 @@ class Controller extends BaseController
         } else {
             return null;
         }
+    }
+
+    protected function createOrselect_banco(string $nombre)
+    {
+        return Banco::firstOrCreate(
+            ['nombre' => $nombre],
+            ['nombre' => $nombre]
+        );
     }
 
     protected function updateOrcreateOrselect_persona(Request $request, int $persona_id = 0)

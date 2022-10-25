@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banco;
 use App\Models\Nivel;
 use App\Models\Escuela;
 use App\Models\Director;
@@ -176,5 +177,27 @@ class CatalogoEscuelaController extends Controller
             ->where('escuela.activo', true)
             ->orderby('escuela.establecimiento', 'asc')->get();
         return response()->json($items);
+    }
+
+    /**
+     * Search autocomplete.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function banco(Request $request)
+    {
+        if ($request->has('search') && $request->search != "") {
+            $items = Banco::search($request->search)->orderby('nombre', 'asc')->limit(10)->get();
+        } else {
+            $items = Banco::orderby('nombre', 'asc')->limit(10)->get();
+        }
+
+        $response = array();
+        foreach ($items as $item) {
+            $response[] = array("value" => $item->id, "label" => $item->nombre);
+        }
+
+        return response()->json($response);
     }
 }

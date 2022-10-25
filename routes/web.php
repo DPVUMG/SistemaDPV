@@ -84,6 +84,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/catalogo_escuela/plan', 'CatalogoEscuelaController@plan')->name('plan');
         Route::get('/catalogo_escuela/escuela_codigos/{escuela}', 'CatalogoEscuelaController@escuela_codigos')->name('escuela_codigos');
         Route::get('/catalogo_escuela/escuelas', 'CatalogoEscuelaController@escuelas')->name('escuelas');
+        Route::post('/catalogo_escuela/banco', 'CatalogoEscuelaController@banco')->name('banco');
     });
 
     Route::resource('departamental', 'DepartamentalController')->except(['create', 'show']);
@@ -115,9 +116,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/escuela_pedido/ingresado/{escuela_pedido}', 'EscuelaPedidoController@ingresado')->name('escuela_pedido.ingresado');
     Route::resource('escuela_pedido_detalle', 'EscuelaDetallePedidoController')->only(['show', 'update', 'destroy']);
     Route::resource('escuela_pedido_historial', 'EscuelaPedidoHistorialController')->only(['index', 'show']);
+    Route::resource('pago', 'PagoPedidoController')->only(['index', 'store', 'show', 'destroy']);
 
-    Route::resource('caja_chica', 'CajaChicaController')->only(['index']);
-    Route::resource('caja_chica_historial', 'CajaChicaHistorialController')->only(['index']);
+    Route::resource('gasto', 'GastoController')->except(['create', 'edit']);
 });
 
 Route::group(['middleware' => ['auth']], function () {

@@ -30,16 +30,6 @@ class VarianteController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -59,17 +49,6 @@ class VarianteController extends Controller
             toastr()->error('Error al guardar.');
             return redirect()->route('variante.index');
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Variante  $variante
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Variante $variante)
-    {
-        //
     }
 
     /**
