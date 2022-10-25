@@ -88,6 +88,9 @@ class PagoPedidoController extends Controller
             foreach ($request->escuela_pedido_id as $pedido) {
 
                 $pedido_select = EscuelaPedido::find($pedido);
+                $pedido_select->estado_pedido_id = 4;
+                $pedido_select->save();
+
                 $total += $pedido_select->total;
 
                 PagoPedido::create(
@@ -103,6 +106,8 @@ class PagoPedidoController extends Controller
                         'usuario_id' => Auth::user()->id
                     ]
                 );
+
+                $this->historialPedido($pedido_select->estado_pedido_id, 4, $pedido_select->id, $pedido_select->escuela_id);
             }
 
             $monto = number_format($request->monto, 2, '.', ',');

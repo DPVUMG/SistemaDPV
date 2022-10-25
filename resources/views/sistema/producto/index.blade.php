@@ -174,19 +174,20 @@
                                                         <br>
                                                         <div class="checkbox-radios">
                                                             <div
-                                                                class="form-check {{ $errors->has('temporal') ? ' has-danger' : '' }}">
+                                                                class="form-check {{ $errors->has('temporada') ? ' has-danger' : '' }}">
                                                                 <label class="form-check-label">
                                                                     <input class="form-check-input" type="checkbox"
-                                                                        name="temporal" id="input-temporal"
-                                                                        value="{{ old('temporal') }}"> Producto temporal
+                                                                        name="temporada" id="input-temporada"
+                                                                        value="si"> Producto
+                                                                    temporal
                                                                     <span class="form-check-sign">
                                                                         <span class="check"></span>
                                                                     </span>
                                                                 </label>
-                                                                @if ($errors->has('temporal'))
-                                                                <span id="temporal-error" class="error text-danger"
-                                                                    for="input-temporal">{{
-                                                                    $errors->first('temporal') }}</span>
+                                                                @if ($errors->has('temporada'))
+                                                                <span id="temporada-error" class="error text-danger"
+                                                                    for="input-temporada">{{
+                                                                    $errors->first('temporada') }}</span>
                                                                 @endif
                                                             </div>
                                                         </div>

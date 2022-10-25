@@ -4,10 +4,9 @@
             {{ __('Usuarios') }}
             @if ($administracion)
             @php
-                $ruta = $escuela ? 'escuela_usuario.create' : 'usuario.create';
+            $ruta = $escuela ? 'escuela_usuario.create' : 'usuario.create';
             @endphp
-            <a href="{{ route($ruta) }}" title="Agregar uno nuevo"
-                rel="noopener noreferrer">
+            <a href="{{ route($ruta) }}" title="Agregar uno nuevo" rel="noopener noreferrer">
                 <img class="img" src="{{ asset('image/ico_agregar.png') }}" width="28px" alt="Agregar">
             </a>
             @endif
@@ -88,54 +87,53 @@
 
                     <td class="text-center align-middle">
                         @if (!$escuela)
-                            <a rel="tooltip" class="btn btn-warning btn-sm btn-round"
-                                href="{{ route('escuela.edit', $item) }}" data-toggle="tooltip"
-                                data-placement="top" title="Ver escuela">
-                                <i class="fa fa-edit"></i>
-                            </a>
+                        <a rel="tooltip" class="btn btn-warning btn-sm btn-round"
+                            href="{{ route('usuario.edit', $item) }}" data-toggle="tooltip" data-placement="top"
+                            title="Ver escuela">
+                            <i class="fa fa-edit"></i>
+                        </a>
 
-                            <form id="formStatus{{ $item->id }}" method="get"
-                                action="{{ route('escuela_usuario.status', $item) }}">
-                                @csrf
-                                @method('get')
-                                <button rel="tooltip" data-toggle="tooltip" data-placement="top" title="{{ $item->activo ? "
-                                    Desactivar {$item->usuario}" :
-                                    "Activar
-                                    {$item->usuario}"
-                                    }}"
-                                    class="{{ $item->activo ? 'btn btn-info btn-sm btn-round' : 'btn
-                                    btn-default btn-sm btn-round' }} btnStatus"
-                                    id="btnStatus-{{ $item->id }}">
-                                    <i class="material-icons">toggle_on</i>
-                                    <div class="ripple-container"></div>
-                                </button>
-                            </form>
-                        @else
-                            @if ($administracion)
-                            <a rel="tooltip" class="btn btn-warning btn-sm btn-round"
-                                href="{{ route('escuela_usuario.edit', $item) }}" data-toggle="tooltip" data-placement="top"
-                                title="Editar información">
-                                <i class="material-icons">edit</i>
+                        <form id="formStatus{{ $item->id }}" method="get" action="{{ route('usuario.status', $item) }}">
+                            @csrf
+                            @method('get')
+                            <button rel="tooltip" data-toggle="tooltip" data-placement="top" title="{{ $item->activo ? "
+                                Desactivar {$item->usuario}" :
+                                "Activar
+                                {$item->usuario}"
+                                }}"
+                                class="{{ $item->activo ? 'btn btn-info btn-sm btn-round' : 'btn
+                                btn-default btn-sm btn-round' }} btnStatus"
+                                id="btnStatus-{{ $item->id }}">
+                                <i class="material-icons">toggle_on</i>
                                 <div class="ripple-container"></div>
-                            </a>
-                            @else
-                            <form id="formStatus{{ $item->id }}" method="get"
-                                action="{{ route('escuela_usuario.status', $item) }}">
-                                @csrf
-                                @method('get')
-                                <button rel="tooltip" data-toggle="tooltip" data-placement="top" title="{{ $item->activo ? "
-                                    Desactivar {$item->usuario}" :
-                                    "Activar
-                                    {$item->usuario}"
-                                    }}"
-                                    class="{{ $item->activo ? 'btn btn-info btn-sm btn-round' : 'btn
-                                    btn-default btn-sm btn-round' }} btnStatus"
-                                    id="btnStatus-{{ $item->id }}">
-                                    <i class="material-icons">toggle_on</i>
-                                    <div class="ripple-container"></div>
-                                </button>
-                            </form>
-                            @endif
+                            </button>
+                        </form>
+                        @else
+                        @if ($administracion)
+                        <a rel="tooltip" class="btn btn-warning btn-sm btn-round"
+                            href="{{ route('escuela_usuario.edit', $item) }}" data-toggle="tooltip" data-placement="top"
+                            title="Editar información">
+                            <i class="material-icons">edit</i>
+                            <div class="ripple-container"></div>
+                        </a>
+                        @else
+                        <form id="formStatus{{ $item->id }}" method="get"
+                            action="{{ route('escuela_usuario.status', $item) }}">
+                            @csrf
+                            @method('get')
+                            <button rel="tooltip" data-toggle="tooltip" data-placement="top" title="{{ $item->activo ? "
+                                Desactivar {$item->usuario}" :
+                                "Activar
+                                {$item->usuario}"
+                                }}"
+                                class="{{ $item->activo ? 'btn btn-info btn-sm btn-round' : 'btn
+                                btn-default btn-sm btn-round' }} btnStatus"
+                                id="btnStatus-{{ $item->id }}">
+                                <i class="material-icons">toggle_on</i>
+                                <div class="ripple-container"></div>
+                            </button>
+                        </form>
+                        @endif
                         @endif
 
                     </td>

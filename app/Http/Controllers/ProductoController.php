@@ -27,9 +27,9 @@ class ProductoController extends Controller
     {
         try {
             if ($request->has('search'))
-                $items = Producto::with('marca', 'producto_subcategoria')->search($request->search)->orderBy('codigo', 'asc')->paginate(10);
+                $items = Producto::with('marca', 'producto_subcategoria')->search($request->search)->orderBy('producto.created_at', 'desc')->paginate(10);
             else
-                $items = Producto::with('marca', 'producto_subcategoria')->orderBy('codigo', 'asc')->paginate(10);
+                $items = Producto::with('marca', 'producto_subcategoria')->orderBy('producto.created_at', 'desc')->paginate(10);
 
             $marcas = Marca::orderBy('nombre', 'asc')->get();
             $subcategorias = SubCategoria::with('categoria')->get();
@@ -51,7 +51,6 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, $this->rules(), $this->messages());
-
         try {
             DB::beginTransaction(); //Inciamos la transacción
 
@@ -66,7 +65,7 @@ class ProductoController extends Controller
             $data['foto'] = "{$nombre}.jpg";
             $data['nuevo'] = true;
             $data['activo'] = false;
-            $data['temporada'] = $request->temporal;
+            $data['temporada'] = $request->has('temporada');
 
             $producto = Producto::create($data); //Guardamos el producto
 
@@ -151,7 +150,7 @@ class ProductoController extends Controller
             $producto->nombre = $request->nombre;
             $producto->marca_id = $request->marca_id;
             $producto->descripcion = $request->descripcion;
-            $producto->temporada = $request->temporal;
+            $producto->temporada = $request->has('temporada');
             $producto->save(); //Guardamos el producto
 
             ProductoSubCategoria::where('producto_id', $producto->id)->delete();
@@ -195,7 +194,7 @@ class ProductoController extends Controller
                 'nombre' => 'required|max:75|unique:producto,nombre,' . $id,
                 'marca_id' => 'required|integer|exists:marca,id',
                 'producto_subcategoria.*' => 'required|integer|exists:sub_categoria,id',
-                'descripcion' => 'required',
+                'descripcion' => 'required'
             ];
         }
 
@@ -206,6 +205,9 @@ class ProductoController extends Controller
     public function messages($id = null)
     {
         return [
+            'temporada.required' => 'El parámetro de temporada es obligatorio.',
+            'temporada.accepted' => 'La temporada del producto solo puede ser verdadera o falsa.',
+
             'nombre.required' => 'El nombre del producto es obligatorio.',
             'nombre.unique' => 'El nombre del producto ya existe en el sistema.',
             'nombre.max'  => 'El nombre debe tener menos de :max caracteres.',
