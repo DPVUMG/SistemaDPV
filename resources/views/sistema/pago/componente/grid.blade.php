@@ -9,6 +9,7 @@
                 <tr>
                     <th class="text-center align-middle">Número Cheque</th>
                     <th class="text-center align-middle">Banco</th>
+                    <th class="text-center align-middle">Monto</th>
                     <th class="text-center align-middle">Escuela</th>
                     <th class="text-center align-middle">Fecha</th>
                     <th class="text-center align-middle">Pedido</th>
@@ -24,6 +25,8 @@
                 <tr>
                     <td class="text-center align-middle">{{ $item->numero_cheque }}</td>
                     <td class="text-center align-middle">{{ $item->banco->nombre }}</td>
+                    <td class="text-right align-middle">Q {{ number_format($item->monto, 2, '.', ',') }}
+                    </td>
                     <td class="text-left align-middle">{{ $item->escuela->establecimiento }}</td>
                     <td class="text-center align-middle">{{ date('d/m/Y H:i:s', strtotime($item->created_at)) }}</td>
                     <td class="text-center align-middle">
@@ -34,7 +37,6 @@
                     </td>
                     <td class="text-center align-middle">{{ $item->mes->nombre }}</td>
                     <td class="text-center align-middle">{{ $item->anio }}</td>
-                    @if ($estado == 1)
                     <td class="text-center align-middle">
                         <form id="formAnular{{ $item->id }}" method="post" action="{{ route('pago.destroy', $item) }}">
                             @csrf
@@ -46,7 +48,6 @@
                             </button>
                         </form>
                     </td>
-                    @endif
                 </tr>
                 @endforeach
             </tbody>

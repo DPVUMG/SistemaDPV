@@ -118,7 +118,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('escuela_pedido_historial', 'EscuelaPedidoHistorialController')->only(['index', 'show']);
     Route::resource('pago', 'PagoPedidoController')->only(['index', 'store', 'show', 'destroy']);
 
-    Route::resource('gasto', 'GastoController')->except(['create', 'edit']);
+    Route::resource('gasto', 'GastoController')->except(['create', 'edit', 'update']);
 });
 
 Route::group(['middleware' => ['auth']], function () {

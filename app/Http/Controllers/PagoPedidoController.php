@@ -109,7 +109,7 @@ class PagoPedidoController extends Controller
             $monto_formato = number_format($total, 2, '.', ',');
 
             if ($total != $request->monto) {
-                throw new Exception("El monto {$monto} del cheque {$request->numero_cheque} no cubre el total {$monto_formato} de los pedidos seleccionados", 1000);
+                throw new Exception("El monto {$monto} del cheque {$request->numero_cheque} no cubre el cuadra con el monto total {$monto_formato} de los pedidos seleccionados", 1000);
             }
 
             DB::commit();
