@@ -121,7 +121,7 @@ class UsuarioControlller extends Controller
      */
     public function update(Request $request, Usuario $usuario)
     {
-        $this->validate($request, $this->rules($request->cui_persona, $request->usuario), $this->messages());
+        $this->validate($request, $this->rules($usuario->persona_id, $usuario->usuario_id), $this->messages());
 
         try {
             DB::beginTransaction();
@@ -157,7 +157,7 @@ class UsuarioControlller extends Controller
             'telefono_persona' => 'nullable|digits:8',
             'correo_electronico_persona' => 'nullable|email|max:75',
             'direccion_persona' => 'nullable|max:500',
-            'avatar_persona' => 'required|file',
+            'avatar_persona' => is_null($cui) ? 'required|file' : '',
             'municipio_id_persona' => 'required|integer|exists:municipio,id',
 
             //Usuario
