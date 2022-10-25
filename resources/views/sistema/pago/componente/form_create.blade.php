@@ -79,7 +79,6 @@
                 <i class="material-icons">block</i> Cancelar
                 <div class="ripple-container"></div>
             </a>
-            @endif
             <button rel="tooltip" type="submit" class="btn btn-flat btn-md btn-success" data-toggle="tooltip"
                 data-placement="top" title="Guardar información">
                 <i class="material-icons">add_box</i> Guardar
