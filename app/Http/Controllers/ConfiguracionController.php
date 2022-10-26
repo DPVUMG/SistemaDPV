@@ -82,7 +82,7 @@ class ConfiguracionController extends Controller
         if (is_null($request->logotipo))
             $this->validate($request, $this->rules(1), $this->messages());
         else
-            $this->validate($request, $this->rules(), $this->messages());
+            $this->validate($request, $this->rules($configuracion->id), $this->messages());
 
         try {
             $configuracion->nit = $request->nit;
