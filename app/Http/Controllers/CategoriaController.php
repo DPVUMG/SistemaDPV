@@ -162,12 +162,12 @@ class CategoriaController extends Controller
 
         if (is_null($id)) {
             $validar = [
-                'nombre' => 'required|max:25|unique:categoria,nombre',
+                'nombre' => 'required|max:50|unique:categoria,nombre',
                 'icono' => 'required|file'
             ];
         } else {
             $validar = [
-                'nombre' => 'required|max:25|unique:categoria,nombre,' . $id
+                'nombre' => 'required|max:50|unique:categoria,nombre,' . $id
             ];
         }
 

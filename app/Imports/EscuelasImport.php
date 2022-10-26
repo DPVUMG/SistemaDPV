@@ -73,7 +73,6 @@ class EscuelasImport implements ToCollection
                             ],
                             ['establecimiento' => $value[4]]
                         );
-
                     }
 
                     $mensaje .= " - Escuela: {$escuela->establecimiento}";
