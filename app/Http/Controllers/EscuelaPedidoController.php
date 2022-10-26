@@ -161,7 +161,7 @@ class EscuelaPedidoController extends Controller
             return redirect()->back();
         } catch (\Throwable $th) {
             DB::rollBack();
-            toastr()->error('Error al anular el pedido.');
+            toastr()->error($th->getMessage());
             return redirect()->route($this->redireccionarCatch());
         }
     }
