@@ -161,10 +161,21 @@ class PagoPedidoController extends Controller
                 throw new Exception("No puede eliminar el pago porque es un registro histórico.", 1000);
             }
 
+            DB::beginTransaction();
+
             $pago->delete();
+            $pedido_select = EscuelaPedido::find($pago->escuela_pedido_id);
+            $pedido_select->estado_pedido_id = 3;
+            $pedido_select->save();
+
+            $this->historialPedido($pedido_select->estado_pedido_id, 3, $pedido_select->id, $pedido_select->escuela_id, "El pago número {$pago->id} fue anulado para el pago del pedido número {$pedido_select->id}");
+
+            DB::commit();
+
             toastr()->success('Registro eliminado.');
             return redirect()->route('pago.index');
         } catch (\Exception $e) {
+            DB::rollBack();
 
             if ($e->getCode() == 1000) {
                 toastr()->info($e->getMessage());
