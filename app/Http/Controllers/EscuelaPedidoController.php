@@ -145,7 +145,7 @@ class EscuelaPedidoController extends Controller
             if ($escuela_pedido->estado_pedido_id == 1) {
                 DB::beginTransaction();
 
-                EscuelaDetallePedido::where("escuela_pedido_id", $escuela_pedido->id)->update('activo', false);
+                EscuelaDetallePedido::where("escuela_pedido_id", $escuela_pedido->id)->update(['activo' => false]);
                 $escuela_pedido->estado_pedido_id = 5;
                 $escuela_pedido->save();
 
@@ -161,7 +161,7 @@ class EscuelaPedidoController extends Controller
             return redirect()->back();
         } catch (\Throwable $th) {
             DB::rollBack();
-            toastr()->error($th->getMessage());
+            toastr()->error('Error al anular el pedido.');
             return redirect()->route($this->redireccionarCatch());
         }
     }
