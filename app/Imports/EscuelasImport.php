@@ -49,24 +49,32 @@ class EscuelasImport implements ToCollection
 
                     $mensaje .= " - Distrito: {$distrito->codigo}";
 
-                    $escuela = Escuela::firstOrCreate(
-                        [
-                            'establecimiento' => $value[4],
-                            'direccion' => $value[5],
-                            'telefono' => $value[6],
-                            'sector' => $value[10],
-                            'area' => $value[11],
-                            'jornada' => $value[14],
-                            'plan' => $value[15],
-                            'distrito_id' => $distrito->id,
-                            'departamental_id' => $departamental->id,
-                            'departamento_id' => Departamento::where("nombre", $value[2])->first()->id,
-                            'municipio_id' => Municipio::where("nombre", $value[3])->first()->id,
-                            'usuario_id' => Usuario::all()->random()->first()->id,
-                            'activo' => true
-                        ],
-                        ['establecimiento' => $value[4]]
-                    );
+                    $escuela = Escuela::where('establecimiento', $value[4])
+                        ->where('jornada', $value[14])
+                        ->where('plan', $value[15])
+                        ->first();
+
+                    if(is_null($escuela)) {
+                        $escuela = Escuela::firstOrCreate(
+                            [
+                                'establecimiento' => $value[4],
+                                'direccion' => $value[5],
+                                'telefono' => $value[6],
+                                'sector' => $value[10],
+                                'area' => $value[11],
+                                'jornada' => $value[14],
+                                'plan' => $value[15],
+                                'distrito_id' => $distrito->id,
+                                'departamental_id' => $departamental->id,
+                                'departamento_id' => Departamento::where("nombre", $value[2])->first()->id,
+                                'municipio_id' => Municipio::where("nombre", $value[3])->first()->id,
+                                'usuario_id' => Usuario::all()->random()->first()->id,
+                                'activo' => true
+                            ],
+                            ['establecimiento' => $value[4]]
+                        );
+
+                    }
 
                     $mensaje .= " - Escuela: {$escuela->establecimiento}";
 

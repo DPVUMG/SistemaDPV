@@ -172,7 +172,7 @@ class CatalogoEscuelaController extends Controller
     {
         $items = Escuela::select(
             'escuela.id AS id',
-            DB::RAW("CONCAT(escuela.establecimiento,' ',escuela.jornada) AS establecimiento")
+            DB::RAW("CONCAT(escuela.establecimiento,' - ',escuela.jornada,' ',escuela.plan) AS establecimiento")
         )
             ->where('escuela.activo', true)
             ->orderby('escuela.establecimiento', 'asc')->get();
