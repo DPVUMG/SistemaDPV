@@ -10,6 +10,7 @@ use App\Imports\MunicipioImport;
 use App\Imports\ProductosImport;
 use App\Imports\DepartamentoImport;
 use App\Models\Banco;
+use App\Models\Configuracion;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DatabaseSeeder extends Seeder
@@ -97,5 +98,24 @@ class DatabaseSeeder extends Seeder
         ];
         Banco::insert($bancos);
         echo "Bancos." . PHP_EOL;
+
+        Configuracion::create(
+            [
+                'nit' => 'default',
+                'nombre' => 'default',
+                'slogan' => 'default',
+                'vision' => 'default',
+                'mision' => 'default',
+                'logotipo' => 'default',
+                'ubicacion_x' => 'default',
+                'ubicacion_y' => 'default',
+                'facebook' => 'default',
+                'twitter' => 'default',
+                'instagram' => 'default',
+                'url' => 'default',
+                'pagina' => true,
+                'sistema' => false
+            ]
+        );
     }
 }
