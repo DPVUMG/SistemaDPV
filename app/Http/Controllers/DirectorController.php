@@ -22,7 +22,7 @@ class DirectorController extends Controller
                 ->select(
                     'director.nombre AS nombre',
                     'director.telefono AS telefono',
-                    'escuela.establecimiento AS establecimiento',
+                    'escuela.establecimiento AS establecimiento'
                 )
                 ->where('director.activo', true)
                 ->groupBy('director.nombre', 'director.telefono', 'escuela.establecimiento')
