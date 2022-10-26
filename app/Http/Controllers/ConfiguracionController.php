@@ -235,10 +235,10 @@ class ConfiguracionController extends Controller
                 'logotipo' => 'required|file',
                 'ubicacion_x' => 'nullable|numeric',
                 'ubicacion_y' => 'nullable|numeric',
-                'facebook' => 'nullable|url|max:100',
-                'twitter' => 'nullable|url|max:100',
-                'instagram' => 'nullable|url|max:100',
-                'url' => 'nullable|url|max:100',
+                'facebook' => 'nullable|max:100',
+                'twitter' => 'nullable|max:100',
+                'instagram' => 'nullable|max:100',
+                'url' => 'nullable|max:100',
             ];
         } else {
             return [
@@ -251,10 +251,10 @@ class ConfiguracionController extends Controller
                 'logotipo' => 'nullable|file',
                 'ubicacion_x' => 'nullable|numeric',
                 'ubicacion_y' => 'nullable|numeric',
-                'facebook' => 'nullable|url|max:100',
-                'twitter' => 'nullable|url|max:100',
-                'instagram' => 'nullable|url|max:100',
-                'url' => 'nullable|url|max:100',
+                'facebook' => 'nullable|max:100',
+                'twitter' => 'nullable|max:100',
+                'instagram' => 'nullable|max:100',
+                'url' => 'nullable|max:100',
             ];
         }
     }
