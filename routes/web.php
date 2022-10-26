@@ -106,7 +106,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/escuela_descuento/status/{escuela_descuento}', 'EscuelaDescuentoController@status')->name('escuela_descuento.status');
 
     Route::resource('usuario', 'UsuarioControlller')->except(['destroy', 'show']);
-    Route::get('/usuario/status/{usuario}', 'EscuelaController@status')->name('usuario.status');
+    Route::get('/usuario/status/{usuario}', 'UsuarioControlller@status')->name('usuario.status');
 
     Route::resource('contacto', 'ContactoController')->only(['index']);
 
