@@ -157,7 +157,7 @@ class PagoPedidoController extends Controller
             $fecha_eliminar = date('Ymd', strtotime($pago->created_at));
             $fecha_actual = date('Ymd');
 
-            if ($fecha_eliminar == $fecha_actual) {
+            if ($fecha_eliminar != $fecha_actual) {
                 throw new Exception("No puede eliminar el pago porque es un registro histórico.", 1000);
             }
 
