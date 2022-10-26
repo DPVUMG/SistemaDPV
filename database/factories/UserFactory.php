@@ -2,26 +2,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Brand;
-use App\Category;
-use App\Comment;
-use App\Company;
-use App\CompanyAddress;
-use App\CompanyPhone;
-use App\Credit;
-use App\Detail;
-use App\DiscountRate;
-use App\Image;
 use App\Models\Municipio;
 use App\Models\Persona;
 use App\Models\Usuario;
-use App\Order;
-use App\Product;
-use App\ProductComment;
-use App\RequestCredit;
-use App\SubCategory;
-use App\Traicing;
-use App\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
