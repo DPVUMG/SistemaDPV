@@ -87,7 +87,7 @@ class EscuelaUsuario extends Model
         return $this->hasOne(Escuela::class, 'id', 'escuela_id');
     }
 
-    public function usuario()
+    public function usuario_sistema()
     {
         return $this->hasOne(Usuario::class, 'id', 'usuario_id');
     }

@@ -108,7 +108,7 @@ class EscuelaUsuarioController extends Controller
             toastr()->success($escuela_usuario->activo ? "El usuario {$escuela_usuario->usuario} fue activado" : "El usuario {$escuela_usuario->usuario} fue desactivado");
             return redirect()->route('escuela_usuario.show', $escuela_usuario->escuela_id);
         } catch (\Throwable $th) {
-            toastr()->error($th->getMessage());
+            toastr()->error('Error el cambio de estado');
             return redirect()->route('escuela_usuario.show', $escuela_usuario->escuela_id);
         }
     }
