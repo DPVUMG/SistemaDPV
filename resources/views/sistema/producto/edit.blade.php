@@ -256,7 +256,6 @@
                                                         Q {{ number_format($item->precio, 2, ',', ' ') }}
                                                     </td>
                                                     <td class="text-center">
-                                                        @if ($producto->producto_variante->count() > 1)
                                                         <form id="formDelete{{ $item->id }}" method="post"
                                                             action="{{ route('producto_variante.destroy', $item) }}">
                                                             @csrf
@@ -282,7 +281,6 @@
                                                                 <div class="ripple-container"></div>
                                                             </button>
                                                         </form>
-                                                        @endif
                                                     </td>
                                                 </tr>
                                                 @endforeach
