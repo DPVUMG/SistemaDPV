@@ -34,7 +34,7 @@
                                                 <div class="fileinput-new thumbnail img-raised">
                                                     @if($web->logotipo)
                                                     <div style="height: 230px; border: solid;" id="imagePreview"><img
-                                                            width="100%" height="100%" src="{{ $web->logotipo }}" />
+                                                            width="100%" height="100%" src="{{ $web->getLogotipoPictureAttribute() }}" />
                                                     </div>
                                                     @else
                                                     <div style="height: 230px; border: solid;" id="imagePreview"></div>
