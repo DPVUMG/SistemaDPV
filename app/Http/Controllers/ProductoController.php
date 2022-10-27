@@ -170,6 +170,7 @@ class ProductoController extends Controller
         } catch (\Throwable $th) {
             DB::rollBack(); //Si hay error revertimos los datos guardados en las tablas previas al error
             toastr()->error('Error al guardar.');
+            dd($th);
             return redirect()->route('producto.edit', $producto->id);
         }
     }
