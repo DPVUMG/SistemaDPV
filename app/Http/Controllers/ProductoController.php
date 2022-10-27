@@ -183,6 +183,7 @@ class ProductoController extends Controller
             $validar = [
                 'nombre' => 'required|max:75|unique:producto,nombre',
                 'marca_id' => 'required|integer|exists:marca,id',
+                'producto_subcategoria' => 'required|array',
                 'producto_subcategoria.*' => 'required|integer|exists:sub_categoria,id',
                 'descripcion' => 'required',
                 'variante_presentacion_id' => 'required|integer|exists:variante_presentacion,id',
@@ -193,6 +194,7 @@ class ProductoController extends Controller
             $validar = [
                 'nombre' => 'required|max:75|unique:producto,nombre,' . $id,
                 'marca_id' => 'required|integer|exists:marca,id',
+                'producto_subcategoria' => 'required|array',
                 'producto_subcategoria.*' => 'required|integer|exists:sub_categoria,id',
                 'descripcion' => 'required'
             ];
@@ -215,6 +217,9 @@ class ProductoController extends Controller
             'marca_id.required' => 'La marca es obligatoria.',
             'marca_id.integer'  => 'La marca debe de ser un número entero.',
             'marca_id.exists'  => 'La marca seleccionada no existe.',
+
+            'producto_subcategoria.array' => 'Debe de seleccionar al menos una categoria.',
+            'producto_subcategoria.required' => 'Debe de seleccionar al menos una categoria.',
 
             'producto_subcategoria.*.required' => 'La categoría es obligatoria.',
             'producto_subcategoria.*.integer'  => 'La categoría debe de ser un número entero.',

@@ -84,27 +84,25 @@
                                                     </div>
                                                     <div class="col-sm-12 col-md-12">
                                                         <div
-                                                            class="form-group{{ $errors->has('producto_subcategoria') ? ' has-danger' : '' }}">
-                                                            <label for="producto_subcategoria">Categorías</label>
+                                                            class="form-group{{ $errors->has('producto_subcategoria[]') ? ' has-danger' : '' }}">
+                                                            <label for="producto_subcategoria[]">Categorías</label>
                                                             <select multiple data-live-search="true"
                                                                 data-style="btn-primary"
-                                                                class="selectpicker form-control{{ $errors->has('producto_subcategoria') ? ' is-invalid' : '' }}"
+                                                                class="selectpicker form-control{{ $errors->has('producto_subcategoria[]') ? ' is-invalid' : '' }}"
                                                                 name="producto_subcategoria[]"
                                                                 id="input-producto_subcategoria">
                                                                 <option value="">Seleccionar una presentacion</option>
                                                                 @foreach ($subcategorias as $item)
-                                                                <option value="{{ $item->id }}" {{ ($item->id ==
-                                                                    old('producto_subcategoria')) ?
-                                                                    'selected' : '' }}>{{ "{$item->categoria->nombre} -
+                                                                <option value="{{ $item->id }}">{{ "{$item->categoria->nombre} -
                                                                     {$item->nombre}" }}
                                                                 </option>
                                                                 @endforeach
                                                             </select>
-                                                            @if ($errors->has('producto_subcategoria'))
-                                                            <span id="producto_subcategoria-error"
+                                                            @if ($errors->has('producto_subcategoria[]'))
+                                                            <span id="producto_subcategoria[]-error"
                                                                 class="error text-danger"
-                                                                for="input-producto_subcategoria">{{
-                                                                $errors->first('producto_subcategoria')
+                                                                for="input-producto_subcategoria[]">{{
+                                                                $errors->first('producto_subcategoria[]')
                                                                 }}</span>
                                                             @endif
                                                         </div>
