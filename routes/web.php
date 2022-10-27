@@ -100,7 +100,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('director', 'DirectorController')->only(['index', 'show', 'update', 'destroy']);
 
     Route::resource('escuela_usuario', 'EscuelaUsuarioController')->except('destroy');
-    Route::get('/escuela_usuario/status/{escuela_usuario}', 'EscuelaController@status')->name('escuela_usuario.status');
+    Route::get('/escuela_usuario/status/{escuela_usuario}', 'EscuelaUsuarioController@status')->name('escuela_usuario.status');
 
     Route::resource('escuela_descuento', 'EscuelaDescuentoController')->except(['create', 'edit']);
     Route::get('/escuela_descuento/status/{escuela_descuento}', 'EscuelaDescuentoController@status')->name('escuela_descuento.status');
