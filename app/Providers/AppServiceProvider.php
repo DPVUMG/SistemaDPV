@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        /*$configuracion = Configuracion::where('sistema', true)->first();
+        $configuracion = Configuracion::where('sistema', true)->first();
         $mensaje = 'Configurar sistema';
 
         view()->composer('layouts.navbars.sidebar', function ($view) use ($configuracion, $mensaje) {
@@ -70,6 +70,6 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('instagram', $mensaje);
                 $view->with('page', $mensaje);
             }
-        });*/
+        });
     }
 }
