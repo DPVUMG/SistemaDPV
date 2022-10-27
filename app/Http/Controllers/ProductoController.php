@@ -155,6 +155,7 @@ class ProductoController extends Controller
 
             ProductoSubCategoria::where('producto_id', $producto->id)->delete();
             foreach ($request->producto_subcategoria as $value) {
+                $data['usuario_id'] = Auth::user()->id;
                 $data['producto_id'] = $producto->id;
                 $data['sub_categoria_id'] = $value;
                 $data['categoria_id'] = SubCategoria::find($value)->categoria_id;
@@ -170,7 +171,6 @@ class ProductoController extends Controller
         } catch (\Throwable $th) {
             DB::rollBack(); //Si hay error revertimos los datos guardados en las tablas previas al error
             toastr()->error('Error al guardar.');
-            dd($th);
             return redirect()->route('producto.edit', $producto->id);
         }
     }
