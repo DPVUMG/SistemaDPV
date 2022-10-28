@@ -127,7 +127,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        $escuelas = Escuela::all()->random()->get();
+        $escuelas = Escuela::get();
 
         foreach ($escuelas as $key => $escuela) {
 
