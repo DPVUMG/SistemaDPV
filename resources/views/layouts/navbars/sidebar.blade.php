@@ -252,35 +252,14 @@
           <p>{{ __('Bitácora de Pedidos') }}</p>
         </a>
       </li>
-      @if (Auth::user()->admin)
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#reportes" aria-expanded="true">
-          <p>Reportes<b class="caret"></b></p>
+      <li class="nav-item {{URL::current() == URL::route('escuela_pedido_historial.index') ? 'active' : ''}}">
+        <a class="nav-link" href="{{ route('escuela_pedido_historial.index') }}">
+          <i class="material-icons">
+            <img class="img" src="{{ asset('image/menu/reporte.png') }}" width="40px" alt="Reportes">
+          </i>
+          <p>{{ __('Reportes') }}</p>
         </a>
-        <div class="collapse" id="reportes">
-          <ul class="nav">
-            <li class="nav-item {{URL::current() == URL::route('report.traicing') ? 'active' : ''}}">
-              <a class="nav-link" href="{{ route('report.traicing') }}">
-                <span class="sidebar-normal"> <i class="material-icons">insert_drive_file</i> {{ __('Información de
-                  pedido') }} </span>
-              </a>
-            </li>
-            <li class="nav-item {{URL::current() == URL::route('report.credit') ? 'active' : ''}}">
-              <a class="nav-link" href="{{ route('report.credit') }}">
-                <span class="sidebar-normal"> <i class="material-icons">insert_drive_file</i> {{ __('Crédito por pagar')
-                  }} </span>
-              </a>
-            </li>
-            <li class="nav-item {{URL::current() == URL::route('report.client') ? 'active' : ''}}">
-              <a class="nav-link" href="{{ route('report.client') }}">
-                <span class="sidebar-normal"> <i class="material-icons">insert_drive_file</i> {{ __('Información del
-                  cliente') }} </span>
-              </a>
-            </li>
-          </ul>
-        </div>
       </li>
-      @endif
       <li class="nav-item {{URL::current() == URL::route('logout') ? 'active' : ''}}">
         <a class="nav-link" href="{{ route('logout') }}"
           onclick="event.preventDefault();document.getElementById('logout-form').submit();">

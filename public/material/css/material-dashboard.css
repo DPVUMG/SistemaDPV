@@ -32,6 +32,9 @@ html {
   -ms-text-size-adjust: 100%;
   -ms-overflow-style: scrollbar;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  scrollbar-color: var(--scroll-thumb-color, grey) var(--scroll-track, transparent);
+  scrollbar-width: thin;
+	-webkit-overflow-scrolling: touch;
 }
 
 @-ms-viewport {
@@ -14497,7 +14500,6 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .wrapper {
   position: relative;
   top: 0;
-  height: 100vh;
 }
 
 .sidebar {
@@ -14529,11 +14531,31 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .sidebar .sidebar-wrapper {
   position: relative;
-  height: calc(100vh - 75px);
-  overflow: auto;
-  width: 260px;
+  height: calc(100vh - 150px);
+  width: 275px !important;
   z-index: 3;
   padding-bottom: 30px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: var(--scroll-thumb-color, grey) var(--scroll-track, transparent);
+  scrollbar-width: thin;
+	-webkit-overflow-scrolling: touch;
+}
+
+.sidebar .sidebar-wrapper::-webkit-scrollbar {
+  width: var(--scroll-size, 10px);
+  height: var(--scroll-size, 10px);
+}
+
+.sidebar .sidebar-wrapper::-webkit-scrollbar-track {
+  background-color: var(--scroll-track, transparent);
+  border-radius: var(--scroll-track-radius, var(--scroll-radius));
+}
+
+.sidebar .sidebar-wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-thumb-color, grey);
+  background-image: var(--scroll-thumb, none);
+  border-radius: var(--scroll-thumb-radius, var(--scroll-radius));
 }
 
 .sidebar .sidebar-wrapper .dropdown .dropdown-backdrop {
@@ -14934,8 +14956,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   margin-bottom: 10px;
 }
 
-.perfect-scrollbar-on .sidebar,
-.perfect-scrollbar-on .main-panel {
+.sidebar,
+.main-panel {
   height: 100%;
   max-height: 100%;
 }
