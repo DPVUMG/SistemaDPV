@@ -289,8 +289,13 @@
                             <span class="badge badge-light">{{ number_format($items->total(),0,'',',') }}</span>
                             registros
                         </button>
+                        <nav aria-label="...">
+                            <ul class="pagination justify-content-end">
+                                {{ $items->links() }}
+                            </ul>
+                        </nav>
                         <div class="table-responsive">
-                            <table class="dataTable display" style="width:100%">
+                            <table class="dataTableDis display" style="width:100%">
                                 <thead class="thead-dark">
                                     <th class="text-center">
                                         {{ __('Información') }}
@@ -347,6 +352,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        <br>
                         <nav aria-label="...">
                             <ul class="pagination justify-content-end">
                                 {{ $items->links() }}

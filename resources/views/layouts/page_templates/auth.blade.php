@@ -131,6 +131,20 @@
     cargarListSupervisores();
     cargarListNiveles();
 
+    $('.dataTableDis').DataTable({    
+      serverSide: false,
+      paging: false,
+      autoWidth: false,
+      processing: true,
+      ordering: false,
+      info: false,
+      searching: false,
+      responsive: false,
+      language: {
+        url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json',
+      }
+    });
+
     $('#dataTableCodigos').DataTable({    
       serverSide: false,
       paging: false,
