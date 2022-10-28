@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
-use Illuminate\Support\Str;
 use App\Models\ProductoFoto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,16 +63,20 @@ class ProductoFotoController extends Controller
         $this->validate($request, $this->rules(), $this->messages());
 
         try {
+            $data['usuario_id'] = Auth::user()->id;
+            $data['foto'] = null;
+            $data['producto_id'] = $producto_foto->id;
+
+            $producto = ProductoFoto::create($data); //Guardamos la fotografia del producto
+
             $img_data = file_get_contents($request->file('foto'));
             $image = Image::make($img_data);
             $image->encode('jpg', 70);
-            $nombre = Str::random(10);
-            $data['usuario_id'] = Auth::user()->id;
-            $data['foto'] = "{$nombre}.jpg";
-            $data['producto_id'] = $producto_foto->id;
+            $nombre = "{$producto->id}.jpg";
+            Storage::disk('producto')->put("{$producto_foto->id}/{$nombre}", $image);
 
-            Storage::disk('producto')->put("{$producto_foto->id}/{$data['foto']}", $image);
-            ProductoFoto::create($data); //Guardamos la fotografia del producto
+            $producto->foto = $nombre;
+            $producto->save();
 
             toastr()->success('Registro guardado.');
             return redirect()->route('producto_foto.edit', $producto_foto->id);
