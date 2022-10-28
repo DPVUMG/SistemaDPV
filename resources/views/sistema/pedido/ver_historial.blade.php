@@ -30,27 +30,34 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <ul class="timeline timeline-simple">
+                        <div class="timeline">
                             @foreach ($escuela_pedido_historial->escuela_pedido_historial->sortByDesc('created_at') as
                             $item)
-                            <li class="timeline-inverted">
-                                <div class="timeline-badge danger">
-                                    <i class="material-icons">info</i>
+                            <div class="{{ $item->getColorAttribute($item->estado_pedido_id) }}">
+                                <div class="timeline-icon">
+                                    <i class="{{ $item->getIconAttribute($item->estado_pedido_id) }}"></i>
                                 </div>
-                                <div class="timeline-panel">
-                                    <div class="timeline-heading">
-                                        <span class="badge badge-pill badge-info">{{ $item->estado_actual }}</span>
-                                    </div>
-                                    <div class="timeline-body">
-                                        <p>{{ $item->usuario }}</p>
-                                    </div>
-                                    <h6>
-                                        <i class="ti-time"></i> {{ date('d/m/Y H:i:s', strtotime($item->created_at)) }}
-                                    </h6>
+                                <div class="timeline-body">
+                                    <h4 class="timeline-title">
+                                        <span class="badge">
+                                            {{ $item->estado_anterior }}
+                                        </span>
+                                    </h4>
+                                    <p>
+                                        {{ $item->descripcion }}
+                                    </p>
+                                    <p class="timeline-subtitle">
+                                        <i class=" fa fa-clock-o"></i>
+                                        {{ date('d-m-Y H:i:s', strtotime($item->created_at)) }}
+                                    </p>
+                                    <p class="timeline-subtitle">
+                                        <i class="fa fa-user"></i>
+                                        {{ $item->usuario }}
+                                    </p>
                                 </div>
-                            </li>
+                            </div>
                             @endforeach
-                        </ul>
+                        </div>
                     </div>
                 </div>
             </div>

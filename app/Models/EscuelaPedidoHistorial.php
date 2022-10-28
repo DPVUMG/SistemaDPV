@@ -53,6 +53,71 @@ class EscuelaPedidoHistorial extends Model
         'escuela_pedido_id', 'usuario'
     ];
 
+    /**
+     * Get the Icon
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getIconAttribute(int $value)
+    {
+        $icon = '';
+        switch ($value) {
+            case 1:
+                $icon = 'fa fa-plus';
+                break;
+            case 2:
+                $icon = 'fa fa-check';
+                break;
+            case 3:
+                $icon = 'fa fa-list';
+                break;
+            case 4:
+                $icon = 'fa fa-money';
+                break;
+            case 5:
+                $icon = 'fa fa-trash';
+                break;
+            case 6:
+                $icon = 'fa fa-close';
+                break;
+        }
+
+        return $icon;
+    }
+
+    /**
+     * Get the Color
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getColorAttribute($value)
+    {
+        $color = '';
+        switch ($value) {
+            case 1:
+                $color = 'timeline-container info';
+                break;
+            case 2:
+                $color = 'timeline-container success';
+                break;
+            case 3:
+                $color = 'timeline-container primary';
+                break;
+            case 4:
+                $color = 'timeline-container payment';
+                break;
+            case 5:
+                $color = 'timeline-container warning';
+                break;
+            case 6:
+                $color = 'timeline-container danger';
+                break;
+        }
+
+        return $color;
+    }
 
     public function escuela()
     {

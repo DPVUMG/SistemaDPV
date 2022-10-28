@@ -337,8 +337,6 @@
 @push('js')
 <script>
     function reCalcular(index, precio_escuela = false) {
-        console.log(index)
-
         let precio_real = $(`input[name="detale[${index}][precio_real]"]`).val();
         let precio_descuento = $(`input[name="detale[${index}][precio_descuento]"]`).val();
         let descuento_aplicado = parseFloat(precio_real) - parseFloat(precio_descuento);

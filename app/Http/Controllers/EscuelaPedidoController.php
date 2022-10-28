@@ -57,7 +57,12 @@ class EscuelaPedidoController extends Controller
      */
     public function show(EscuelaPedido $escuela_pedido)
     {
-        //
+        try {
+            return view('sistema.pedido.detalle', compact('escuela_pedido'));
+        } catch (\Throwable $th) {
+            toastr()->error('Error al cargar la pantalla.');
+            return redirect()->back();
+        }
     }
 
     /**
