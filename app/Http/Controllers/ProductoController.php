@@ -26,9 +26,9 @@ class ProductoController extends Controller
     {
         try {
             if ($request->has('search'))
-                $items = Producto::with('marca', 'producto_subcategoria')->search($request->search)->orderBy('producto.created_at', 'desc')->paginate(10);
+                $items = Producto::with('marca', 'producto_subcategoria')->search($request->search)->orderBy('id', 'desc')->paginate(10);
             else
-                $items = Producto::with('marca', 'producto_subcategoria')->orderBy('producto.created_at', 'desc')->paginate(10);
+                $items = Producto::with('marca', 'producto_subcategoria')->orderBy('id', 'desc')->paginate(10);
 
             $marcas = Marca::orderBy('nombre', 'asc')->get();
             $subcategorias = SubCategoria::with('categoria')->get();
