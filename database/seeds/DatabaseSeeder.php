@@ -172,7 +172,9 @@ class DatabaseSeeder extends Seeder
 
                     $cantidad = random_int(1, 250);
 
-                    EscuelaDetallePedido::create(
+                    $estado_detalle = random_int(0, 1);
+
+                    $detalle = EscuelaDetallePedido::create(
                         [
                             'cantidad' => $cantidad,
                             'precio_real' => $precio_variante->precio,
@@ -180,7 +182,7 @@ class DatabaseSeeder extends Seeder
                             'descuento' => 0,
                             'sub_total' => ($cantidad * $precio_variante->precio),
                             'anio' => $pedido->anio,
-                            'activo' => true,
+                            'activo' => $estado_detalle == 1,
                             'escuela_pedido_id' => $pedido->id,
                             'escuela_id' => $pedido->escuela_id,
                             'producto_variante_id' => $precio_variante->id,
@@ -192,7 +194,9 @@ class DatabaseSeeder extends Seeder
                         ]
                     );
 
-                    $total += $cantidad * $precio_variante->precio;
+                    if ($detalle->activo) {
+                        $total += $cantidad * $precio_variante->precio;
+                    }
                 }
 
                 $pedido->sub_total = $total;
