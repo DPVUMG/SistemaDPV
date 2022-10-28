@@ -274,26 +274,34 @@
                                 </div>
                             </div>
                         </form>
-                        <button type="button" class="btn btn-default pull-right">
-                            Página
-                            <span class="badge badge-light">{{ number_format($items->currentPage(),0,'',',') }}</span>
-                            de
-                            <span class="badge badge-light">{{ $items->total() > $items->perPage() ?
-                                number_format($items->perPage(),0,'',',') : number_format($items->total(),0,'',',')
-                                }}</span>
-                            registros, mostrados
-                            <span class="badge badge-light">{{ $items->total() > $items->perPage() ?
-                                number_format($items->perPage() * $items->currentPage(),0,'',',') :
-                                number_format($items->total(),0,'',',') }}</span>
-                            de un total de
-                            <span class="badge badge-light">{{ number_format($items->total(),0,'',',') }}</span>
-                            registros
-                        </button>
-                        <nav aria-label="...">
-                            <ul class="pagination justify-content-end">
-                                {{ $items->links() }}
-                            </ul>
-                        </nav>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span class="badge bg-secondary" style="font-size: 20px;">
+                                    Página
+                                    <span class="badge badge-light">{{ number_format($items->currentPage(),0,'',',')
+                                        }}</span>
+                                    de
+                                    <span class="badge badge-light">{{ $items->total() > $items->perPage() ?
+                                        number_format($items->perPage(),0,'',',') :
+                                        number_format($items->total(),0,'',',')
+                                        }}</span>
+                                    registros, mostrados
+                                    <span class="badge badge-light">{{ $items->total() > $items->perPage() ?
+                                        number_format($items->perPage() * $items->currentPage(),0,'',',') :
+                                        number_format($items->total(),0,'',',') }}</span>
+                                    de un total de
+                                    <span class="badge badge-light">{{ number_format($items->total(),0,'',',') }}</span>
+                                    registros
+                                </span>
+                            </div>
+                            <div class="col-md-12">
+                                <nav aria-label="...">
+                                    <ul class="pagination justify-content-end">
+                                        {{ $items->links() }}
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
                         <div class="table-responsive">
                             <table class="dataTableDis display" style="width:100%">
                                 <thead class="thead-dark">
