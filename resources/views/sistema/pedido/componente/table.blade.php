@@ -10,11 +10,9 @@
                 <th rowspan="2" class="text-center align-middle">Solicitante</th>
                 <th rowspan="2" class="text-center align-middle">Mes</th>
                 <th rowspan="2" class="text-center align-middle">Año</th>
-                @if ($estado == 1)
                 <th rowspan="2" class="text-center align-middle">
                     <img src="{{ asset('image/ico_opcion.png') }}" title="Opciones" height="20px" alt="Opciones">
                 </th>
-                @endif
             </tr>
             <tr>
                 <th class="text-center align-middle">Pedido</th>
@@ -45,8 +43,13 @@
                 <td class="text-left align-middle">{{ $item->solicitante }}</td>
                 <td class="text-center align-middle">{{ $item->mes }}</td>
                 <td class="text-center align-middle">{{ $item->anio }}</td>
-                @if ($estado == 1)
                 <td class="text-center align-middle">
+                    <a href="{{ route('escuela_pedido.show', $item->id) }}" target="_blank"
+                        class="btn btn-info btn-sm btn-round" title="Ver información del pedido {{ $item->id }}"
+                        rel="noopener noreferrer">
+                        <img src="{{ asset('image/menu/pedido.png') }}" height="20px" alt="Pedido">
+                    </a>
+                    @if ($estado == 1)
                     <a rel="tooltip" class="btn btn-success btn-sm btn-round"
                         href="{{ route('escuela_pedido_detalle.show', $item->id) }}" data-toggle="tooltip"
                         data-placement="top" title="Confirmar pedido número {{ $item->id }}">
@@ -62,8 +65,8 @@
                             <i class="fa fa-trash"></i>
                         </button>
                     </form>
+                    @endif
                 </td>
-                @endif
             </tr>
             @endforeach
         </tbody>
