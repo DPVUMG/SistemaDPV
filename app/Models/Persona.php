@@ -76,6 +76,10 @@ class Persona extends Model
     //Mutadores
     public function getPictureAttribute()
     {
+        if (is_null($this->avatar)) {
+            return asset('image/persona_default.png');
+        }
+
         return Storage::disk('avatar')->exists("{$this->avatar}") ? Storage::disk('avatar')->url("{$this->avatar}") : asset('image/persona_default.png');
     }
 

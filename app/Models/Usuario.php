@@ -83,6 +83,10 @@ class Usuario extends Authenticatable
     //Mutadores
     public function getPictureAttribute()
     {
+        if (is_null($this->persona->avatar)) {
+            return asset('image/persona_default.png');
+        }
+
         return Storage::disk('avatar')->exists("{$this->persona->avatar}") ? Storage::disk('avatar')->url("{$this->persona->avatar}") : asset('image/persona_default.png');
     }
 

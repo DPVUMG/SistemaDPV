@@ -52,6 +52,10 @@ class Categoria extends Model
 
     public function getIconoCatAttribute()
     {
+        if (is_null($this->icono)) {
+            return null;
+        }
+
         return Storage::disk('categoria')->exists($this->icono) ? Storage::disk('categoria')->url($this->icono) : null;
     }
 
