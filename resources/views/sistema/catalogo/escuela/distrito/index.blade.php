@@ -110,43 +110,46 @@
                             registrados.') }}</p>
                     </div>
                     <div class="card-body">
-                        <table class="dataTable display" style="width:100%">
-                            <thead>
-                                <th class="text-center">Código</th>
-                                <th class="text-center">
-                                    <img src="{{ asset('image/ico_opcion.png') }}" title="Opciones" height="20px"
-                                        alt="Opciones">
-                                </th>
-                            </thead>
-                            <tbody>
-                                @foreach($items as $item)
-                                <tr>
-                                    <td class="text-display">
-                                        {{ $item->codigo }}
-                                    </td>
-                                    <td class="text-center">
-                                        <form id="formDelete{{ $item->id }}" method="post"
-                                            action="{{ route('distrito.destroy', $item) }}">
-                                            @csrf
-                                            @method('delete')
-                                            <a rel="tooltip" class="btn btn-warning btn-sm btn-round"
-                                                href="{{ route('distrito.edit', $item) }}" data-toggle="tooltip"
-                                                data-placement="top" title="Editar información">
-                                                <i class="material-icons">edit</i>
-                                                <div class="ripple-container"></div>
-                                            </a>
-                                            <button id="btnDelete-{{ $item->id }}" rel="tooltip" data-toggle="tooltip"
-                                                data-placement="top" title="{{ __(" Eliminar {$item->codigo}") }}"
-                                                class="btn btn-danger btn-sm btn-round btnDelete">
-                                                <i class="material-icons">close</i>
-                                                <div class="ripple-container"></div>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="dataTable display" style="width:100%">
+                                <thead>
+                                    <th class="text-center">Código</th>
+                                    <th class="text-center">
+                                        <img src="{{ asset('image/ico_opcion.png') }}" title="Opciones" height="20px"
+                                            alt="Opciones">
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    @foreach($items as $item)
+                                    <tr>
+                                        <td class="text-display">
+                                            {{ $item->codigo }}
+                                        </td>
+                                        <td class="text-center">
+                                            <form id="formDelete{{ $item->id }}" method="post"
+                                                action="{{ route('distrito.destroy', $item) }}">
+                                                @csrf
+                                                @method('delete')
+                                                <a rel="tooltip" class="btn btn-warning btn-sm btn-round"
+                                                    href="{{ route('distrito.edit', $item) }}" data-toggle="tooltip"
+                                                    data-placement="top" title="Editar información">
+                                                    <i class="material-icons">edit</i>
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                                <button id="btnDelete-{{ $item->id }}" rel="tooltip"
+                                                    data-toggle="tooltip" data-placement="top" title="{{ __(" Eliminar
+                                                    {$item->codigo}") }}"
+                                                    class="btn btn-danger btn-sm btn-round btnDelete">
+                                                    <i class="material-icons">close</i>
+                                                    <div class="ripple-container"></div>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

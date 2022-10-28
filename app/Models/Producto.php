@@ -75,6 +75,10 @@ class Producto extends Model
 
     public function getPictureAttribute()
     {
+        if (is_null($this->foto)) {
+            return asset('image/producto_default.png');
+        }
+
         return Storage::disk('producto')->exists("{$this->id}/{$this->foto}") ? Storage::disk('producto')->url("{$this->id}/{$this->foto}") : asset('image/producto_default.png');
     }
 

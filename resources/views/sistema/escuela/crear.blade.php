@@ -93,7 +93,7 @@
     </div>
 </div>
 @endsection
-@once
+
 @push('js')
 <script type="text/javascript">
     $(document).ready(function () {
@@ -314,4 +314,3 @@ $("#btnFormEscuela").on( "click", function(e) {
 });
 </script>
 @endpush
-@endonce

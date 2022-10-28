@@ -281,7 +281,6 @@
         </div>
       </li>
       @endif
-      <hr>
       <li class="nav-item {{URL::current() == URL::route('logout') ? 'active' : ''}}">
         <a class="nav-link" href="{{ route('logout') }}"
           onclick="event.preventDefault();document.getElementById('logout-form').submit();">

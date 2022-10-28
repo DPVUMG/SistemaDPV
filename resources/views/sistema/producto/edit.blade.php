@@ -228,64 +228,66 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="badge badge-secondary" style="width:100%">
-                                        <table class="dataTable display" style="width:100%">
-                                            <thead class="thead-dark">
-                                                <th class="text-center">
-                                                    {{ __('Variante') }}
-                                                </th>
-                                                <th class="text-center">
-                                                    {{ __('Presentación') }}
-                                                </th>
-                                                <th class="text-center">
-                                                    {{ __('Precio') }}
-                                                </th>
-                                                <th class="text-center">
-                                                    {{ __('Opciones') }}
-                                                </th>
-                                            </thead>
-                                            <tbody>
-                                                @foreach($producto->producto_variante as $item)
-                                                <tr>
-                                                    <td class="text-left">
-                                                        {{ $item->variante->nombre }}
-                                                    </td>
-                                                    <td class="text-left">
-                                                        {{ $item->presentacion->nombre }}
-                                                    </td>
-                                                    <td class="text-right">
-                                                        Q {{ number_format($item->precio, 2, ',', ' ') }}
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <form id="formDelete{{ $item->id }}" method="post"
-                                                            action="{{ route('producto_variante.destroy', $item) }}">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <a rel="tooltip"
-                                                                class="{{ $item->activo ? 'btn btn-just-icon btn-danger btn-round' : 'btn btn-just-icon btn-success btn-round' }}"
-                                                                href="{{ route('producto_variante.show', $item) }}"
-                                                                data-toggle="tooltip" data-placement="top"
-                                                                title="{{ $item->activo ? " Desactivar código
-                                                                {$item->codigo}" : " Activar
-                                                                código {$item->codigo}" }}">
-                                                                <i class="{{ $item->activo ? 'fa fa-thumbs-o-down' : 'fa fa-thumbs-o-up'}}"
-                                                                    aria-hidden="true"></i>
-                                                                <div class="ripple-container"></div>
-                                                            </a>
-                                                            <button id="btnDelete-{{ $item->id }}" rel="tooltip"
-                                                                data-toggle="tooltip" data-placement="top"
-                                                                title="{{ __(" Eliminar {$item->variante->nombre} -
-                                                                {$item->presentacion->nombre}") }}"
-                                                                type="submit"
-                                                                class="btn btn-danger btn-sm btn-round">
-                                                                <i class="material-icons">close</i>
-                                                                <div class="ripple-container"></div>
-                                                            </button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                                        <div class="table-responsive">
+                                            <table class="dataTable display" style="width:100%">
+                                                <thead class="thead-dark">
+                                                    <th class="text-center">
+                                                        {{ __('Variante') }}
+                                                    </th>
+                                                    <th class="text-center">
+                                                        {{ __('Presentación') }}
+                                                    </th>
+                                                    <th class="text-center">
+                                                        {{ __('Precio') }}
+                                                    </th>
+                                                    <th class="text-center">
+                                                        {{ __('Opciones') }}
+                                                    </th>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($producto->producto_variante as $item)
+                                                    <tr>
+                                                        <td class="text-left">
+                                                            {{ $item->variante->nombre }}
+                                                        </td>
+                                                        <td class="text-left">
+                                                            {{ $item->presentacion->nombre }}
+                                                        </td>
+                                                        <td class="text-right">
+                                                            Q {{ number_format($item->precio, 2, ',', ' ') }}
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <form id="formDelete{{ $item->id }}" method="post"
+                                                                action="{{ route('producto_variante.destroy', $item) }}">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <a rel="tooltip"
+                                                                    class="{{ $item->activo ? 'btn btn-just-icon btn-danger btn-round' : 'btn btn-just-icon btn-success btn-round' }}"
+                                                                    href="{{ route('producto_variante.show', $item) }}"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="{{ $item->activo ? " Desactivar código
+                                                                    {$item->codigo}" : " Activar
+                                                                    código {$item->codigo}" }}">
+                                                                    <i class="{{ $item->activo ? 'fa fa-thumbs-o-down' : 'fa fa-thumbs-o-up'}}"
+                                                                        aria-hidden="true"></i>
+                                                                    <div class="ripple-container"></div>
+                                                                </a>
+                                                                <button id="btnDelete-{{ $item->id }}" rel="tooltip"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="{{ __(" Eliminar {$item->variante->nombre} -
+                                                                    {$item->presentacion->nombre}") }}"
+                                                                    type="submit"
+                                                                    class="btn btn-danger btn-sm btn-round">
+                                                                    <i class="material-icons">close</i>
+                                                                    <div class="ripple-container"></div>
+                                                                </button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

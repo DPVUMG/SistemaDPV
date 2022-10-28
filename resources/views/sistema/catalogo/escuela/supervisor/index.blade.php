@@ -173,68 +173,71 @@
                             registrados.') }}</p>
                     </div>
                     <div class="card-body">
-                        <table class="dataTable display" style="width:100%">
-                            <thead>
-                                <th class="text-center">Nombre</th>
-                                <th class="text-center">Teléfono</th>
-                                <th class="text-center">Distrito</th>
-                                <th class="text-center">
-                                    <img src="{{ asset('image/ico_opcion.png') }}" title="Opciones" height="20px"
-                                        alt="Opciones">
-                                </th>
-                            </thead>
-                            <tbody>
-                                @foreach($items as $item)
-                                <tr>
-                                    <td class="text-left">
-                                        {{ $item->nombre }}
-                                    </td>
-                                    <td class="text-center">
-                                        {{ $item->telefono }}
-                                    </td>
-                                    <td class="text-center">
-                                        {{ $item->distrito->codigo }}
-                                    </td>
-                                    <td class="text-center">
-                                        <form id="formStatus{{ $item->id }}" method="get" action="{{
-                                            route('supervisor.show', $item) }}">
-                                            @csrf
-                                            @method('get')
-                                            <button rel="tooltip" data-toggle="tooltip" data-placement="top"
-                                                title="{{ $item->activo ? " Desactivar {$item->nombre}" : "Activar
-                                                {$item->nombre}"
-                                                }}"
-                                                class="{{ $item->activo ? 'btn btn-info btn-sm btn-round' : 'btn
-                                                btn-default btn-sm btn-round' }} btnStatus"
-                                                id="btnStatus-{{ $item->id }}">
-                                                <i class="material-icons">toggle_on</i>
-                                                <div class="ripple-container"></div>
-                                            </button>
-                                        </form>
-                                        @if ($item->activo)
-                                        <form id="formDelete{{ $item->id }}" method="post"
-                                            action="{{ route('supervisor.destroy', $item) }}">
-                                            @csrf
-                                            @method('delete')
-                                            <a rel="tooltip" class="btn btn-warning btn-sm btn-round"
-                                                href="{{ route('supervisor.edit', $item) }}" data-toggle="tooltip"
-                                                data-placement="top" title="Editar información">
-                                                <i class="material-icons">edit</i>
-                                                <div class="ripple-container"></div>
-                                            </a>
-                                            <button id="btnDelete-{{ $item->id }}" rel="tooltip" data-toggle="tooltip"
-                                                data-placement="top" title="{{ __(" Eliminar {$item->nombre}") }}"
-                                                class="btn btn-danger btn-sm btn-round btnDelete">
-                                                <i class="material-icons">close</i>
-                                                <div class="ripple-container"></div>
-                                            </button>
-                                        </form>
-                                        @endif
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="dataTable display" style="width:100%">
+                                <thead>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Teléfono</th>
+                                    <th class="text-center">Distrito</th>
+                                    <th class="text-center">
+                                        <img src="{{ asset('image/ico_opcion.png') }}" title="Opciones" height="20px"
+                                            alt="Opciones">
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    @foreach($items as $item)
+                                    <tr>
+                                        <td class="text-left">
+                                            {{ $item->nombre }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ $item->telefono }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ $item->distrito->codigo }}
+                                        </td>
+                                        <td class="text-center">
+                                            <form id="formStatus{{ $item->id }}" method="get" action="{{
+                                                                        route('supervisor.show', $item) }}">
+                                                @csrf
+                                                @method('get')
+                                                <button rel="tooltip" data-toggle="tooltip" data-placement="top"
+                                                    title="{{ $item->activo ? " Desactivar {$item->nombre}" : "Activar
+                                                    {$item->nombre}"
+                                                    }}"
+                                                    class="{{ $item->activo ? 'btn btn-info btn-sm btn-round' : 'btn
+                                                    btn-default btn-sm btn-round' }} btnStatus"
+                                                    id="btnStatus-{{ $item->id }}">
+                                                    <i class="material-icons">toggle_on</i>
+                                                    <div class="ripple-container"></div>
+                                                </button>
+                                            </form>
+                                            @if ($item->activo)
+                                            <form id="formDelete{{ $item->id }}" method="post"
+                                                action="{{ route('supervisor.destroy', $item) }}">
+                                                @csrf
+                                                @method('delete')
+                                                <a rel="tooltip" class="btn btn-warning btn-sm btn-round"
+                                                    href="{{ route('supervisor.edit', $item) }}" data-toggle="tooltip"
+                                                    data-placement="top" title="Editar información">
+                                                    <i class="material-icons">edit</i>
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                                <button id="btnDelete-{{ $item->id }}" rel="tooltip"
+                                                    data-toggle="tooltip" data-placement="top" title="{{ __(" Eliminar
+                                                    {$item->nombre}") }}"
+                                                    class="btn btn-danger btn-sm btn-round btnDelete">
+                                                    <i class="material-icons">close</i>
+                                                    <div class="ripple-container"></div>
+                                                </button>
+                                            </form>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

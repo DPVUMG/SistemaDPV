@@ -107,52 +107,56 @@
                             registrados en la escuela {$escuela_alumno->establecimiento}.") }}</p>
                     </div>
                     <div class="card-body">
-                        <table class="dataTable display" style="width:100%">
-                            <thead>
-                                <th class="text-center">Código</th>
-                                <th class="text-center">Nivel</th>
-                                <th class="text-center">Alumnos</th>
-                                <th class="text-center">Escuela</th>
-                                <th class="text-center">Mes</th>
-                                <th class="text-center">Año</th>
-                                <th class="text-center">
-                                    <img src="{{ asset('image/ico_opcion.png') }}" title="Opciones" height="20px"
-                                        alt="Opciones">
-                                </th>
-                            </thead>
-                            <tbody>
-                                @foreach($escuela_alumno->alumnos as $item)
-                                <tr>
-                                    <td class="text-center">{{ $item->escuela_codigo->codigo }}</td>
-                                    <td class="text-center">{{ $item->nivel->nombre }}</td>
-                                    <td class="text-center">{{ $item->cantidad_alumno }}</td>
-                                    <td class="text-center">{{ $escuela_alumno->establecimiento }}</td>
-                                    <td class="text-center">{{ date('m', strtotime($item->created_at)) }}</td>
-                                    <td class="text-center">{{ date('Y', strtotime($item->created_at)) }}</td>
-                                    <td class="text-center">
-                                        @if($item->activo)
-                                        <form id="formStatus{{ $item->id }}" method="post"
-                                            action="{{ route('escuela_alumno.destroy', $item) }}">
-                                            @csrf
-                                            @method('delete')
-                                            <button id="btnStatus-{{ $item->id }}" rel="tooltip" data-toggle="tooltip"
-                                                data-placement="top" title="{{ $item->activo ? " Desactivar
-                                                {$item->escuela_codigo->codigo}|{$item->cantidad_alumno}" :
-                                                "Activar
-                                                {$item->escuela_codigo->codigo}|{$item->cantidad_alumno}"
-                                                }}"
-                                                class="{{ $item->activo ? 'btn btn-info btn-sm btn-round' : 'btn
-                                                btn-default btn-sm btn-round' }} btnStatus">
-                                                <i class="material-icons">toggle_on</i>
-                                                <div class="ripple-container"></div>
-                                            </button>
-                                        </form>
-                                        @endif
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="dataTable display" style="width:100%">
+                                <thead>
+                                    <th class="text-center">Código</th>
+                                    <th class="text-center">Nivel</th>
+                                    <th class="text-center">Alumnos</th>
+                                    <th class="text-center">Escuela</th>
+                                    <th class="text-center">Mes</th>
+                                    <th class="text-center">Año</th>
+                                    <th class="text-center">
+                                        <img src="{{ asset('image/ico_opcion.png') }}" title="Opciones" height="20px"
+                                            alt="Opciones">
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    @foreach($escuela_alumno->alumnos as $item)
+                                    <tr>
+                                        <td class="text-center">{{ $item->escuela_codigo->codigo }}</td>
+                                        <td class="text-center">{{ $item->nivel->nombre }}</td>
+                                        <td class="text-center">{{ $item->cantidad_alumno }}</td>
+                                        <td class="text-center">{{ $escuela_alumno->establecimiento }}</td>
+                                        <td class="text-center">{{ date('m', strtotime($item->created_at)) }}</td>
+                                        <td class="text-center">{{ date('Y', strtotime($item->created_at)) }}</td>
+                                        <td class="text-center">
+                                            @if($item->activo)
+                                            <form id="formStatus{{ $item->id }}" method="post"
+                                                action="{{ route('escuela_alumno.destroy', $item) }}">
+                                                @csrf
+                                                @method('delete')
+                                                <button id="btnStatus-{{ $item->id }}" rel="tooltip"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="{{ $item->activo ? " Desactivar
+                                                    {$item->escuela_codigo->codigo}|{$item->cantidad_alumno}"
+                                                    :
+                                                    "Activar
+                                                    {$item->escuela_codigo->codigo}|{$item->cantidad_alumno}"
+                                                    }}"
+                                                    class="{{ $item->activo ? 'btn btn-info btn-sm btn-round' : 'btn
+                                                    btn-default btn-sm btn-round' }} btnStatus">
+                                                    <i class="material-icons">toggle_on</i>
+                                                    <div class="ripple-container"></div>
+                                                </button>
+                                            </form>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

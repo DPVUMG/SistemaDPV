@@ -166,7 +166,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12">
-                                        <div class=" table-responsive">
+                                        <div class="table-responsive">
                                             <table class="table table-bordered table-sm dataTableCodigos display"
                                                 style="width:100%">
                                                 <thead class="table-info">

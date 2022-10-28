@@ -25,24 +25,26 @@
                             registrados en el sistema.") }}</p>
                     </div>
                     <div class="card-body">
-                        <table class="dataTableExport display nowrap" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th class="text-center align-middle">Director</th>
-                                    <th class="text-center align-middle">Teléfono</th>
-                                    <th class="text-center align-middle">Escuela</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($items as $item)
-                                <tr>
-                                    <td class="text-left align-middle">{{ $item->nombre }}</td>
-                                    <td class="text-center align-middle">{{ $item->telefono }}</td>
-                                    <td class="text-left align-middle">{{ $item->establecimiento }}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="dataTableExport display nowrap" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center align-middle">Director</th>
+                                        <th class="text-center align-middle">Teléfono</th>
+                                        <th class="text-center align-middle">Escuela</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($items as $item)
+                                    <tr>
+                                        <td class="text-left align-middle">{{ $item->nombre }}</td>
+                                        <td class="text-center align-middle">{{ $item->telefono }}</td>
+                                        <td class="text-left align-middle">{{ $item->establecimiento }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

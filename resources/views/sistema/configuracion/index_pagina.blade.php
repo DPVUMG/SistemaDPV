@@ -34,7 +34,8 @@
                                                 <div class="fileinput-new thumbnail img-raised">
                                                     @if($web->logotipo)
                                                     <div style="height: 230px; border: solid;" id="imagePreview"><img
-                                                            width="100%" height="100%" src="{{ $web->getLogotipoPictureAttribute() }}" />
+                                                            width="100%" height="100%"
+                                                            src="{{ $web->getLogotipoPictureAttribute() }}" />
                                                     </div>
                                                     @else
                                                     <div style="height: 230px; border: solid;" id="imagePreview"></div>
@@ -302,7 +303,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="table-responsive">
-                                            <table class="table table-striped">
+                                            <table class="dataTable display" style="width:100%">
                                                 <thead class="thead-dark">
                                                     <th class="text-center">
                                                         {{ __('Teléfono') }}
@@ -393,7 +394,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="table-responsive">
-                                            <table class="table table-striped">
+                                            <table class="dataTable display" style="width:100%">
                                                 <thead class="thead-dark">
                                                     <th class="text-center">
                                                         {{ __('Dirección') }}

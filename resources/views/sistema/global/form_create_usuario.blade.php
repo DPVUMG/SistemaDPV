@@ -357,6 +357,7 @@
     </div>
 </div>
 @endif
+
 @push('js')
 @if (is_null($escuela_usuario))
 <script type="text/javascript">

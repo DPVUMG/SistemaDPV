@@ -86,44 +86,46 @@
                             registrados en la escuela {$director->establecimiento}.") }}</p>
                     </div>
                     <div class="card-body">
-                        <table class="dataTable display" style="width:100%">
-                            <thead>
-                                <th class="text-center">Director</th>
-                                <th class="text-center">Teléfono</th>
-                                <th class="text-center">Escuela</th>
-                                <th class="text-center">
-                                    <img src="{{ asset('image/ico_opcion.png') }}" title="Opciones" height="20px"
-                                        alt="Opciones">
-                                </th>
-                            </thead>
-                            <tbody>
-                                @foreach($director->directores as $item)
-                                <tr>
-                                    <td class="text-center">{{ $item->nombre }}</td>
-                                    <td class="text-center">{{ $item->telefono }}</td>
-                                    <td class="text-center">{{ $director->establecimiento }}</td>
-                                    <td class="text-center">
-                                        <form id="formStatus{{ $item->id }}" method="post"
-                                            action="{{ route('director.destroy', $item) }}">
-                                            @csrf
-                                            @method('delete')
-                                            <button id="btnStatus-{{ $item->id }}" rel="tooltip" data-toggle="tooltip"
-                                                data-placement="top" title="{{ $item->activo ? " Desactivar
-                                                {$item->nombre}" :
-                                                "Activar
-                                                {$item->nombre}"
-                                                }}"
-                                                class="{{ $item->activo ? 'btn btn-info btn-sm btn-round' : 'btn
-                                                btn-default btn-sm btn-round' }} btnStatus">
-                                                <i class="material-icons">toggle_on</i>
-                                                <div class="ripple-container"></div>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="dataTable display" style="width:100%">
+                                <thead>
+                                    <th class="text-center">Director</th>
+                                    <th class="text-center">Teléfono</th>
+                                    <th class="text-center">Escuela</th>
+                                    <th class="text-center">
+                                        <img src="{{ asset('image/ico_opcion.png') }}" title="Opciones" height="20px"
+                                            alt="Opciones">
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    @foreach($director->directores as $item)
+                                    <tr>
+                                        <td class="text-center">{{ $item->nombre }}</td>
+                                        <td class="text-center">{{ $item->telefono }}</td>
+                                        <td class="text-center">{{ $director->establecimiento }}</td>
+                                        <td class="text-center">
+                                            <form id="formStatus{{ $item->id }}" method="post"
+                                                action="{{ route('director.destroy', $item) }}">
+                                                @csrf
+                                                @method('delete')
+                                                <button id="btnStatus-{{ $item->id }}" rel="tooltip"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="{{ $item->activo ? " Desactivar {$item->nombre}" :
+                                                    "Activar
+                                                    {$item->nombre}"
+                                                    }}"
+                                                    class="{{ $item->activo ? 'btn btn-info btn-sm btn-round' : 'btn
+                                                    btn-default btn-sm btn-round' }} btnStatus">
+                                                    <i class="material-icons">toggle_on</i>
+                                                    <div class="ripple-container"></div>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

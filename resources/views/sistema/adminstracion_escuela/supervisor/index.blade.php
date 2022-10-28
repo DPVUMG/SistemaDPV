@@ -91,40 +91,42 @@
                             registrados en la escuela {$escuela_supervisor->establecimiento}.") }}</p>
                     </div>
                     <div class="card-body">
-                        <table class="dataTable display" style="width:100%">
-                            <thead>
-                                <th class="text-center">Distrito</th>
-                                <th class="text-center">Supervisor</th>
-                                <th class="text-center">Escuela</th>
-                                <th class="text-center">
-                                    <img src="{{ asset('image/ico_opcion.png') }}" title="Opciones" height="20px"
-                                        alt="Opciones">
-                                </th>
-                            </thead>
-                            <tbody>
-                                @foreach($escuela_supervisor->supervisores as $item)
-                                <tr>
-                                    <td class="text-center">{{ $item->distrito->codigo }}</td>
-                                    <td class="text-center">{{ $item->supervisor->nombre }}</td>
-                                    <td class="text-center">{{ $escuela_supervisor->establecimiento }}</td>
-                                    <td class="text-center">
-                                        <form id="formDelete{{ $item->id }}" method="post"
-                                            action="{{ route('escuela_supervisor.destroy', $item) }}">
-                                            @csrf
-                                            @method('delete')
-                                            <button id="btnDelete-{{ $item->id }}" rel="tooltip" data-toggle="tooltip"
-                                                data-placement="top" title="{{ __(" Eliminar
-                                                {$item->supervisor->nombre}") }}"
-                                                class="btn btn-danger btn-sm btn-round btnDelete">
-                                                <i class="material-icons">close</i>
-                                                <div class="ripple-container"></div>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="dataTable display" style="width:100%">
+                                <thead>
+                                    <th class="text-center">Distrito</th>
+                                    <th class="text-center">Supervisor</th>
+                                    <th class="text-center">Escuela</th>
+                                    <th class="text-center">
+                                        <img src="{{ asset('image/ico_opcion.png') }}" title="Opciones" height="20px"
+                                            alt="Opciones">
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    @foreach($escuela_supervisor->supervisores as $item)
+                                    <tr>
+                                        <td class="text-center">{{ $item->distrito->codigo }}</td>
+                                        <td class="text-center">{{ $item->supervisor->nombre }}</td>
+                                        <td class="text-center">{{ $escuela_supervisor->establecimiento }}</td>
+                                        <td class="text-center">
+                                            <form id="formDelete{{ $item->id }}" method="post"
+                                                action="{{ route('escuela_supervisor.destroy', $item) }}">
+                                                @csrf
+                                                @method('delete')
+                                                <button id="btnDelete-{{ $item->id }}" rel="tooltip"
+                                                    data-toggle="tooltip" data-placement="top" title="{{ __(" Eliminar
+                                                    {$item->supervisor->nombre}") }}"
+                                                    class="btn btn-danger btn-sm btn-round btnDelete">
+                                                    <i class="material-icons">close</i>
+                                                    <div class="ripple-container"></div>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

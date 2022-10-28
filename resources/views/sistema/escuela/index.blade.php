@@ -67,124 +67,127 @@
                                 </nav>
                             </div>
                         </div>
-                        <table class="dataTableSimple display" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th colspan="3" class="text-center align-middle">Información</th>
-                                    <th colspan="4" class="text-center align-middle">Ubicación</th>
-                                    <th colspan="5" class="text-center align-middle">Extra</th>
-                                    <th rowspan="2" class="text-center align-middle">Distrito</th>
-                                    <th rowspan="2" class="text-center align-middle">
-                                        <img src="{{ asset('image/ico_opcion.png') }}" title="Opciones" height="20px"
-                                            alt="Opciones">
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th class="text-center align-middle">Logo</th>
-                                    <th class="text-center align-middle">NIT</th>
-                                    <th class="text-center align-middle">Nombre</th>
+                        <div class="table-responsive">
+                            <table class="dataTableSimple display" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th colspan="3" class="text-center align-middle">Información</th>
+                                        <th colspan="4" class="text-center align-middle">Ubicación</th>
+                                        <th colspan="5" class="text-center align-middle">Extra</th>
+                                        <th rowspan="2" class="text-center align-middle">Distrito</th>
+                                        <th rowspan="2" class="text-center align-middle">
+                                            <img src="{{ asset('image/ico_opcion.png') }}" title="Opciones"
+                                                height="20px" alt="Opciones">
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center align-middle">Logo</th>
+                                        <th class="text-center align-middle">NIT</th>
+                                        <th class="text-center align-middle">Nombre</th>
 
-                                    <th class="text-center align-middle">Departamento</th>
-                                    <th class="text-center align-middle">Municipio</th>
-                                    <th class="text-center align-middle">Dirección</th>
-                                    <th class="text-center align-middle">Teléfono</th>
+                                        <th class="text-center align-middle">Departamento</th>
+                                        <th class="text-center align-middle">Municipio</th>
+                                        <th class="text-center align-middle">Dirección</th>
+                                        <th class="text-center align-middle">Teléfono</th>
 
-                                    <th class="text-center align-middle">Sector</th>
-                                    <th class="text-center align-middle">Area</th>
-                                    <th class="text-center align-middle">Jornada</th>
-                                    <th class="text-center align-middle">Plan</th>
-                                    <th class="text-center align-middle">Departamental</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($items as $item)
-                                <tr>
-                                    <td class="text-center align-middle">
-                                        <img src="{{ $item->getPictureAttribute() }}" height="20px"
-                                            alt="{{ $item->id }}">
-                                    </td>
-                                    <td class="text-center align-middle">
-                                        {{ $item->nit }}
-                                    </td>
-                                    <td class="text-left align-middle">
-                                        {{ $item->establecimiento }}
-                                    </td>
+                                        <th class="text-center align-middle">Sector</th>
+                                        <th class="text-center align-middle">Area</th>
+                                        <th class="text-center align-middle">Jornada</th>
+                                        <th class="text-center align-middle">Plan</th>
+                                        <th class="text-center align-middle">Departamental</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($items as $item)
+                                    <tr>
+                                        <td class="text-center align-middle">
+                                            <img src="{{ $item->getPictureAttribute() }}" height="20px"
+                                                alt="{{ $item->id }}">
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            {{ $item->nit }}
+                                        </td>
+                                        <td class="text-left align-middle">
+                                            {{ $item->establecimiento }}
+                                        </td>
 
-                                    <td class="text-left align-middle">
-                                        {{ $item->departamento->nombre }}
-                                    </td>
-                                    <td class="text-left align-middle">
-                                        {{ $item->municipio->nombre }}
-                                    </td>
-                                    <td class="text-left align-middle">
-                                        {{ $item->direccion }}
-                                    </td>
-                                    <td class="text-center align-middle">
-                                        {{ $item->telefono }}
-                                    </td>
+                                        <td class="text-left align-middle">
+                                            {{ $item->departamento->nombre }}
+                                        </td>
+                                        <td class="text-left align-middle">
+                                            {{ $item->municipio->nombre }}
+                                        </td>
+                                        <td class="text-left align-middle">
+                                            {{ $item->direccion }}
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            {{ $item->telefono }}
+                                        </td>
 
-                                    <td class="text-center align-middle">
-                                        {{ $item->sector }}
-                                    </td>
-                                    <td class="text-center align-middle">
-                                        {{ $item->area }}
-                                    </td>
-                                    <td class="text-center align-middle">
-                                        {{ $item->jornada }}
-                                    </td>
-                                    <td class="text-center align-middle">
-                                        {{ $item->plan }}
-                                    </td>
-                                    <td class="text-center align-middle">
-                                        {{ $item->departamental->nombre }}
-                                    </td>
+                                        <td class="text-center align-middle">
+                                            {{ $item->sector }}
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            {{ $item->area }}
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            {{ $item->jornada }}
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            {{ $item->plan }}
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            {{ $item->departamental->nombre }}
+                                        </td>
 
-                                    <td class="text-center align-middle">
-                                        {{ $item->distrito->codigo }}
-                                    </td>
+                                        <td class="text-center align-middle">
+                                            {{ $item->distrito->codigo }}
+                                        </td>
 
-                                    <td class="text-center">
-                                        <form id="formStatus{{ $item->id }}" method="get" action="{{
-                                            route('escuela.status', $item) }}">
-                                            @csrf
-                                            @method('get')
-                                            <button rel="tooltip" data-toggle="tooltip" data-placement="top"
-                                                title="{{ $item->activo ? " Desactivar {$item->establecimiento}" :
-                                                "Activar
-                                                {$item->establecimiento}"
-                                                }}"
-                                                class="{{ $item->activo ? 'btn btn-info btn-sm btn-round' : 'btn
-                                                btn-default btn-sm btn-round' }} btnStatus"
-                                                id="btnStatus-{{ $item->id }}">
-                                                <i class="material-icons">toggle_on</i>
-                                                <div class="ripple-container"></div>
-                                            </button>
-                                        </form>
-                                        @if ($item->activo)
-                                        <form id="formDelete{{ $item->id }}" method="post"
-                                            action="{{ route('escuela.destroy', $item) }}">
-                                            @csrf
-                                            @method('delete')
-                                            <a rel="tooltip" class="btn btn-warning btn-sm btn-round"
-                                                href="{{ route('escuela.edit', $item) }}" data-toggle="tooltip"
-                                                data-placement="top" title="Editar información">
-                                                <i class="material-icons">edit</i>
-                                                <div class="ripple-container"></div>
-                                            </a>
-                                            <button id="btnDelete-{{ $item->id }}" rel="tooltip" data-toggle="tooltip"
-                                                data-placement="top" title="{{ __(" Eliminar {$item->establecimiento}")
-                                                }}"
-                                                class="btn btn-danger btn-sm btn-round btnDelete">
-                                                <i class="material-icons">close</i>
-                                                <div class="ripple-container"></div>
-                                            </button>
-                                        </form>
-                                        @endif
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                        <td class="text-center">
+                                            <form id="formStatus{{ $item->id }}" method="get" action="{{
+                                                                        route('escuela.status', $item) }}">
+                                                @csrf
+                                                @method('get')
+                                                <button rel="tooltip" data-toggle="tooltip" data-placement="top"
+                                                    title="{{ $item->activo ? " Desactivar {$item->establecimiento}" :
+                                                    "Activar
+                                                    {$item->establecimiento}"
+                                                    }}"
+                                                    class="{{ $item->activo ? 'btn btn-info btn-sm btn-round' : 'btn
+                                                    btn-default btn-sm btn-round' }} btnStatus"
+                                                    id="btnStatus-{{ $item->id }}">
+                                                    <i class="material-icons">toggle_on</i>
+                                                    <div class="ripple-container"></div>
+                                                </button>
+                                            </form>
+                                            @if ($item->activo)
+                                            <form id="formDelete{{ $item->id }}" method="post"
+                                                action="{{ route('escuela.destroy', $item) }}">
+                                                @csrf
+                                                @method('delete')
+                                                <a rel="tooltip" class="btn btn-warning btn-sm btn-round"
+                                                    href="{{ route('escuela.edit', $item) }}" data-toggle="tooltip"
+                                                    data-placement="top" title="Editar información">
+                                                    <i class="material-icons">edit</i>
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                                <button id="btnDelete-{{ $item->id }}" rel="tooltip"
+                                                    data-toggle="tooltip" data-placement="top" title="{{ __(" Eliminar
+                                                    {$item->establecimiento}")
+                                                    }}"
+                                                    class="btn btn-danger btn-sm btn-round btnDelete">
+                                                    <i class="material-icons">close</i>
+                                                    <div class="ripple-container"></div>
+                                                </button>
+                                            </form>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="card-footer mr-auto ml-auto">
                         <nav aria-label="...">

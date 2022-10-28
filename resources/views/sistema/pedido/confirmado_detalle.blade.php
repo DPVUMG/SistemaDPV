@@ -124,7 +124,7 @@
                                     })->all();
                                     @endphp
                                     <div class="col-sm-12 col-md-12">
-                                        <div class=" table-responsive">
+                                        <div class="table-responsive">
                                             <table class="table table-bordered table-sm dataTableCodigos display"
                                                 style="width:100%">
                                                 <thead class="table-info">
@@ -183,145 +183,152 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-12">
-                                        <div class=" table-responsive">
-                                            <table class="table table-bordered table-sm dataTableCodigos display"
-                                                style="width:100%">
-                                                <thead class="table-info">
-                                                    <tr>
-                                                        <th rowspan="2" class="text-center align-middle">Cantidad</th>
-                                                        <th colspan="3" class="text-center align-middle">Producto</th>
-                                                        <th colspan="2" class="text-center align-middle">Precio Q</th>
-                                                        <th rowspan="2" class="text-center align-middle">Sub Total Q
-                                                        </th>
-                                                        <th rowspan="2" class="text-center align-middle">Descuento Q
-                                                        </th>
-                                                        <th rowspan="2" class="text-center align-middle">Total Q</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th class="text-center align-middle">Nombre</th>
-                                                        <th class="text-center align-middle">Variante</th>
-                                                        <th class="text-center align-middle">Presentación</th>
-
-                                                        <th class="text-center align-middle">Real</th>
-                                                        <th class="text-center align-middle">Escuela</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <form id="AccionConfirmarForm" method="post"
-                                                        action="{{ route('escuela_pedido_detalle.update', $escuela_pedido_detalle->id) }}"
-                                                        autocomplete="off" class="form-horizontal">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        @foreach($registros as $key => $item)
-
-                                                        <input name="{{ 'detale['.$key.'][id]' }}"
-                                                            value="{{ $item->id }}" aria-required="true" hidden />
-                                                        <input name="{{ 'detale['.$key.'][precio_real]' }}"
-                                                            value="{{ $item->precio_real }}" aria-required="true"
-                                                            hidden />
-                                                        <input name="{{ 'detale['.$key.'][precio_descuento]' }}"
-                                                            value="{{ $item->precio_descuento }}" aria-required="true"
-                                                            hidden />
-
+                                        <div class="table-responsive">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-sm dataTableCodigos display"
+                                                    style="width:100%">
+                                                    <thead class="table-info">
                                                         <tr>
-                                                            <td class="text-center align-middle border-success">
-                                                                <div class="form-group">
-                                                                    <input
-                                                                        class="form-control text-center
-                                                        {{ $errors->has('detale['.$key.'][cantidad]') ? ' is-invalid' : '' }} solo-numero"
-                                                                        name="{{ 'detale['.$key.'][cantidad]' }}"
-                                                                        id="{{ 'detale['.$key.'][cantidad]' }}"
-                                                                        type="number" minlength="1"
-                                                                        value="{{ old('detale['.$key.'][cantidad]', $item->cantidad) }}"
-                                                                        aria-required="true"
-                                                                        onchange="reCalcular({{ $key }})" />
-                                                                    @if ($errors->has('detale['.$key.'][cantidad]'))
-                                                                    <span class="error text-danger">
-                                                                        {{ $errors->first('detale['.$key.'][cantidad]')
-                                                                        }}
-                                                                    </span>
-                                                                    @endif
-                                                                </div>
-                                                            </td>
-
-                                                            <td class="text-center align-middle">
-                                                                <h4 class="card-title">
-                                                                    {{ $item->producto->nombre }}
-                                                                </h4>
-                                                                <h6 class="card-category text-gray">
-                                                                    {{ $item->producto->codigo }}
-                                                                </h6>
-                                                            </td>
-                                                            <td class="text-center align-middle">
-                                                                {{ $item->variante->nombre }}
-                                                            </td>
-                                                            <td class="text-center align-middle">
-                                                                {{ $item->presentacion->nombre }}
-                                                            </td>
-
-                                                            @if ($item->precio_descuento == 0)
-                                                            <td class="text-right align-middle bg-info">
-                                                                {{ $item->precio_real }}
-                                                            </td>
-                                                            <td class="text-right align-middle">
-                                                                <div class="form-group">
-                                                                    <input
-                                                                        class="form-control text-right
-                                                            {{ $errors->has('detale['.$key.'][precio]') ? ' is-invalid' : '' }} decimales"
-                                                                        name="{{ 'detale['.$key.'][precio]' }}"
-                                                                        id="{{ 'detale['.$key.'][precio]' }}"
-                                                                        type="text"
-                                                                        value="{{ old('detale['.$key.'][precio]',$item->precio_descuento) }}"
-                                                                        aria-required="true"
-                                                                        onchange="reCalcular({{ $key }})" />
-                                                                    @if ($errors->has('detale['.$key.'][precio]'))
-                                                                    <span class="error text-danger">{{
-                                                                        $errors->first('detale['.$key.'][precio]')
-                                                                        }}</span>
-                                                                    @endif
-                                                                </div>
-                                                            </td>
-                                                            @else
-                                                            <td class="text-right align-middle">
-                                                                {{ $item->precio_real }}
-                                                            </td>
-                                                            <td class="text-right align-middle bg-info">
-                                                                <div class="form-group">
-                                                                    <input
-                                                                        class="form-control text-right
-                                                            {{ $errors->has('detale['.$key.'][precio]') ? ' is-invalid' : '' }} decimales"
-                                                                        name="{{ 'detale['.$key.'][precio]' }}"
-                                                                        id="{{ 'detale['.$key.'][precio]' }}"
-                                                                        type="text"
-                                                                        value="{{ old('detale['.$key.'][precio]',$item->precio_descuento) }}"
-                                                                        aria-required="true"
-                                                                        onchange="reCalcular({{ $key }}, true)" />
-                                                                    @if ($errors->has('detale['.$key.'][precio]'))
-                                                                    <span class="error text-danger">{{
-                                                                        $errors->first('detale['.$key.'][precio]')
-                                                                        }}</span>
-                                                                    @endif
-                                                                </div>
-                                                            </td>
-                                                            @endif
-
-                                                            <td class="text-right align-middle"
-                                                                id="{{ 'detale['.$key.'][sub_total]' }}">
-                                                                {{ $item->sub_total + $item->descuento }}
-                                                            </td>
-                                                            <td class="text-right align-middle"
-                                                                id="{{ 'detale['.$key.'][descuento]' }}">
-                                                                {{ $item->descuento }}
-                                                            </td>
-                                                            <td class="text-right align-middle"
-                                                                id="{{ 'detale['.$key.'][total]' }}">
-                                                                {{ $item->sub_total }}
-                                                            </td>
+                                                            <th rowspan="2" class="text-center align-middle">Cantidad
+                                                            </th>
+                                                            <th colspan="3" class="text-center align-middle">Producto
+                                                            </th>
+                                                            <th colspan="2" class="text-center align-middle">Precio Q
+                                                            </th>
+                                                            <th rowspan="2" class="text-center align-middle">Sub Total Q
+                                                            </th>
+                                                            <th rowspan="2" class="text-center align-middle">Descuento Q
+                                                            </th>
+                                                            <th rowspan="2" class="text-center align-middle">Total Q
+                                                            </th>
                                                         </tr>
-                                                        @endforeach
-                                                    </form>
-                                                </tbody>
-                                            </table>
+                                                        <tr>
+                                                            <th class="text-center align-middle">Nombre</th>
+                                                            <th class="text-center align-middle">Variante</th>
+                                                            <th class="text-center align-middle">Presentación</th>
+
+                                                            <th class="text-center align-middle">Real</th>
+                                                            <th class="text-center align-middle">Escuela</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <form id="AccionConfirmarForm" method="post"
+                                                            action="{{ route('escuela_pedido_detalle.update', $escuela_pedido_detalle->id) }}"
+                                                            autocomplete="off" class="form-horizontal">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            @foreach($registros as $key => $item)
+
+                                                            <input name="{{ 'detale['.$key.'][id]' }}"
+                                                                value="{{ $item->id }}" aria-required="true" hidden />
+                                                            <input name="{{ 'detale['.$key.'][precio_real]' }}"
+                                                                value="{{ $item->precio_real }}" aria-required="true"
+                                                                hidden />
+                                                            <input name="{{ 'detale['.$key.'][precio_descuento]' }}"
+                                                                value="{{ $item->precio_descuento }}"
+                                                                aria-required="true" hidden />
+
+                                                            <tr>
+                                                                <td class="text-center align-middle border-success">
+                                                                    <div class="form-group">
+                                                                        <input
+                                                                            class="form-control text-center
+                                                                                                    {{ $errors->has('detale['.$key.'][cantidad]') ? ' is-invalid' : '' }} solo-numero"
+                                                                            name="{{ 'detale['.$key.'][cantidad]' }}"
+                                                                            id="{{ 'detale['.$key.'][cantidad]' }}"
+                                                                            type="number" minlength="1"
+                                                                            value="{{ old('detale['.$key.'][cantidad]', $item->cantidad) }}"
+                                                                            aria-required="true"
+                                                                            onchange="reCalcular({{ $key }})" />
+                                                                        @if ($errors->has('detale['.$key.'][cantidad]'))
+                                                                        <span class="error text-danger">
+                                                                            {{
+                                                                            $errors->first('detale['.$key.'][cantidad]')
+                                                                            }}
+                                                                        </span>
+                                                                        @endif
+                                                                    </div>
+                                                                </td>
+
+                                                                <td class="text-center align-middle">
+                                                                    <h4 class="card-title">
+                                                                        {{ $item->producto->nombre }}
+                                                                    </h4>
+                                                                    <h6 class="card-category text-gray">
+                                                                        {{ $item->producto->codigo }}
+                                                                    </h6>
+                                                                </td>
+                                                                <td class="text-center align-middle">
+                                                                    {{ $item->variante->nombre }}
+                                                                </td>
+                                                                <td class="text-center align-middle">
+                                                                    {{ $item->presentacion->nombre }}
+                                                                </td>
+
+                                                                @if ($item->precio_descuento == 0)
+                                                                <td class="text-right align-middle bg-info">
+                                                                    {{ $item->precio_real }}
+                                                                </td>
+                                                                <td class="text-right align-middle">
+                                                                    <div class="form-group">
+                                                                        <input
+                                                                            class="form-control text-right
+                                                                                                        {{ $errors->has('detale['.$key.'][precio]') ? ' is-invalid' : '' }} decimales"
+                                                                            name="{{ 'detale['.$key.'][precio]' }}"
+                                                                            id="{{ 'detale['.$key.'][precio]' }}"
+                                                                            type="text"
+                                                                            value="{{ old('detale['.$key.'][precio]',$item->precio_descuento) }}"
+                                                                            aria-required="true"
+                                                                            onchange="reCalcular({{ $key }})" />
+                                                                        @if ($errors->has('detale['.$key.'][precio]'))
+                                                                        <span class="error text-danger">{{
+                                                                            $errors->first('detale['.$key.'][precio]')
+                                                                            }}</span>
+                                                                        @endif
+                                                                    </div>
+                                                                </td>
+                                                                @else
+                                                                <td class="text-right align-middle">
+                                                                    {{ $item->precio_real }}
+                                                                </td>
+                                                                <td class="text-right align-middle bg-info">
+                                                                    <div class="form-group">
+                                                                        <input
+                                                                            class="form-control text-right
+                                                                                                        {{ $errors->has('detale['.$key.'][precio]') ? ' is-invalid' : '' }} decimales"
+                                                                            name="{{ 'detale['.$key.'][precio]' }}"
+                                                                            id="{{ 'detale['.$key.'][precio]' }}"
+                                                                            type="text"
+                                                                            value="{{ old('detale['.$key.'][precio]',$item->precio_descuento) }}"
+                                                                            aria-required="true"
+                                                                            onchange="reCalcular({{ $key }}, true)" />
+                                                                        @if ($errors->has('detale['.$key.'][precio]'))
+                                                                        <span class="error text-danger">{{
+                                                                            $errors->first('detale['.$key.'][precio]')
+                                                                            }}</span>
+                                                                        @endif
+                                                                    </div>
+                                                                </td>
+                                                                @endif
+
+                                                                <td class="text-right align-middle"
+                                                                    id="{{ 'detale['.$key.'][sub_total]' }}">
+                                                                    {{ $item->sub_total + $item->descuento }}
+                                                                </td>
+                                                                <td class="text-right align-middle"
+                                                                    id="{{ 'detale['.$key.'][descuento]' }}">
+                                                                    {{ $item->descuento }}
+                                                                </td>
+                                                                <td class="text-right align-middle"
+                                                                    id="{{ 'detale['.$key.'][total]' }}">
+                                                                    {{ $item->sub_total }}
+                                                                </td>
+                                                            </tr>
+                                                            @endforeach
+                                                        </form>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

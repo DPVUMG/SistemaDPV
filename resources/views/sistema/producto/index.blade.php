@@ -93,7 +93,8 @@
                                                                 id="input-producto_subcategoria">
                                                                 <option value="">Seleccionar una presentacion</option>
                                                                 @foreach ($subcategorias as $item)
-                                                                <option value="{{ $item->id }}">{{ "{$item->categoria->nombre} -
+                                                                <option value="{{ $item->id }}">{{
+                                                                    "{$item->categoria->nombre} -
                                                                     {$item->nombre}" }}
                                                                 </option>
                                                                 @endforeach
@@ -289,7 +290,7 @@
                             registros
                         </button>
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                            <table class="dataTable display" style="width:100%">
                                 <thead class="thead-dark">
                                     <th class="text-center">
                                         {{ __('Información') }}
