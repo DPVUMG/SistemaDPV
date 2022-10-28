@@ -72,7 +72,7 @@ class ProductoFotoController extends Controller
             $img_data = file_get_contents($request->file('foto'));
             $image = Image::make($img_data);
             $image->encode('jpg', 70);
-            $nombre = "{$producto_foto->id}.jpg";
+            $nombre = "{$producto->id}.jpg";
             Storage::disk('producto')->put("{$producto_foto->id}/{$nombre}", $image);
 
             $producto->foto = $nombre;

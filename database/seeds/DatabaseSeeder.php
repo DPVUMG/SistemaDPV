@@ -2,6 +2,7 @@
 
 use App\Models\Mes;
 use App\Models\Banco;
+use App\Models\Gasto;
 use App\Models\Escuela;
 use App\Models\Persona;
 use App\Models\Usuario;
@@ -134,7 +135,8 @@ class DatabaseSeeder extends Seeder
 
             for ($i = 0; $i < $cantidad_pedidos; $i++) {
 
-                $estado_pedido = EstadoPedido::all()->random()->first();
+                $estado = random_int(1, 6);
+                $estado_pedido = EstadoPedido::find($estado);
 
                 $fecha = $this->fecha_aleatoria();
                 $fecha_entrega = date("Y-m-d", strtotime($fecha . "+ 3 days"));
@@ -237,7 +239,7 @@ class DatabaseSeeder extends Seeder
                         $this->historialPedido(1, 1, $pedido->id, $escuela->id);
                         $this->historialPedido(1, 5, $pedido->id, $escuela->id);
 
-                        EscuelaDetallePedido::where('escuela_pedido_id', $pedido->id)->update(['activo', true]);
+                        EscuelaDetallePedido::where('escuela_pedido_id', $pedido->id)->update(['activo' => true]);
                         break;
                     case 6:
                         $this->historialPedido(1, 1, $pedido->id, $escuela->id);
@@ -245,6 +247,21 @@ class DatabaseSeeder extends Seeder
                         break;
                 }
             }
+        }
+
+        $cantidad_gastos = random_int(100, 200);
+        for ($i = 0; $i < $cantidad_gastos; $i++) {
+            $fecha = $this->fecha_aleatoria();
+            Gasto::create(
+                [
+                    'monto' => random_int(75, 500),
+                    'descripcion' => "gasto ficticio",
+                    'anio' => date('Y', strtotime($fecha)),
+                    'mes_id' => date('m', strtotime($fecha)),
+                    'usuario_id' => 1,
+                    'created_at' => date('Y-m-d H:i:s', strtotime($fecha))
+                ]
+            );
         }
     }
 
