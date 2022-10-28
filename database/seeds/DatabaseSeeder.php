@@ -251,6 +251,8 @@ class DatabaseSeeder extends Seeder
                         break;
                 }
             }
+
+            echo "Pedido #{$pedido->id} para la escuela {$escuela->id}" . PHP_EOL;
         }
 
         $cantidad_gastos = random_int(100, 200);
@@ -267,8 +269,6 @@ class DatabaseSeeder extends Seeder
                 ]
             );
         }
-
-        echo "Pedido #{$pedido->id} para la escuela {$escuela->id}" . PHP_EOL;
     }
 
     public function fecha_aleatoria($limiteInferior = "2022-01-01")
