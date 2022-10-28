@@ -13,7 +13,6 @@ use App\Models\EscuelaSupervisor;
 use App\Models\EscuelaUsuario;
 use App\Models\Municipio;
 use App\Models\Nivel;
-use App\Models\Persona;
 use App\Models\Supervisor;
 use App\Models\Usuario;
 use Illuminate\Support\Collection;
@@ -27,7 +26,7 @@ class EscuelasImport implements ToCollection
     public function collection(Collection $collection)
     {
         foreach ($collection as $key => $value) {
-            if ($key > 1) {
+            if ($key > 1 && $key < 52) {
                 $mensaje = "";
                 if (!is_null($value[0])) {
 
@@ -54,7 +53,7 @@ class EscuelasImport implements ToCollection
                         ->where('plan', $value[15])
                         ->first();
 
-                    if(is_null($escuela)) {
+                    if (is_null($escuela)) {
                         $escuela = Escuela::firstOrCreate(
                             [
                                 'establecimiento' => $value[4],
