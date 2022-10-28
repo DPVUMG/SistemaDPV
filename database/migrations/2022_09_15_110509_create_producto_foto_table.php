@@ -15,7 +15,7 @@ class CreateProductoFotoTable extends Migration
     {
         Schema::create('producto_foto', function (Blueprint $table) {
             $table->id();
-            $table->string('foto', 50);
+            $table->string('foto', 50)->nullable();
             $table->foreignId('producto_id')->constrained('producto');
             $table->foreignId('usuario_id')->constrained('usuario');
         });

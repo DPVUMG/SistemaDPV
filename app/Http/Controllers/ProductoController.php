@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Marca;
 use App\Models\Producto;
-use Illuminate\Support\Str;
 use App\Models\ProductoFoto;
 use App\Models\SubCategoria;
 use Illuminate\Http\Request;
@@ -54,22 +53,24 @@ class ProductoController extends Controller
         try {
             DB::beginTransaction(); //Inciamos la transacción
 
-            $img_data = file_get_contents($request->file('foto'));
-            $image = Image::make($img_data);
-            $image->encode('jpg', 70);
-            $nombre = Str::random(10);
-
             $data = $request->all();
             $data['usuario_id'] = Auth::user()->id;
             $data['codigo'] = $this->generadorCodigo('P', Producto::count());
-            $data['foto'] = "{$nombre}.jpg";
+            $data['foto'] = null;
             $data['nuevo'] = true;
             $data['activo'] = false;
             $data['temporada'] = $request->has('temporada');
 
             $producto = Producto::create($data); //Guardamos el producto
 
-            Storage::disk('producto')->put("{$producto->id}/{$data['foto']}", $image);
+            $img_data = file_get_contents($request->file('foto'));
+            $image = Image::make($img_data);
+            $image->encode('jpg', 70);
+            $nombre = "{$producto->id}.jpg";
+
+            Storage::disk('producto')->put("{$producto->id}/{$nombre}", $image);
+
+            $producto->foto = $nombre;
 
             $data['producto_id'] = $producto->id;
             ProductoFoto::create($data); //Guardamos la fotografia del producto

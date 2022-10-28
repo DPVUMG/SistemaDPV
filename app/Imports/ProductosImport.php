@@ -78,6 +78,9 @@ class ProductosImport implements ToCollection
                         ['nombre' => $value[6]]
                     );
 
+                    $producto->foto = "{$producto->id}.jpg";
+                    $producto->save();
+
                     $mensaje .= " - Producto: {$producto->nombre}";
 
                     ProductoSubCategoria::create([
