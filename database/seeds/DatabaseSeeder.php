@@ -243,7 +243,7 @@ class DatabaseSeeder extends Seeder
                         $this->historialPedido(1, 1, $pedido->id, $escuela->id);
                         $this->historialPedido(1, 5, $pedido->id, $escuela->id);
 
-                        EscuelaDetallePedido::where('escuela_pedido_id', $pedido->id)->update(['activo' => true]);
+                        EscuelaDetallePedido::where('escuela_pedido_id', $pedido->id)->update(['activo' => false]);
                         break;
                     case 6:
                         $this->historialPedido(1, 1, $pedido->id, $escuela->id);

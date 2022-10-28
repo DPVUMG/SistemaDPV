@@ -50,19 +50,25 @@
                                                         <li class="list-group-item">
                                                             <small class="text-left"><b>Sub Total Q</b></small>
                                                             <p class="display-4" id="sub_total">
-                                                                {{ $escuela_pedido->sub_total }}
+                                                                {{
+                                                                number_format($escuela_pedido->sub_total, 2, '.', ',')
+                                                                }}
                                                             </p>
                                                         </li>
                                                         <li class="list-group-item">
                                                             <small class="text-left"><b>Descuento Q</b></small>
                                                             <p class="display-4" id="descuento">
-                                                                {{ $escuela_pedido->descuento }}
+                                                                {{
+                                                                number_format($escuela_pedido->descuento, 2, '.', ',')
+                                                                }}
                                                             </p>
                                                         </li>
                                                         <li class="list-group-item">
                                                             <small class="text-left"><b>Total Q</b></small>
                                                             <p class="display-4" id="total">
-                                                                {{ $escuela_pedido->total }}
+                                                                {{
+                                                                number_format($escuela_pedido->total, 2, '.', ',')
+                                                                }}
                                                             </p>
                                                         </li>
                                                     </ul>
