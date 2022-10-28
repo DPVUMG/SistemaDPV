@@ -68,6 +68,7 @@ class ProductoController extends Controller
             $image->encode('jpg', 70);
             $nombre = "{$producto->id}.jpg";
 
+            $data['foto'] = $nombre;
             Storage::disk('producto')->put("{$producto->id}/{$nombre}", $image);
 
             $producto->foto = $nombre;
