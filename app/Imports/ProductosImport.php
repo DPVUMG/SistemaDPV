@@ -91,7 +91,7 @@ class ProductosImport implements ToCollection
                     ]);
 
                     $producto_variante = ProductoVariante::create([
-                        'precio' => $producto->temporada ? 0 : $value[8],
+                        'precio' => $value[8],
                         'producto_id' => $producto->id,
                         'variante_presentacion_id' => $variante_presentacion->id,
                         'variante_id' => $variante_presentacion->variante_id,
