@@ -19,7 +19,7 @@ class PDFController extends Controller
         $description = null;
         $date = date('d/m/Y');
         $time = date('h:i:s');
-        $footer = "Con sulta generada en fecha {$date} y hora {$time}";
+        $footer = "Consulta generada en fecha {$date} y hora {$time}";
 
         $inicio = date('Y-m-d', strtotime($date_start));
         $fin = date('Y-m-d', strtotime($date_end));
@@ -39,7 +39,7 @@ class PDFController extends Controller
         $description = null;
         $date = date('d/m/Y');
         $time = date('h:i:s');
-        $footer = "Con sulta generada en fecha {$date} y hora {$time}";
+        $footer = "Consulta generada en fecha {$date} y hora {$time}";
 
         $inicio = date('Y-m-d', strtotime($date_start));
         $fin = date('Y-m-d', strtotime($date_end));
@@ -59,7 +59,7 @@ class PDFController extends Controller
         $description = null;
         $date = date('d/m/Y');
         $time = date('h:i:s');
-        $footer = "Con sulta generada en fecha {$date} y hora {$time}";
+        $footer = "Consulta generada en fecha {$date} y hora {$time}";
 
         foreach (EstadoPedido::get() as $value) {
             $items[$value->id] = EscuelaPedido::where('escuela_id', $escuela_id)->where('estado_pedido_id', $value->id)->orderBy('id', 'DESC')->get();
