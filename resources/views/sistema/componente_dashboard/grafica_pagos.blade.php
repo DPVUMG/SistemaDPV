@@ -14,7 +14,6 @@
 </div>
 @push('js')
 <script>
-    console.log(@json($grafica))
     Highcharts.chart('graficaPagoMensual', {
         title: {
             text: 'Pagos del año '+@json(date('Y'))
@@ -41,7 +40,10 @@
         yAxis: {
             title: {
                 text: 'Montos'
-            }
+            },
+            labels: {
+                format: '{value} quetazales'
+            },
         },
         legend: {
             layout: 'vertical',

@@ -7,6 +7,7 @@
 <script src="https://code.highcharts.com/modules/cylinder.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script src="{{ asset('material') }}/js/core/popper.min.js"></script>
 <script src="{{ asset('material') }}/js/core/bootstrap-material-design.min.js"></script>
 <!-- Plugin for the momentJs  -->

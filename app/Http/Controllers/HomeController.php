@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Models\EscuelaPedido;
+use App\Models\Mes;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -58,6 +59,90 @@ class HomeController extends Controller
             foreach ($items as $key => $value) {
                 array_push($data['graficaPagoMensual'], is_null($value->total) ? 0 : floatval($value->total));
             }
+
+            $items = DB::table('escuela_pedido')
+                ->join('escuela', 'escuela.id', 'escuela_pedido.escuela_id')
+                ->select(
+                    DB::RAW("CONCAT(escuela.establecimiento,' - ',escuela.plan,' ',escuela.jornada) AS nombre_escuela"),
+                    DB::RAW("SUM(escuela_pedido.total) AS monto_total")
+                )
+                ->whereIn('escuela_pedido.estado_pedido_id', [3, 4])
+                ->where('escuela_pedido.anio', date('Y'))
+                ->groupBy('nombre_escuela')
+                ->orderByDesc('monto_total')
+                ->limit(10)
+                ->get();
+
+            $data['graficaPedidoInversion']['categories'] = array();
+            $data['graficaPedidoInversion']['data'] = array();
+
+            foreach ($items as $key => $value) {
+                array_push($data['graficaPedidoInversion']['categories'], $value->nombre_escuela);
+                array_push($data['graficaPedidoInversion']['data'], is_null($value->monto_total) ? 0 : round($value->monto_total, 2));
+            }
+
+            $items = DB::table('escuela_pedido')
+                ->join('escuela', 'escuela.id', 'escuela_pedido.escuela_id')
+                ->select(
+                    DB::RAW("CONCAT(escuela.establecimiento,' - ',escuela.plan,' ',escuela.jornada) AS nombre_escuela"),
+                    DB::RAW("COUNT(escuela_pedido.estado_pedido_id) AS pedidos")
+                )
+                ->whereIn('escuela_pedido.estado_pedido_id', [3, 4])
+                ->where('escuela_pedido.anio', date('Y'))
+                ->groupBy('nombre_escuela')
+                ->orderByDesc('pedidos')
+                ->limit(10)
+                ->get();
+
+            $data['graficaPedidoSolicitados']['categories'] = array();
+            $data['graficaPedidoSolicitados']['data'] = array();
+
+            foreach ($items as $key => $value) {
+                array_push($data['graficaPedidoSolicitados']['categories'], $value->nombre_escuela);
+                array_push($data['graficaPedidoSolicitados']['data'], $value->pedidos);
+            }
+
+            $data['graficaIngresosGastos']['categories'] = array();
+            $data['graficaIngresosGastos']['series'] = array();
+
+            $meses = Mes::orderBy('id', 'ASC')->get();
+            foreach ($meses as $key => $mes) {
+                array_push($data['graficaIngresosGastos']['categories'], $mes->nombre);
+            }
+
+            $item['name'] = 'Ingresos';
+            $item['color'] = 'rgba(0,255,0,1)';
+            $item['data'] = array();
+            foreach ($meses as $key => $mes) {
+                $info = DB::table('pago_pedido')
+                    ->select(
+                        DB::RAW("SUM(pago_pedido.monto) AS monto_total")
+                    )
+                    ->where('pago_pedido.anio', date('Y'))
+                    ->where('pago_pedido.mes_id', $mes->id)
+                    ->first();
+
+                array_push($item['data'], is_null($info->monto_total) ? 0 : floatval($info->monto_total));
+            }
+            $item['tooltip']['valuePrefix'] = 'Q ';
+            array_push($data['graficaIngresosGastos']['series'], (object) $item);
+
+            $item['name'] = 'Gastos';
+            $item['color'] = 'rgba(255,0,0,1)';
+            $item['data'] = array();
+            foreach ($meses as $key => $mes) {
+                $info = DB::table('gasto')
+                    ->select(
+                        DB::RAW("SUM(gasto.monto) AS monto_total")
+                    )
+                    ->where('gasto.anio', date('Y'))
+                    ->where('gasto.mes_id', $mes->id)
+                    ->first();
+
+                array_push($item['data'], is_null($info->monto_total) ? 0 : floatval($info->monto_total));
+            }
+            $item['tooltip']['valuePrefix'] = 'Q ';
+            array_push($data['graficaIngresosGastos']['series'], (object) $item);
 
             return view('dashboard', compact('data'));
         }

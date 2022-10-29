@@ -78,10 +78,31 @@
             <div class="col-sm-12 col-md-5">
                 @include('sistema.componente_dashboard.grafica_pagos', [ 'grafica' => $data['graficaPagoMensual'] ])
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    @include('sistema.componente_dashboard.calendario')
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @include('sistema.componente_dashboard.calendario')
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @include('sistema.componente_dashboard.grafica_pedido_inversion', [
+                'grafica' => $data['graficaPedidoInversion']
+                ])
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @include('sistema.componente_dashboard.grafica_pedido_solicitado', [
+                'grafica' => $data['graficaPedidoSolicitados']
+                ])
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @include('sistema.componente_dashboard.grafica_ingreso_gasto', [
+                'grafica' => $data['graficaIngresosGastos']
+                ])
             </div>
         </div>
     </div>
