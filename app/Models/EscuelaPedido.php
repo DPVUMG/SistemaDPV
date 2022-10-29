@@ -68,6 +68,22 @@ class EscuelaPedido extends Model
         'pagado' => 'boolean',
     ];
 
+    public function getPasoAttribute()
+    {
+        $date = date('Y-m-d') > date('Y-m-d', strtotime($this->fecha_entrega))  ? true : false;
+        return $date;
+    }
+
+    public function getRestaAttribute()
+    {
+        $fechaActual = date('Y-m-d');
+        $datetime1 = date_create($this->fecha_entrega);
+        $datetime2 = date_create($fechaActual);
+        $data = date_diff($datetime1, $datetime2);
+        $differenceFormat = '%a';
+        return "{$data->format($differenceFormat)} días";
+    }
+
     public function escuela_usuario()
     {
         return $this->hasOne(EscuelaUsuario::class, 'id', 'escuela_usuario_id');

@@ -253,9 +253,9 @@ class DatabaseSeeder extends Seeder
                             $this->historialPedido(1, 6, $pedido->id, $escuela->id);
                             break;
                     }
-                }
 
-                echo "Pedido #{$pedido->id} para la escuela {$escuela->id}" . PHP_EOL;
+                    echo "Pedido #{$pedido->id} para la escuela {$escuela->id}" . PHP_EOL;
+                }
             }
 
             $cantidad_gastos = random_int(100, 200);

@@ -252,8 +252,8 @@
           <p>{{ __('Bitácora de Pedidos') }}</p>
         </a>
       </li>
-      <li class="nav-item {{URL::current() == URL::route('escuela_pedido_historial.index') ? 'active' : ''}}">
-        <a class="nav-link" href="{{ route('escuela_pedido_historial.index') }}">
+      <li class="nav-item {{URL::current() == URL::route('reporte.index') ? 'active' : ''}}">
+        <a class="nav-link" href="{{ route('reporte.index') }}">
           <i class="material-icons">
             <img class="img" src="{{ asset('image/menu/reporte.png') }}" width="40px" alt="Reportes">
           </i>

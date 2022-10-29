@@ -35,21 +35,6 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 
-Route::group(['middleware' => ['auth']], function () {
-    Route::name('report.')->group(function () {
-        Route::get('report/traicing', 'ReportController@traicing')->name('traicing');
-        Route::get('report/credit', 'ReportController@credit')->name('credit');
-        Route::get('report/client', 'ReportController@client')->name('client');
-    });
-
-    Route::name('pdf.')->group(function () {
-        Route::get('pdf/traicing/{month}', 'PDFController@traicing')->name('traicing');
-        Route::get('pdf/credit/{date_start}/{date_end}', 'PDFController@credit')->name('credit');
-        Route::get('pdf/client/{user_id}', 'PDFController@client')->name('client');
-    });
-});
-
-
 /* ================================== RUTAS PARA LOS CONTROLADORES =============================== */
 
 Route::group(['middleware' => ['auth']], function () {
@@ -119,6 +104,19 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('pago', 'PagoPedidoController')->only(['index', 'store', 'show', 'destroy']);
 
     Route::resource('gasto', 'GastoController')->except(['create', 'edit', 'update']);
+
+    Route::name('reporte.')->group(function () {
+        Route::get('reporte/index', 'ReporteController@index')->name('index');
+        Route::get('reporte/pagos_realizados', 'ReporteController@pagos_realizados')->name('pagos_realizados');
+        Route::get('reporte/pagos_pendientes', 'ReporteController@pagos_pendientes')->name('pagos_pendientes');
+        Route::get('reporte/pedidos_escuelas', 'ReporteController@pedidos_escuelas')->name('pedidos_escuelas');
+    });
+
+    Route::name('pdf.')->group(function () {
+        Route::get('pdf/pagos_realizados/{date_start}/{date_end}', 'PDFController@pagos_realizados')->name('pagos_realizados');
+        Route::get('pdf/pagos_pendientes/{date_start}/{date_end}', 'PDFController@pagos_pendientes')->name('pagos_pendientes');
+        Route::get('pdf/pedidos_escuelas/{escuela_id}', 'PDFController@pedidos_escuelas')->name('pedidos_escuelas');
+    });
 });
 
 Route::group(['middleware' => ['auth']], function () {
