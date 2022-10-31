@@ -40,11 +40,9 @@
             selectable: true,
             eventClick: function (event) {
                 if(event) {
-
-                    console.log(event)
                     var show = "{{ route('escuela_pedido.show', ':id') }}";
                     var event_start = $.fullCalendar.formatDate(event.start, "DD-MM-YYYY");
-                    var event_end = $.fullCalendar.formatDate(event.end, "DD-MM-YYYY");
+                    var event_end = $.fullCalendar.formatDate(event.end ? event.end : event.start, "DD-MM-YYYY");
 
                     Swal.fire({
                         title: event.title,
