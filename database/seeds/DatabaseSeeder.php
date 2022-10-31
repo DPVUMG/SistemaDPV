@@ -61,6 +61,21 @@ class DatabaseSeeder extends Seeder
 
         if(Config::get('app.demo')) {
             Excel::import(new EscuelasImport, 'database/seeds/Catalogos/establecimientos.xlsx');
+
+            $cantidad_gastos = random_int(100, 200);
+            for ($i = 0; $i < $cantidad_gastos; $i++) {
+                $fecha = $this->fecha_aleatoria();
+                Gasto::create(
+                    [
+                        'monto' => random_int(75, 500),
+                        'descripcion' => "gasto ficticio",
+                        'anio' => date('Y', strtotime($fecha)),
+                        'mes_id' => date('m', strtotime($fecha)),
+                        'usuario_id' => 1,
+                        'created_at' => date('Y-m-d H:i:s', strtotime($fecha))
+                    ]
+                );
+            }
         }
 
         Excel::import(new ProductosImport, 'database/seeds/Catalogos/Productos.xlsx');
@@ -259,21 +274,6 @@ class DatabaseSeeder extends Seeder
 
                     echo "Pedido #{$pedido->id} para la escuela {$escuela->id}" . PHP_EOL;
                 }
-            }
-
-            $cantidad_gastos = random_int(100, 200);
-            for ($i = 0; $i < $cantidad_gastos; $i++) {
-                $fecha = $this->fecha_aleatoria();
-                Gasto::create(
-                    [
-                        'monto' => random_int(75, 500),
-                        'descripcion' => "gasto ficticio",
-                        'anio' => date('Y', strtotime($fecha)),
-                        'mes_id' => date('m', strtotime($fecha)),
-                        'usuario_id' => 1,
-                        'created_at' => date('Y-m-d H:i:s', strtotime($fecha))
-                    ]
-                );
             }
         }
     }
