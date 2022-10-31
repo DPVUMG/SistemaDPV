@@ -550,10 +550,7 @@
                                                                 @csrf
                                                                 @method('delete')
                                                                 <button type="button"
-                                                                    class="btn btn-danger btn-sm btn-round"
-                                                                    onclick="confirm('{{ __(" ¿Está seguro que desea
-                                                                    eliminar el registro {$item->telefono} ?") }}') ?
-                                                                    this.parentElement.submit() : ''">
+                                                                    class="btn btn-danger btn-sm btn-round">
                                                                     <i class="material-icons">close</i>
                                                                     <div class="ripple-container"></div>
                                                                 </button>
@@ -641,10 +638,7 @@
                                                                 @csrf
                                                                 @method('delete')
                                                                 <button type="button"
-                                                                    class="btn btn-danger btn-sm btn-round"
-                                                                    onclick="confirm('{{ __(" ¿Está seguro que desea
-                                                                    eliminar el registro {$item->telefono} ?") }}') ?
-                                                                    this.parentElement.submit() : ''">
+                                                                    class="btn btn-danger btn-sm btn-round">
                                                                     <i class="material-icons">close</i>
                                                                     <div class="ripple-container"></div>
                                                                 </button>

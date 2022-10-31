@@ -38,7 +38,7 @@
                                 <div class="col-md-12">
                                     @include('sistema.global.form_create_usuario', [
                                     'municipios' => $municipios,
-                                    'escuelas' => false,
+                                    'escuelas' => null,
                                     'escuela_usuario' => $usuario
                                     ])
                                 </div>
