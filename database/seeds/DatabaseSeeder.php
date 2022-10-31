@@ -59,7 +59,10 @@ class DatabaseSeeder extends Seeder
         Mes::insert($meses);
         echo "Meses." . PHP_EOL;
 
-        Excel::import(new EscuelasImport, 'database/seeds/Catalogos/establecimientos.xlsx');
+        if(Config::get('app.demo')) {
+            Excel::import(new EscuelasImport, 'database/seeds/Catalogos/establecimientos.xlsx');
+        }
+
         Excel::import(new ProductosImport, 'database/seeds/Catalogos/Productos.xlsx');
 
         $estados = [

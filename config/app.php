@@ -15,6 +15,7 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
     'insert_pedidos' => (bool) env('PEDIDOS_DEMO', false),
+    'demo' => (bool) env('DEMO', false),
 
     /*
     |--------------------------------------------------------------------------
